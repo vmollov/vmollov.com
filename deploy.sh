@@ -1,0 +1,2 @@
+grunt uglify
+grunt cssmin
