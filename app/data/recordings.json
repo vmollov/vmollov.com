@@ -1,0 +1,110 @@
+[
+	{
+		"order": 3,
+		"img": "img/albums/babik2.jpg",
+		"title": "American Gypsy",
+		"description": "This is an album by the jazz band Babik featuring gypsy jazz - an early twentieth century style made vastly popular by Django Reinhardt.  I participate as a guest artist on two of the tracks.",
+		"samples":[
+			{
+				"order": 1,
+				"src": "Romungro_web",
+				"title": "Romungro"
+			},
+			{
+				"order": 2,
+				"src": "Lifecycles_web",
+				"title": "Lifecycles"
+			}
+		]
+	},
+	{
+		"order": 2,
+		"img": "img/albums/cuidado.jpg",
+		"title": "Cuidado",
+		"description": "The first album of the Cuidado Tango ensemble featuring some of the band's arrangements of traditional Argentine tangos from the golden age of tango, some more modern compositions by Astor Piazzolla, as well as several original pieces composed by members of the band. Two of my compositions are included.",
+		"samples":[
+			{
+				"order": 1,
+				"src": "MilongaDelAngel",
+				"title": "Milonga Del Angel"
+			},
+			{
+				"order": 2,
+				"src": "TangoPorAnne",
+				"title": "Tango Por Anne"
+			},
+			{
+				"order": 3,
+				"src": "EternalTango",
+				"title": "Eternal Tango"
+			},
+			{
+				"order": 4,
+				"src": "Libertango",
+				"title": "Libertango"
+			}
+		],
+		"storeLinks":[
+			{
+				"storeName": "CD Baby",
+				"storeCode": "cdbaby",
+				"href": "http://www.cdbaby.com/cuidado"
+			},
+			{
+				"storeName": "Amazon",
+				"storeCode": "amazon",
+				"href": "http://www.amazon.com/Cuidado/dp/B004VDDGGC/"
+			},
+			{
+				"storeName": "iTunes",
+				"storeCode": "itunes",
+				"href": "https://itunes.apple.com/us/album/cuidado/id430676779"
+			}
+		]
+	},
+	{
+		"order": 1,
+		"img": "/img/albums/dreams.jpg",
+		"title": "Dreams",
+		"description": "This is my first album of all original pieces.  The compositions are mostly based on Bulgarian ethnic music but there are some influences by French Mussette and jazz.",
+		"samples":[
+			{
+				"order": 1,
+				"src": "Village_Festival_web",
+				"title": "Village Festival"
+			},
+			{
+				"order": 2,
+				"src": "Breeze_From_Paris_web",
+				"title": "Breeze from Paris"
+			},
+			{
+				"order": 3,
+				"src": "To_My_Brother_web",
+				"title": "To My Brother"
+			},
+			{
+				"order": 4,
+				"src": "Dreams_web",
+				"title": "Dreams"
+			}
+		],
+		"storeLinks":[
+			{
+				"storeName": "CD Baby",
+				"storeCode": "cdbaby",
+				"href": "http://www.cdbaby.com/cd/vmollov"
+			},
+			{
+				"storeName": "Amazon",
+				"storeCode": "amazon",
+				"href": "http://www.amazon.com/Dreams-Vladimir-Mollov/dp/B001TKK7CG/"
+			},
+			{
+				"storeName": "iTunes",
+				"storeCode": "itunes",
+				"href": "https://itunes.apple.com/us/album/dreams/id305554172"
+			}
+		]
+	}
+]

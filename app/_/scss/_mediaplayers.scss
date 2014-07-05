@@ -1,0 +1,89 @@
+/* Styles for the audio and video players */
+#videoPlayerContainer{
+	display: block;
+	position: fixed;
+	top:100%; //initial top is hidden
+	left:10%;
+	
+	.closeOverlay{
+		width:100%;
+		text-align:right;
+		filter:alpha(opacity=79);
+		-moz-opacity:0.79;
+		-khtml-opacity: 0.79;
+		opacity: 0.95;
+		@include linearGradient(#505050,#1e1e1e);
+		
+		a{
+			margin: .3em;
+			display: inline-block;
+			vertical-align: middle;
+			
+			img{
+				width:1.2em;
+				margin: .1em .5em .1em .5em;
+				float: right;
+			}
+		}
+
+	}//.closeOverlay
+}//#videoPlayerContainer
+
+#audioPlayerContainer{
+	position:fixed;
+	left:50%;
+	margin-left: -50%;
+	bottom:-100%;
+	width: 100%;
+	text-align: center;
+	display:none;
+		
+	.playerDetails{
+		display: inline-block;
+		border:thin solid lightgray;
+		border-radius: 10px;
+		padding:.5em;
+		opacity: .9;
+		
+		@include breakpoint($mediumSmall){
+			width: 27%;
+		}
+		
+		@include breakpoint($medium){
+			min-width: 339px;
+			max-width: 430px;
+		}
+		
+		@include linearGradient(#505050,#1e1e1e);
+		
+		.btnplay{
+			float: left;
+			height: 2.4em;
+			margin-right: 1em;
+			
+		}
+		.songInfo{
+			float:left;
+			text-align: left;
+		}
+		
+		div{
+			display: inline-block;
+		}	
+		
+		.volumecontroll{
+			display:none;
+		
+			@include breakpoint($medium){
+				display: inline-block;
+				margin-right:1.5em;
+				vertical-align: middle;
+				float:right;
+				
+				input{
+					width: 7em;
+				}
+			}
+		}
+	}
+}

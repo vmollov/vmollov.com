@@ -1,0 +1,7 @@
+<div class="video itemBackground" ng-repeat="video in allVideos">
+	<video-sample video-src="video.embedUrl" video-title="video.title" video-thumbnail="video.thumbnail"></video-sample>
+    <div class="videoDetails">
+        <div class="itemTitle">{{ video.title }}</div>
+        <div class="info">{{ video.description }}</div>
+    </div>
+</div>

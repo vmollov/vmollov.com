@@ -1,0 +1,9 @@
+<h1 ng-show="upcomingEvents.length > 0">Upcoming Events</h1>
+<div class='event itemBackground' ng-repeat='event in upcomingEvents | orderBy: upcommingEventOrderPredicate'>
+	<calendar-event event='event'></calendar-event>
+</div>
+
+<h1 ng-show="upcomingEvents.length < 3">Recent Events</h1>
+<div class='event itemBackground' ng-show="upcomingEvents.length < 3" ng-repeat='event in recentEvents | orderBy: recentEventOrderPredicate | limitTo: 3'>
+	<calendar-event event='event'></calendar-event>
+</div>

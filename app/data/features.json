@@ -1,0 +1,43 @@
+{
+	"video": [
+		{
+			"order": 1,
+			"src": "http://www.youtube.com/embed/EkJRruiMHJ8?version=3&f=videos&app=youtube_gdata&autoplay=1",
+			"img": "http://i.ytimg.com/vi/EkJRruiMHJ8/2.jpg",
+			"title": "Vladimir Mollov - Ruchenitsa<br />Folklor TV 2013"
+		},
+		{
+			"order": 2,
+			"src": "http://www.youtube.com/embed/BsI4sFz-u-g?version=3&f=videos&app=youtube_gdata&autoplay=1",
+			"img": "http://i.ytimg.com/vi/BsI4sFz-u-g/1.jpg",
+			"title": "Parafraz by Gridin<br />Live Concert"
+		},
+		{
+			"order": 3,
+			"src": "http://www.youtube.com/embed/SExZmuBFmqE?version=3&f=videos&app=youtube_gdata&autoplay=1",
+			"img": "http://i.ytimg.com/vi/SExZmuBFmqE/1.jpg",
+			"title": "Red and Black<br />With Annie Mollova  "
+		}
+
+	],
+	"audio": [
+		{
+			"order": 1,
+			"src": "Storm",
+			"title": "Storm",
+			"description": "Storm is one of my compositions featuring Bulgarian folk style"	
+		},
+		{
+			"order": 2,
+			"src": "TheHomecomer",
+			"title": "The Homecomer",
+			"description": "Arranged by me and composed by my father Kamen Mollov"	
+		},
+		{
+			"order": 3,
+			"src": "Oblivion",
+			"title": "Oblivion by Piazzolla",
+			"description": "An interpretation by Cuidado"	
+		}
+	]	
+}

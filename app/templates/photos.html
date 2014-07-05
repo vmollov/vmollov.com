@@ -1,0 +1,28 @@
+<div class="galleryContainer">
+	<div class="slider">
+	    <div class="slide">
+	    	<div class="slideImg">
+		    	<a href="{{ photo.source.original }}" target="_blank" title="Click for Full Size">
+		    		<img ng-swipe-right="showPrev()" ng-swipe-left="showNext()" ng-src="{{photo.source.medium}}" title="Click for Full Size - {{photo.title}}" alt="{{photo.title}}" on-load callback="updateSlideCaptionWidth" />
+		    	</a>
+				<div class="slideCaption"><span>{{photo.title}}</span></div>
+			</div>
+	    </div>
+	
+	    <a class="arrow prev" href="#" ng-click="showPrev()"></a>
+	    <a class="arrow next" href="#" ng-click="showNext()"></a>
+	</div>
+	
+    <div class="thumbs">
+    	<label class="counter">{{ imageCounter() }}</label>
+    	<div class="thumbsViewScrollBack" ng-click="thumbViewPrevious()"></div>
+	    <div class="thumbSlider">
+		    <ul class="nav" ng-style="getThumbsWidth()" ng-swipe-left="thumbViewSwipeAdvance(true)" ng-swipe-right="thumbViewSwipeAdvance(false)">
+		        <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
+		            <img ng-src="{{photo.source.thumbnail}}" alt="" title="{{photo.title}}" ng-click="showPhoto($index);" on-load callback="updateThumbViewWidth" />
+		        </li>
+		    </ul>
+	    </div>
+	    <div class="thumbsViewScrollForward" ng-click="thumbViewNext()"></div>
+	</div>
+</div>

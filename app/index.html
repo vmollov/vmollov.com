@@ -1,15 +1,106 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="vmMusic">
 <head>
 	<meta charset="UTF-8" />
-	<title>Vladimir Mollov - accordion</title>
+	<title>Vladimir Mollov - Accordion</title>
+	<meta name="keywords" content="accordion, music, ethnic, classical, jazz, Vladimir, Mollov, concert, bulgarian, balkan, world">
+	<meta name="description" content="This is the official website of the concerting accordionist, Vladimir Mollov. Here you can find information about upcoming performances, booking, as well as published recordings and original music.">
+	<meta name="author" content="Vladimir Mollov">
+	<meta name="revisit-after" content="30 days">
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	
+	<!-- <link href="style.css" rel="stylesheet" /> -->
+	<link rel="stylesheet" href="_/css/style.css" />
+		
+	<script>
+		var Browser = {
+	        IsIe: function () {
+	            return navigator.appVersion.indexOf("MSIE") != -1;
+	        },
+	        Version: function() {
+	        	// we assume a sane browser and downgrade if necessary
+	           return version = navigator.appVersion.indexOf("MSIE") != -1 ? parseFloat(navigator.appVersion.split("MSIE")[1]) : 999;
+	        }
+	    };
+	    //redirect to classic site if IE9 or lower
+		if (Browser.IsIe && Browser.Version() <= 9) {
+			window.location.href="http://" + window.location.host + "/compatibility/index.php";
+		}
+	</script>
+	
 </head>
 <body>
+	<header ng-controller="headerCtrl">
+		<div class="banner">
+			<img src="/img/site/banner_home.png" alt="Vladimir Mollov - Accordion" class="homeBanner" />
+			<img src="/img/site/banner.png" alt="Vladimir Mollov - Accordion" class="regularBanner" />
+			<feature-event display="displayFeatureEvent()"></feature-event>
+		</div>							
+		<navigation> </navigation>
+	</header>
+		
+	<ng-view></ng-view>
+
+	<footer ng-controller="footerCtrl">
+		<div class="copyright" ng-bind-html="about.copyright"></div>
+	    <div class="contact"><a href="mailto:{{ about.email }}" title="Email Vladimir">{{ about.email }}</a></div>
+	</footer>
 	
+	<audio-player></audio-player>
 </body>
 </html>
 
-<!-- test javascript includes -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+
+<!-- test includes -->
+
+<script src="_/lib/01_angular.min.js"></script>
+<script src="_/lib/02_angular-animate.min.js"></script>
+<script src="_/lib/03_angular-resource.min.js"></script>
+<script src="_/lib/04_angular-route.min.js"></script>
+<script src="_/lib/05_angular-sanitize.min.js"></script>
+<script src="_/lib/06_angular-touch.min.js"></script>
+<script src="_/lib/07_jquery-ui-1.10.4.custom.min.js"></script>
+
+<script src="_/js/app.js"></script>
+<script src="_/js/controllers/headerCtrl.js"></script>
+<script src="_/js/controllers/footerCtrl.js"></script>
+<script src="_/js/controllers/homeCtrl.js"></script>
+<script src="_/js/controllers/bioCtrl.js"></script>
+<script src="_/js/controllers/calendarCtrl.js"></script>
+<script src="_/js/controllers/recordingsCtrl.js"></script>
+<script src="_/js/controllers/photosCtrl.js"></script>
+<script src="_/js/controllers/videosCtrl.js"></script>
+<script src="_/js/controllers/contactCtrl.js"></script>
+
+<script src="_/js/services/welcomeData.js"></script>
+<script src="_/js/services/newsData.js"></script>
+<script src="_/js/services/featuresData.js"></script>
+<script src="_/js/services/calendarData.js"></script>
+<script src="_/js/services/recordingsData.js"></script>
+<script src="_/js/services/photosData.js"></script>
+<script src="_/js/services/videosData.js"></script>
+<script src="_/js/services/contactData.js"></script>
+<script src="_/js/services/audioManager.js"></script>
+
+<script src="_/js/directives/navigation.js"></script>
+<script src="_/js/directives/calendarEvent.js"></script>
+<script src="_/js/directives/featureEvent.js"></script>
+<script src="_/js/directives/audioSample.js"></script>
+<script src="_/js/directives/audioPlayer.js"></script>
+<script src="_/js/directives/videoSample.js"></script>
+<script src="_/js/directives/imageOnload.js"></script>
+
+<script src="_/js/filters/toTrusted.js"></script>
+<script src="_/js/filters/timeZone.js"></script>
+
+<script src="_/js/analytics.js"></script>
 
 <script src="http://localhost:35729/livereload.js"></script>
 <!-- end test javascript includes -->
+
+<!--
+<script src="lib.js"></script> 
+<script src="script.js"></script>
+-->

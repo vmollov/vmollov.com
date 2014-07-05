@@ -1,0 +1,62 @@
+@import "mainmenu";
+
+header{	
+	.banner{
+		text-align: center;
+		position: relative;
+		display: inline-block;
+		width: 100%;
+		
+		img{
+			width: 100%;
+			max-width: 864px;
+		}
+				
+		.homeBanner{ }
+		.regularBanner{
+			display:none;
+		}	
+	}
+	
+	#hEvent{
+		text-align: left;
+		vertical-align:middle;
+		opacity: 0;
+		background-color: rgba(255, 255, 255, 0.15);
+		filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#ffffff', EndColorStr='#ffffff');
+		
+		display: none;
+		
+		&.displayControl{
+			@include breakpoint($mediumSmall){
+				display: block;
+			}
+		}
+		
+			
+		@include breakpoint($mediumSmall){
+			position:absolute;
+			bottom:5%;
+			left:7%;
+			height:auto;
+			padding:0 21px 12px 21px;
+			border-radius: 12px;
+			
+			p{
+				margin: 0 0 0 30px;
+				font-size: .8em;
+				line-height: normal;
+				
+				&.hevent_title{
+					font: 1.13em Verdana, Geneva, sans-serif;
+			
+				}
+			}
+	
+		}
+		
+		@include breakpoint($medium){
+			padding:9px 21px 21px 21px;
+		}
+	}//feature event
+}//header

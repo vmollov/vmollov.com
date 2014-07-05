@@ -1,5 +1,6 @@
 module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -8,12 +9,23 @@ module.exports = function(grunt){
 		uglify:{
 			my_target:{
 				files:{
-					'app/script.js':['app/_/js/*.js', 'app/_/js/*/*.js'],
-					'app/lib.js':['app/_/lib/*.js', 'app/_/lib/*/*.js']
+					'app/script.js':['app/_/js/*.js', 'app/_/js/*/*.js']
 				}
+			},
+			options:{
+				report: 'min',
+	            mangle: false
 			}
 		},
-		
+		concat: {
+			options: {
+		    	separator: '/* ------------========----------- */ ',
+		    },
+		    dist: {
+		    	src: ['app/_/lib/*.js', 'app/_/lib/*/*.js'],
+				dest: 'app/lib.js',
+			}
+		},
 		compass:{
 			dev:{
 				options:{
@@ -33,24 +45,17 @@ module.exports = function(grunt){
 			options: {
 				livereload: true
 			},
-			/*
 				scripts:{
-				files: ['working/js/*.js', 'working/lib/*.js'],
-				tasks: ['uglify']
+				files: ['app/_/js/*.js', 'app/_/js/*/*.js', 'app/_/lib/*.js', 'app/_/lib/*/*.js'],
+				tasks: [/* 'uglify' */]
 			},
-			*/
 			sass:{
 				files:['app/_/scss/*.scss'],
 				tasks:['compass:dev']
 			},
-			/*
-				css:{
-				files:['working/css/*.css'],
-				tasks:['cssmin']
-			},
-			*/
+			
 			html:{
-				files:['app/*.html', 'app/templates/*.html']
+				files:['app/*.html', 'app/templates/*.html', 'app/templates/*/*.html', 'app/data/*.json', 'app/data/*/*.json']
 			}
 		}
 	});

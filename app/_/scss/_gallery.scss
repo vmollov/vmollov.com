@@ -1,0 +1,118 @@
+.galleryContainer{
+	margin-top:20px;
+	.slider{
+		position:relative;
+		text-align: center;
+		
+		.slide{
+			//height: 100%;
+		
+			img{
+				max-height: 470px;
+				max-width: 100%;
+			}
+		
+			//position: absolute; 
+			left:0;
+			right: 0;
+			opacity:1;
+			margin-left:auto;
+		    margin-right:auto;
+		}
+		
+		.slideImg{
+			position: relative;
+			display: inline-block;
+			height: 100%;
+			max-width: 900px;
+		}
+		
+		.slideCaption{
+			position: absolute;
+			bottom: 0;
+			left:0;
+			width: 100%;
+			background: white;
+			background: rgb(255, 255, 255);
+			background: rgba(255, 255, 255, .7);
+			color: black;
+			padding:.5em 0;
+			display: block;
+			span{
+				display: block;
+				width: 98%;
+			}
+		}
+		
+		.arrow{
+			position: absolute;
+			top: 50%;
+			height: 30px;
+			width: 30px;	
+			z-index: 1001;
+			
+			&.prev{
+				background: url("/img/site/prev.png") no-repeat;
+				left: 0;
+			}
+			&.next{
+				background: url("/img/site/next.png") no-repeat;
+				right: 0;
+			}
+	
+		}
+	}//.slider
+	div.thumbs{
+		margin-top: 20px;
+		max-width: 892px;
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+	
+		label.counter{
+			position: relative;
+			display: block;
+			width: 100%;
+			text-align: center;
+			bottom: 0;
+		}
+		
+		div.thumbsViewScrollBack, div.thumbsViewScrollForward{
+			position:absolute;
+			height: 78px;
+			width:14px;
+			cursor:pointer;
+			display: inline-block;
+		}
+		
+		div.thumbsViewScrollBack{
+			background: url("/img/site/scroll_back.png") no-repeat center center;
+			left: -5px;
+		}
+		div.thumbsViewScrollForward{
+			background: url("/img/site/scroll_forward.png") no-repeat center center;
+			right: -5px;
+		}
+	
+		div.thumbSlider{
+			overflow: hidden;
+			width: 96%;
+			margin-left: 2%;	
+			float:left;
+			
+			ul.nav{
+				padding: 0;
+					
+				li{
+					display: block;
+					float: left;
+					margin: 5px;
+					list-style: none;
+				}
+				li.ng-scope.active{
+					border:white 3px solid;
+				}
+			}
+		}	
+	}//div.thumbs
+}

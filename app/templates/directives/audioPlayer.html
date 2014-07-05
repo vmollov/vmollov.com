@@ -1,0 +1,19 @@
+<div id="audioPlayerContainer">
+	<div class="playerDetails">
+		<img ng-src="{{ btnPlayStatus() }}" class="btnplay" ng-click="togglePlay()" />
+		<div class="songInfo">
+			{{ audioTitle }}<br />
+			{{ timeIndicator }}		
+		</div>
+		<div class="volumecontroll">
+			- volume +<br />
+			<input type="range" name="volue" min="0" max="1" step="0.05" ng-model="volume" ng-change="changeVolume()" />
+		</div>
+			
+		<audio id="audioPlayer" preload="auto">
+	        	        <source id='oggSource' src='' type='audio/ogg' /><source id='mpegSource' src='' type='audio/mpeg' />
+
+	        Your browser cannot play this audio.
+	    </audio>
+	</div>
+</div>

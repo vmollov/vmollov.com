@@ -1,0 +1,212 @@
+nav{ 
+	width:100%;
+	display:inline-block; 
+	padding:0; 
+	margin: 0;  
+	border:1px solid; 
+	border-color:#000; 
+	margin-bottom:1px; 
+	
+	@include breakpoint($small){
+		border-radius:5px;
+	}
+	
+	&, > ul > li > ul > li a:hover{ 
+		@include linearGradient(#505050,#1e1e1e);
+	}
+
+	a{
+		font:bold 1em $generalFonts; 
+		text-align:center; 
+		text-decoration:none; 
+		
+		@include breakpoint($small){
+			font:bold .8em $generalFonts; 
+		}
+	}
+	
+	> ul {
+		list-style:inside none; 
+		padding:0; 
+		margin:0;
+		
+		.menuTitle{ //displays only on small screens
+			display: block;
+			
+			> a{
+				display: block;
+				&:before{ 
+					content:''; 
+					position:absolute; 
+					top:12px; 
+					right:6px;  
+					border:5px solid transparent;
+					border-top:5px solid #9b9b9b; 
+				} 
+			}
+			
+			@include breakpoint($small){
+				display:none;
+			}
+			
+		}		
+		> li {
+			list-style:inside none; 
+			padding:0; 
+			margin:0; 
+			display:block; 
+			position:relative; 
+			width: 100%;
+			border-bottom: 1px solid #000000;
+			
+			&:last-child{
+				border: none;
+			}
+			
+			&:not(.menuTitle){ //the rest of the menu items do not display on small screens
+				display:none;
+				
+				&.menuItemOn{
+					display:block;
+				}
+				&:not(.menuItemOn){
+					display:none;
+				}
+				
+				@include breakpoint($small){
+					display: block;
+					&:not(.menuItemOn){
+						display:block;
+					}
+				}
+			}
+			
+			@include breakpoint($small){
+				float:left; 
+				width:16.6%; 
+				border: none;
+			}
+		
+			> a{ 
+				outline:none; 
+				display:block; 
+				position:relative; 
+				padding:6px 0 7px 0; 
+				text-shadow:1px 1px 0 rgba(0,0,0, 0.4); 
+				
+				&, &:visited{
+					@include breakpoint($mediumSmall){
+						border-right:1px solid #000;
+					}
+					color:#9b9b9b;
+				}
+								
+				&:after{ 
+					content:''; 
+					position:absolute;
+					border-right:1px solid; 
+					border-color:#444;
+					right:-2px; 
+					z-index:99; 
+				}
+				
+				&:hover{
+					@include linearGradient(#5e5e5e,#2d2d2d);
+				}
+			}//>a
+			
+			&:first-child > a{
+				border-radius:5px 0 0 5px;
+			}
+			
+			@include breakpoint($mediumSmall){
+				&:last-child > a{
+					border-right:none;
+					&:after{
+						border-right:none;
+					}
+				}
+			}
+			
+			&.hasSub{
+				> a{
+					display:none;
+					
+					@include breakpoint($small){
+						display: block;
+						&:before{ 
+							content:''; 
+							position:absolute; 
+							top:12px; 
+							right:6px;  
+							border:5px solid transparent;
+							border-top:5px solid #9b9b9b; 
+						} 
+					}
+				}
+				
+				&.hover{
+					> a{
+						background:#2f2f2f; 
+						border-color:#2f2f2f; 
+						padding-bottom:7px; 
+						padding-top:7px; 
+						z-index:999;
+						
+						&:before{
+							top:12px;
+						}
+						&:after{
+							top:0; bottom:0;
+						}
+					}	
+					> ul{
+						display:block;
+					}
+				} 
+			}//.hasSub
+			
+			//submenus
+			>ul{
+				@include animation('fadeIn_slide 0.3s');  
+				display:block; 
+				width:100%;  
+				top:25px;  
+				border-radius:0 0 5px 5px; 
+				z-index:999;
+				
+				@include breakpoint($small){
+					display:none;
+					position:absolute; 
+					padding:10px 0; 
+					background:#2d2d2d;
+				}
+				
+				li{
+					display:block; 
+					list-style:inside none; 
+					padding:0; 
+					margin:0; 
+					position:relative;
+					
+					&:not(:first-child){
+						border-top: 1px solid #000000;
+					}
+					@include breakpoint($small){
+						border-top: 1px solid #000000;
+					}
+					
+					a, a:visited{ 
+						outline:none; 
+						display:block; 
+						position:relative; 
+						margin:0; 
+						padding:8px 20px; 
+						color:#9b9b9b; 
+						text-shadow:1px 1px 0 rgba(0,0,0, 0.5); 
+					}
+				}//li
+			}//>ul
+		}// >li
+	} //>ul
+}//nav  

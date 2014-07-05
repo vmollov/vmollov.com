@@ -1,0 +1,175 @@
+.video{
+	margin: 14px 5px;
+	display:inline-block;
+	position:relative;
+	
+	img{
+	    float:left;
+	    margin: 0 3% 1% 0;
+	}
+	
+	>a{
+		position: relative;
+		display: inline-block;
+		float: left;
+		margin-right: 1em;
+	}
+
+	.btnPlay{
+		position: absolute;
+		left: 46px;
+		top: 31px;
+		margin: 0px;
+		display: inline-block;
+		
+		img{
+			width: 27px;	
+		
+		}
+	}
+}//.video
+.audioSample{
+	display:inline-block;
+	margin-bottom:14px;
+	padding:5px;
+	width:95%;
+	vertical-align:middle;
+	border-radius:5px;
+	background-color:#000000;
+	background:-moz-linear-gradient(top, #505050 0%, #101010 100%); 
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#505050), color-stop(100%,#101010)); 
+	background:-webkit-linear-gradient(top, #505050 0%,#101010 100%); 
+	background:-o-linear-gradient(top, #505050 0%,#101010 100%); 
+	background:-ms-linear-gradient(top, #505050 0%,#101010 100%); 
+	background:linear-gradient(top, #505050 0%,#101010 100%); 
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#505050', endColorstr='#101010',GradientType=0 );
+	cursor:default;
+	
+	img{ 
+		height:1.25em; 
+		vertical-align:middle;
+		float:left;
+		margin-right:5%;
+	}
+	
+	> div{
+		display:inline;
+		
+	}
+	
+	@include breakpoint($mediumSmall){
+		min-width: 7.5em;
+	}
+
+}//.audioSample
+
+.audioFeature{
+	margin-bottom:1.8em;
+	clear: both;
+	
+	
+	.audioSample{
+		margin-top: .3em;
+		margin-bottom: 1em;
+		margin-right: 1em;
+		width:36%;
+		float:left;
+		
+		@include breakpoint($mediumSmall){
+			width: 33%;
+		}
+		
+		div{
+			width: 100%;
+			
+		}
+	}
+	
+	p{
+		margin:0;
+	}
+}//.audioFeature
+
+.itemBackground > .album{
+	margin-left: 1em;
+}
+
+.album{
+	
+	>div{
+		display:block;
+		float: left;
+		vertical-align:top;
+		margin-top:1em;
+		
+		&:not(:last-child):not(:first-child){
+			width:100%;
+		}
+		
+		@include breakpoint($mediumSmall){
+			&:not(:last-child):not(:first-child){
+				width:33%;
+			}
+			margin-top:0;
+			padding:0 10px 0 0;
+		}
+		@include breakpoint($medium){
+			&:not(:last-child):not(:first-child){
+				width:30%;
+			}
+		}
+	}
+	>div:first-child{
+		padding-left: 0;
+	}
+	
+	.albumImage{
+		float:left;
+	}
+	
+	.albumDesc p{
+		margin:0px;
+		text-align:left;
+	}
+	.albumDesc p.title{
+		font-size: 21pt;
+		font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+		font-style:italic;
+	    color:#ccccaa;
+		margin-top:-7px;	
+	}
+	
+	.storeLinks{
+		width:100%;
+			
+		@include breakpoint($mediumSmall){
+			
+			margin-top:1em;
+		}
+		@include breakpoint($medium){
+			width:15%;
+			margin-top:0;
+			float:right;
+		}
+		
+		> a{
+			float:left;
+			clear:both;
+			vertical-align:middle;
+			margin-bottom:7px;
+			
+			> img{
+				margin-right:7px;
+				vertical-align:middle;
+			}
+		}
+	}
+	.buynow{
+		margin-bottom:14px;
+	}
+}
+
+
+
+
+

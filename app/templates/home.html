@@ -1,0 +1,25 @@
+<div class="home_left">
+    <div id="h_welcome">
+    	<h2>Welcome</h2>
+        <welcome ng-bind-html="welcomeMessage" />
+    </div>
+    <div id="h_news">
+        <h2>News</h2>
+        <p ng-repeat="newsItem in news | orderBy: newsOrderPredicate" ng-bind-html="newsItem.description"></p>
+    </div>
+</div>
+<div class="home_right"> 
+    <h2>Features</h2>
+    <div class="h_videoFeature">
+	    <div class="video" ng-repeat="video in videoFeatures | orderBy: featuresOrderPredicate">
+	    	<video-sample video-src="video.src" video-title="video.title" video-thumbnail="video.img"></video-sample>
+	        <span ng-bind-html="video.title"></span>                    
+	    </div>
+	</div>
+    <div class="h_audioFeature">
+        <div class="audioFeature" ng-repeat="audio in audioFeatures | orderBy: featuresOrderPredicate">
+        	<audio-sample src="audio.src" song-title="audio.title">{{ audio.title }}</audio-sample>
+        	<p ng-bind-html="audio.description"></p>
+        </div>
+    </div>
+</div>

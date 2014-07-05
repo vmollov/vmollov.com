@@ -1,0 +1,8 @@
+<div class='eventDetails'>
+	<div class='itemTitle'>{{ event.title }}</div>
+    <div class='eventTime'>{{ 
+    	event.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a' 
+    }}</div>
+	<div class='eventLocation'>Location: <a href="http://mapof.it/{{ event.location }}" target="_blank">{{ event.location }}</a></div>
+	<div class='info'><strong>More Info: </strong><span ng-bind-html="event.description | toTrusted"></span></div>
+</div>

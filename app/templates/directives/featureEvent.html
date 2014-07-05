@@ -1,0 +1,7 @@
+<div id='hEvent'>
+	<h3>Upcoming</h3>
+    <p class="hevent_title">{{ event.title  }}</p>
+    <p><a href="http://mapof.it/{{ event.location }}" target="_blank">{{ event.location }}</a></p>
+    <p>{{ event.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a' }}</p>
+    <p>For more upcoming performances visit <a href="/calendar">calendar</a>.</p>
+</div>
