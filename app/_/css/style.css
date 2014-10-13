@@ -758,72 +758,88 @@ header #hEvent {
 @media (min-width: 569px) {
   /* line 99, ../scss/_mediaitems.scss */
   .album > div {
+    margin-bottom: .5em;
     margin-top: 0;
     padding: 0 10px 0 0;
   }
-  /* line 110, ../scss/_mediaitems.scss */
+  /* line 112, ../scss/_mediaitems.scss */
   .album > div:not(:last-child):not(:first-child) {
-    width: 33%;
+    width: 50%;
+    float: right;
+  }
+}
+@media (min-width: 799px) {
+  /* line 120, ../scss/_mediaitems.scss */
+  .album > div:not(:last-child):not(:first-child) {
+    width: 27%;
+    float: left;
   }
 }
 @media (min-width: 1028px) {
-  /* line 117, ../scss/_mediaitems.scss */
+  /* line 126, ../scss/_mediaitems.scss */
   .album > div:not(:last-child):not(:first-child) {
     width: 30%;
   }
 }
-/* line 122, ../scss/_mediaitems.scss */
+/* line 131, ../scss/_mediaitems.scss */
 .album > div:first-child {
   padding-left: 0;
 }
-/* line 126, ../scss/_mediaitems.scss */
+/* line 135, ../scss/_mediaitems.scss */
 .album .albumImage {
   float: left;
 }
-/* line 130, ../scss/_mediaitems.scss */
-.album .albumDesc p {
-  margin: 0px;
-  text-align: left;
+@media (min-width: 569px) {
+  /* line 139, ../scss/_mediaitems.scss */
+  .album > div.albumDesc {
+    width: 53%;
+  }
 }
-/* line 134, ../scss/_mediaitems.scss */
-.album .albumDesc p.title {
+@media (min-width: 1028px) {
+  /* line 139, ../scss/_mediaitems.scss */
+  .album > div.albumDesc {
+    width: 33%;
+  }
+}
+/* line 149, ../scss/_mediaitems.scss */
+.album > div.albumDesc p.title {
   font-size: 21pt;
   font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
   font-style: italic;
   color: #ccccaa;
   margin-top: -7px;
 }
-/* line 142, ../scss/_mediaitems.scss */
-.album .storeLinks {
-  width: 100%;
+/* line 159, ../scss/_mediaitems.scss */
+.album .albumSamples {
+  clear: left;
 }
-@media (min-width: 569px) {
-  /* line 142, ../scss/_mediaitems.scss */
-  .album .storeLinks {
-    margin-top: 1em;
+@media (min-width: 799px) {
+  /* line 159, ../scss/_mediaitems.scss */
+  .album .albumSamples {
+    clear: none;
   }
 }
 @media (min-width: 1028px) {
-  /* line 142, ../scss/_mediaitems.scss */
+  /* line 167, ../scss/_mediaitems.scss */
   .album .storeLinks {
     width: 15%;
     margin-top: 0;
     float: right;
   }
 }
-/* line 155, ../scss/_mediaitems.scss */
+/* line 175, ../scss/_mediaitems.scss */
 .album .storeLinks > a {
   float: left;
   clear: both;
   vertical-align: middle;
   margin-bottom: 7px;
 }
-/* line 161, ../scss/_mediaitems.scss */
+/* line 181, ../scss/_mediaitems.scss */
 .album .storeLinks > a > img {
   margin-right: 7px;
   vertical-align: middle;
 }
-/* line 167, ../scss/_mediaitems.scss */
+/* line 187, ../scss/_mediaitems.scss */
 .album .buynow {
   margin-bottom: 14px;
 }
@@ -1147,20 +1163,27 @@ ng-view > * {
   }
 }
 
-/* line 183, ../scss/style.scss */
-.event .eventDetails div:not(.itemTitle) {
-  margin: 7px 30px 5px 14px;
-}
-/* line 187, ../scss/style.scss */
-.event div {
-  margin-bottom: 5px;
+@media (min-width: 569px) {
+  /* line 181, ../scss/style.scss */
+  div.event {
+    width: 48%;
+    float: left;
+  }
 }
 /* line 190, ../scss/style.scss */
-.event .eventTime, .event .eventLocation {
+div.event .eventDetails div:not(.itemTitle) {
+  margin: 7px 30px 5px 14px;
+}
+/* line 194, ../scss/style.scss */
+div.event div {
+  margin-bottom: 5px;
+}
+/* line 197, ../scss/style.scss */
+div.event .eventTime, div.event .eventLocation {
   font-weight: bold;
 }
 
-/* line 197, ../scss/style.scss */
+/* line 204, ../scss/style.scss */
 footer {
   margin-bottom: 15px;
   padding-top: 7px;
@@ -1170,12 +1193,12 @@ footer {
   text-align: center;
   border-top: #9b9b9b solid thin;
 }
-/* line 206, ../scss/style.scss */
+/* line 213, ../scss/style.scss */
 footer .copyright {
   float: left;
   margin-left: .7em;
 }
-/* line 210, ../scss/style.scss */
+/* line 217, ../scss/style.scss */
 footer .contact {
   float: right;
   margin-right: .7em;

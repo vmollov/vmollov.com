@@ -45,11 +45,7 @@ vmMusic.config(function($routeProvider, $locationProvider){
 				controller: 'contactCtrl'
 			}
 		);
-		/*
-$routeProvider.when('/compatibility', {});
 		
-		$routeProvider.otherwise({redirectTo: '/compatibility'});
-*/
 		$locationProvider.html5Mode(true).hashPrefix('!');
 	});
 	

@@ -5,8 +5,24 @@ vmMusic.controller('photosCtrl', function($scope, photosData){
 	
 	photosData.getAllImages().then(
 		function(data){
-			$scope.photos = data;
+			$scope.photos[0] = data[0];
+			
+			//sort photos by dateuploaded
+			for(var i=1; i<data.length; i++){
+				var placedImage = false;
+				for(var n=0; n<$scope.photos.length; n++){
+					if(data[i].dateupload >= $scope.photos[n].dateupload){
+						$scope.photos.splice(n, 0, data[i]);
+						placedImage = true;
+						break;
+					}
+				}
+				if(!placedImage) $scope.photos.push(data[i]);
+			}
+			
 			$scope.photo = $scope.photos[0];
+			
+			
 		}	
 	);
 	

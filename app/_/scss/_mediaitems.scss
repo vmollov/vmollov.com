@@ -107,11 +107,20 @@
 		}
 		
 		@include breakpoint($mediumSmall){
+			margin-bottom:.5em;
+			
 			&:not(:last-child):not(:first-child){
-				width:33%;
+				width:50%;
+				float: right;
 			}
 			margin-top:0;
 			padding:0 10px 0 0;
+		}
+		@include breakpoint($medium800){
+			&:not(:last-child):not(:first-child){
+				width:27%;
+				float: left;
+			}
 		}
 		@include breakpoint($medium){
 			&:not(:last-child):not(:first-child){
@@ -127,25 +136,36 @@
 		float:left;
 	}
 	
-	.albumDesc p{
-		margin:0px;
-		text-align:left;
+	& > div.albumDesc{
+		
+		@include breakpoint($mediumSmall){
+			width: 53%;
+		}
+		@include breakpoint($medium){
+			width: 33%;
+		}
+		
+		p{
+			&.title{
+				font-size: 21pt;
+				font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+				font-style:italic;
+			    color:#ccccaa;
+				margin-top:-7px;	
+			}
+		}
 	}
-	.albumDesc p.title{
-		font-size: 21pt;
-		font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-		font-style:italic;
-	    color:#ccccaa;
-		margin-top:-7px;	
+	
+	.albumSamples{
+		clear:left;
+		
+		@include breakpoint($medium800){
+			clear:none;
+		}
 	}
 	
 	.storeLinks{
-		width:100%;
 			
-		@include breakpoint($mediumSmall){
-			
-			margin-top:1em;
-		}
 		@include breakpoint($medium){
 			width:15%;
 			margin-top:0;

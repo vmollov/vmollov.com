@@ -178,7 +178,14 @@ ng-view > *{
 	}
 }
 
-.event{		
+div.event{		
+	
+	@include breakpoint($mediumSmall){
+		width:48%;
+		float: left;
+		
+	}
+
 	.eventDetails{
 	   	div:not(.itemTitle){
 	    	margin: 7px 30px 5px 14px;

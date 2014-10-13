@@ -2,7 +2,7 @@
 
 vmMusic.factory('photosData', function($http, $q){	
 	var apiKey = '48dad8a586fe5931b1db3c1026e0564b';
-	var albumUrl = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + apiKey + "&photoset_id=72157645114741942&format=json&nojsoncallback=1"
+	var albumUrl = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + apiKey + "&photoset_id=72157645114741942&extras=date_upload&format=json&nojsoncallback=1"
 	
 	function getImageSizesUrl(photoId){
 		return "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + apiKey + "&photo_id=" + photoId + "&format=json&nojsoncallback=1"

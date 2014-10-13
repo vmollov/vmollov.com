@@ -6,7 +6,12 @@ vmMusic.directive('navigation', function(){
 		replace: true,
 		templateUrl: '/templates/directives/navigation.html',
 		scope:{ },
-		controller: function($scope){
+		controller: function($scope, $location){
+			$scope.currentPage = function(){
+				if($location.$$path == "/") return "";
+				else return " - " + $location.$$path.substr(1).toUpperCase();
+			};
+			
 			$("li.hasSub").on('mouseleave',function(){
 					$("li.hasSub").toggleClass("hover", false);
 			});
@@ -18,15 +23,11 @@ vmMusic.directive('navigation', function(){
 				$("li.hasSub").toggleClass("hover");
 			});			
 			
-			
 			$(".menuTitle").on('click', function(){
 				$("nav > ul li:not(.menuTitle)").toggleClass("menuItemOn");
+				$(".menuItemOn:not(.hasSub)").off('click');
 				
 				$(".menuItemOn:not(.hasSub)").on('click', function(event){
-					var menuText = this.childNodes[0].innerHTML;
-					menuText = menuText == "HOME"? "": " - " + menuText;
-					
-					if(menuText != undefined) $(".menuTitle > a").html("MENU" + menuText);
 					$("nav > ul li:not(.menuTitle)").toggleClass("menuItemOn", false);
 				})
 			});
