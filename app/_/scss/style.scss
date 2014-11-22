@@ -142,6 +142,22 @@ ng-view > *{
 	@include breakpoint($medium){
 		width: 34%;
 	}
+	
+	#h_news {
+		@include breakpoint($mediumSmall){
+			margin-top: 3em;
+		}
+		
+		@include breakpoint($mediumSmall){
+			p{
+				padding-bottom: 1em;
+			}
+			p:not(:last-child){
+				border-bottom: white solid 1px;
+				margin-bottom: 1em;
+			}
+		}
+	}
 }
 .home_right{
 	
@@ -181,7 +197,7 @@ ng-view > *{
 div.event{		
 	
 	@include breakpoint($mediumSmall){
-		width:48%;
+		width:98%;
 		float: left;
 		
 	}

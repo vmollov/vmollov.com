@@ -1125,17 +1125,34 @@ ng-view > * {
     width: 34%;
   }
 }
+@media (min-width: 569px) {
+  /* line 146, ../scss/style.scss */
+  .home_left #h_news {
+    margin-top: 3em;
+  }
+}
+@media (min-width: 569px) {
+  /* line 152, ../scss/style.scss */
+  .home_left #h_news p {
+    padding-bottom: 1em;
+  }
+  /* line 155, ../scss/style.scss */
+  .home_left #h_news p:not(:last-child) {
+    border-bottom: white solid 1px;
+    margin-bottom: 1em;
+  }
+}
 
-/* line 148, ../scss/style.scss */
+/* line 164, ../scss/style.scss */
 .home_right .h_videoFeature {
   margin-top: -14px;
 }
-/* line 151, ../scss/style.scss */
+/* line 167, ../scss/style.scss */
 .home_right .h_audioFeature {
   margin-top: 2em;
 }
 @media (min-width: 569px) {
-  /* line 146, ../scss/style.scss */
+  /* line 162, ../scss/style.scss */
   .home_right {
     float: right;
     clear: right;
@@ -1144,46 +1161,46 @@ ng-view > * {
   }
 }
 @media (min-width: 1028px) {
-  /* line 146, ../scss/style.scss */
+  /* line 162, ../scss/style.scss */
   .home_right {
     width: 61%;
   }
-  /* line 167, ../scss/style.scss */
+  /* line 183, ../scss/style.scss */
   .home_right .h_videoFeature, .home_right .h_audioFeature {
     width: 50%;
     display: inline-block;
   }
-  /* line 172, ../scss/style.scss */
+  /* line 188, ../scss/style.scss */
   .home_right .h_videoFeature {
     float: left;
   }
-  /* line 175, ../scss/style.scss */
+  /* line 191, ../scss/style.scss */
   .home_right .h_audioFeature {
     margin-top: -.5em;
   }
 }
 
 @media (min-width: 569px) {
-  /* line 181, ../scss/style.scss */
+  /* line 197, ../scss/style.scss */
   div.event {
-    width: 48%;
+    width: 98%;
     float: left;
   }
 }
-/* line 190, ../scss/style.scss */
+/* line 206, ../scss/style.scss */
 div.event .eventDetails div:not(.itemTitle) {
   margin: 7px 30px 5px 14px;
 }
-/* line 194, ../scss/style.scss */
+/* line 210, ../scss/style.scss */
 div.event div {
   margin-bottom: 5px;
 }
-/* line 197, ../scss/style.scss */
+/* line 213, ../scss/style.scss */
 div.event .eventTime, div.event .eventLocation {
   font-weight: bold;
 }
 
-/* line 204, ../scss/style.scss */
+/* line 220, ../scss/style.scss */
 footer {
   margin-bottom: 15px;
   padding-top: 7px;
@@ -1193,12 +1210,12 @@ footer {
   text-align: center;
   border-top: #9b9b9b solid thin;
 }
-/* line 213, ../scss/style.scss */
+/* line 229, ../scss/style.scss */
 footer .copyright {
   float: left;
   margin-left: .7em;
 }
-/* line 217, ../scss/style.scss */
+/* line 233, ../scss/style.scss */
 footer .contact {
   float: right;
   margin-right: .7em;
