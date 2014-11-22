@@ -49,3 +49,5 @@ vmMusic.config(function($routeProvider, $locationProvider){
 		$locationProvider.html5Mode(true).hashPrefix('!');
 	});
 	
+vmMusic.constant('gCalUrl', 'https://www.googleapis.com/calendar/v3/calendars/5s80mf8pl7rtkj9bpasndqqe58%40group.calendar.google.com/events?maxResults=30&orderBy=startTime&singleEvents=true&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI');
+	

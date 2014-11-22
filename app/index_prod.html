@@ -42,7 +42,7 @@
 
 	<footer ng-controller="footerCtrl">
 		<div class="copyright" ng-bind-html="about.copyright"></div>
-	    <div class="contact"><a href="mailto:{{ about.email }}" title="Email Vladimir">{{ about.email }}</a></div>
+	    <div class="contact"><a href="mailto:{{ about.email }}" title="Email Vladimir" ng-bind="about.email"></a></div>
 	</footer>
 	
 	<audio-player></audio-player>
