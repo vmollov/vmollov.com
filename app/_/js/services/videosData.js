@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.factory('videosData', function($http, $q){
+angular.module('vmMusic').factory('videosData', function($http, $q){
 	var searchTerm = 'Vladimir Mollov';
     var resultCount = 18;
 	var excludeList = ["iUL7wOzp698", "FDFBDw97Epg", "tbQHOigF8WA", "WuZE2vidsIM", "U9Tb3HWkJRE"];

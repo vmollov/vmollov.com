@@ -1,8 +1,7 @@
 'use strict';
 
-var vmMusic = angular.module('vmMusic', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngTouch']);
-	
-vmMusic.config(function($routeProvider, $locationProvider){
+angular.module('vmMusic', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngTouch'])
+.config(function($routeProvider, $locationProvider){
 		$routeProvider.when('/',
 			{
 				templateUrl:'templates/home.html',
@@ -47,7 +46,6 @@ vmMusic.config(function($routeProvider, $locationProvider){
 		);
 		
 		$locationProvider.html5Mode(true).hashPrefix('!');
-	});
-	
-vmMusic.constant('gCalUrl', 'https://www.googleapis.com/calendar/v3/calendars/5s80mf8pl7rtkj9bpasndqqe58%40group.calendar.google.com/events?maxResults=30&orderBy=startTime&singleEvents=true&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI');
+	})
+.constant('gCalUrl', 'https://www.googleapis.com/calendar/v3/calendars/5s80mf8pl7rtkj9bpasndqqe58%40group.calendar.google.com/events?maxResults=30&orderBy=startTime&singleEvents=true&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI');
 	

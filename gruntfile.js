@@ -1,5 +1,6 @@
 module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-ngmin');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
@@ -9,14 +10,24 @@ module.exports = function(grunt){
 		uglify:{
 			my_target:{
 				files:{
-					'app/script.js':['app/_/js/*.js', 'app/_/js/*/*.js']
+					//'app/script.js':['app/_/js/*.js', 'app/_/js/*/*.js']
+					'app/script.js':'app/script.js'
 				}
 			},
 			options:{
 				report: 'min',
-	            mangle: false
+	            mangle: true
 			}
 		},
+		
+		ngmin:{
+			all: {
+				src:['app/_/js/*.js', 'app/_/js/*/*.js'],
+				dest:'app/script.js'
+
+			}
+		},
+		
 		concat: {
 			options: {
 		    	separator: '/* ------------========----------- */ ',
@@ -45,7 +56,7 @@ module.exports = function(grunt){
 			options: {
 				livereload: true
 			},
-				scripts:{
+			scripts:{
 				files: ['app/_/js/*.js', 'app/_/js/*/*.js', 'app/_/lib/*.js', 'app/_/lib/*/*.js'],
 				tasks: [/* 'uglify' */]
 			},

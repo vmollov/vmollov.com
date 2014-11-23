@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.directive('audioSample', function(audioManager){
+angular.module('vmMusic').directive('audioSample', function(audioManager){
 	return {
 		restrict: 'E',
 		replace: true,

@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.directive('onLoad', function(){
+angular.module('vmMusic').directive('onLoad', function(){
 	return {
 		restrict: 'A',
 		replace: false,

@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.directive('calendarEvent', function(){
+angular.module('vmMusic').directive('calendarEvent', function(){
 	return {
 		restrict: 'E',
 		replace: true,

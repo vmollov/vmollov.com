@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.controller('photosCtrl', function($scope, photosData){
+angular.module('vmMusic').controller('photosCtrl', function($scope, photosData){
 	$scope.photos = [];
 	
 	photosData.getAllImages().then(

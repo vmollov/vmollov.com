@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.factory('calendarData', function($http, $q, gCalUrl){	
+angular.module('vmMusic').factory('calendarData', function($http, $q, gCalUrl){	
 
 	var calData = $q.defer()
 

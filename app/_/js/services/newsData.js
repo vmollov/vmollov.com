@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.factory('newsData', function($resource){
+angular.module('vmMusic').factory('newsData', function($resource){
 	var newsResource = $resource('/data/news');
 	
 	return {

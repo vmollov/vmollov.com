@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.controller('videosCtrl', function($scope, videosData){
+angular.module('vmMusic').controller('videosCtrl', function($scope, videosData){
 	videosData.getYouTubeVideos().then(
 		function(data){
 			$scope.allVideos = videosData.sanitizeYouTubeVideos(data.feed.entry);

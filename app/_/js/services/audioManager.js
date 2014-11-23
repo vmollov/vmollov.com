@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.factory('audioManager', function(){	
+angular.module('vmMusic').factory('audioManager', function(){	
 	var audioSrc;
 
 	return {

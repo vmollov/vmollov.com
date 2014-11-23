@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.factory('recordingsData', function($http, $q){
+angular.module('vmMusic').factory('recordingsData', function($http, $q){
 	return {
 		getAllRecordings: function(){
 			var deferred = $q.defer();

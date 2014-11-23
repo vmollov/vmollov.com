@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.controller('headerCtrl', function($scope, $location){
+angular.module('vmMusic').controller('headerCtrl', function($scope, $location){
 	
 	$scope.$watch(
 		function(){

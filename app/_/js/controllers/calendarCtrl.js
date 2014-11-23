@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.controller('calendarCtrl', function($scope, calendarData){
+angular.module('vmMusic').controller('calendarCtrl', function($scope, calendarData){
 	
 	calendarData.getUpcomingEvents().then(
 		function(data){

@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.factory('contactData', function($resource){	
+angular.module('vmMusic').factory('contactData', function($resource){	
 	var newsResource = $resource('/data/about');
 
 	return{

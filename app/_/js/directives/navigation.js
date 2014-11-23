@@ -1,6 +1,6 @@
 'use strict';
 
-vmMusic.directive('navigation', function(){
+angular.module('vmMusic').directive('navigation', function(){
 	return {
 		restrict: 'E',
 		replace: true,
