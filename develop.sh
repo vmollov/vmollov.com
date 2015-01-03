@@ -1,3 +1,2 @@
 cd app
-node ../web-server.js >> ../web-server.log &
-grunt
+node ../web-server.js >> ../web-server.log
