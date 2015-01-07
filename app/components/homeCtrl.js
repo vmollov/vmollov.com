@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vmMusic').controller('homeCtrl', function($scope, $sce, welcomeData, newsData, featureData){
+angular.module('vmMusic').controller('homeCtrl', ['$scope', '$sce', 'welcomeData', 'newsData', 'featureData', function($scope, $sce, welcomeData, newsData, featureData){
 	
 	//welcome section
 	welcomeData.getWelcomeMessage().then(
@@ -27,4 +27,4 @@ angular.module('vmMusic').controller('homeCtrl', function($scope, $sce, welcomeD
 			console.log("error fetching features: " + status);
 		}
 	);
-});
+}]);

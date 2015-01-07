@@ -769,11 +769,11 @@ header #hEvent {
   z-index: 1001;
 }
 .galleryContainer .slider .arrow.prev {
-  background: url("/img/site/prev.png") no-repeat;
+  background: url("/assets/img/site/prev.png") no-repeat;
   left: 0;
 }
 .galleryContainer .slider .arrow.next {
-  background: url("/img/site/next.png") no-repeat;
+  background: url("/assets/img/site/next.png") no-repeat;
   right: 0;
 }
 .galleryContainer div.thumbs {
@@ -798,11 +798,11 @@ header #hEvent {
   display: inline-block;
 }
 .galleryContainer div.thumbs div.thumbsViewScrollBack {
-  background: url("/img/site/scroll_back.png") no-repeat center center;
+  background: url("/assets/img/site/scroll_back.png") no-repeat center center;
   left: -5px;
 }
 .galleryContainer div.thumbs div.thumbsViewScrollForward {
-  background: url("/img/site/scroll_forward.png") no-repeat center center;
+  background: url("/assets/img/site/scroll_forward.png") no-repeat center center;
   right: -5px;
 }
 .galleryContainer div.thumbs div.thumbSlider {

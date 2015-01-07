@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vmMusic').controller('photosCtrl', function($scope, photosData){
+angular.module('vmMusic').controller('photosCtrl', ['$scope', 'photosData', function($scope, photosData){
 	$scope.photos = [];
 	
 	photosData.getAllImages().then(
@@ -136,4 +136,4 @@ $(".slideCaption").css({'width':'99%'});
 		return $(".thumbSlider").width() / avgThumbWidth;
 	}
 
-});
+}]);

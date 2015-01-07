@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vmMusic').controller('calendarCtrl', function($scope, calendarData){
+angular.module('vmMusic').controller('calendarCtrl', ['$scope', 'calendarData', function($scope, calendarData){
 	
 	calendarData.getUpcomingEvents().then(
 		function(data){
@@ -22,4 +22,4 @@ angular.module('vmMusic').controller('calendarCtrl', function($scope, calendarDa
 		}
 	);
 	
-});
+}]);

@@ -4,7 +4,7 @@ angular.module('vmMusic').directive('calendarEvent', function(){
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: '/templates/directives/calendarEvent.html',
+		templateUrl: '/directives/calendarEvent.html',
 		scope:{
 			event: '='
 		}

@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('vmMusic').directive('featureEvent', function(calendarData){
+angular.module('vmMusic').directive('featureEvent', ['calendarData', function(calendarData){
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: '/templates/directives/featureEvent.html',
+		templateUrl: '/directives/featureEvent.html',
 		scope:{
 			display: '='
 		},
@@ -47,4 +47,4 @@ angular.module('vmMusic').directive('featureEvent', function(calendarData){
 			}
 		}
 	};
-});
+}]);

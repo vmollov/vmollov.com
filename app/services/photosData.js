@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vmMusic').factory('photosData', function($http, $q){	
+angular.module('vmMusic').factory('photosData', ['$http', '$q', function($http, $q){	
 	var apiKey = '48dad8a586fe5931b1db3c1026e0564b';
 	var albumUrl = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + apiKey + "&photoset_id=72157645114741942&extras=date_upload&format=json&nojsoncallback=1"
 	
@@ -40,4 +40,4 @@ angular.module('vmMusic').factory('photosData', function($http, $q){
 			return albumData;
 		}
 	};
-});
+}]);

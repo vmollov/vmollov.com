@@ -52,11 +52,11 @@
 			z-index: 1001;
 			
 			&.prev{
-				background: url("/img/site/prev.png") no-repeat;
+				background: url("/assets/img/site/prev.png") no-repeat;
 				left: 0;
 			}
 			&.next{
-				background: url("/img/site/next.png") no-repeat;
+				background: url("/assets/img/site/next.png") no-repeat;
 				right: 0;
 			}
 	
@@ -86,11 +86,11 @@
 		}
 		
 		div.thumbsViewScrollBack{
-			background: url("/img/site/scroll_back.png") no-repeat center center;
+			background: url("/assets/img/site/scroll_back.png") no-repeat center center;
 			left: -5px;
 		}
 		div.thumbsViewScrollForward{
-			background: url("/img/site/scroll_forward.png") no-repeat center center;
+			background: url("/assets/img/site/scroll_forward.png") no-repeat center center;
 			right: -5px;
 		}
 	

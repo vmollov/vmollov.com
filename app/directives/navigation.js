@@ -4,7 +4,7 @@ angular.module('vmMusic').directive('navigation', function(){
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: '/templates/directives/navigation.html',
+		templateUrl: '/directives/navigation.html',
 		scope:{ },
 		controller: function($scope, $location){
 			$scope.currentPage = function(){

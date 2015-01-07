@@ -1,17 +1,17 @@
 'use strict';
 
-angular.module('vmMusic').directive('audioSample', function(audioManager){
+angular.module('vmMusic').directive('audioSample', ['audioManager', function(audioManager){
 	return {
 		restrict: 'E',
 		replace: true,
 		transclude: true,
-		templateUrl: '/templates/directives/audioSample.html',
+		templateUrl: '/directives/audioSample.html',
 		scope:{
 			src: "=",
 			songTitle: "="
 		},
 		controller: function($scope, $rootScope){
-			var playStatus = {playing: "/img/site/btnPause_audio.png", paused: "/img/site/btnPlay_audio.png"};
+			var playStatus = {playing: "/assets/img/site/btnPause_audio.png", paused: "/assets/img/site/btnPlay_audio.png"};
 			$scope.btnPlay = {};
 			
 			//check whether this audio is currently being played
@@ -49,4 +49,4 @@ angular.module('vmMusic').directive('audioSample', function(audioManager){
 
 		}
 	};
-});
+}]);

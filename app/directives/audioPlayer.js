@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('vmMusic').directive('audioPlayer', function(audioManager){
+angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(audioManager){
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: '/templates/directives/audioPlayer.html',
+		templateUrl: '/directives/audioPlayer.html',
 		scope:{ },
 		controller: function($scope, $rootScope){
 			var playerContainer = $("#audioPlayerContainer");
@@ -14,8 +14,8 @@ angular.module('vmMusic').directive('audioPlayer', function(audioManager){
 						
 			//player ui controls update
 			$scope.btnPlayStatus = function(){
-				if(playerElement.get(0).paused) return '/img/site/btnPlay_audio.png';
-				else return '/img/site/btnPause_audio.png';
+				if(playerElement.get(0).paused) return '/assets/img/site/btnPlay_audio.png';
+				else return '/assets/img/site/btnPause_audio.png';
 			};
 			$scope.togglePlay = function(){
 				if(playerElement.get(0).paused) play();
@@ -63,8 +63,8 @@ angular.module('vmMusic').directive('audioPlayer', function(audioManager){
 				showPlayer(); //show the player if hidden
 				clearTimeout(hidePlayerTimeout); //clear the hide player timeout if set
 
-				$("#mpegSource").attr("src", "/audio/" + $scope.audioSrc + ".mp3");
-				$("#oggSource").attr("src", "/audio/" + $scope.audioSrc + ".ogg");
+				$("#mpegSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".mp3");
+				$("#oggSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".ogg");
 				
 				playerElement.load().get(0).play();
 			}
@@ -98,4 +98,4 @@ angular.module('vmMusic').directive('audioPlayer', function(audioManager){
 		}
 		
 	};
-});
+}]);

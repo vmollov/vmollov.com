@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" ng-app="vmMusic">
+<head>
+	<meta charset="UTF-8" />
+	<title>Vladimir Mollov - Accordion</title>
+	<meta name="keywords" content="accordion, music, ethnic, classical, jazz, Vladimir, Mollov, concert, bulgarian, balkan, world">
+	<meta name="description" content="This is the official website of the concerting accordionist, Vladimir Mollov. Here you can find information about upcoming performances, booking, as well as published recordings and original music.">
+	<meta name="author" content="Vladimir Mollov">
+	<meta name="revisit-after" content="30 days">
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+<body>
+	<header ng-controller="headerCtrl">
+		<div class="banner">
+			<img src="/assets/img/site/banner_home.png" alt="Vladimir Mollov - Accordion" class="homeBanner" />
+			<img src="/assets/img/site/banner.png" alt="Vladimir Mollov - Accordion" class="regularBanner" />
+			<feature-event display="displayFeatureEvent()"></feature-event>
+		</div>							
+		<navigation> </navigation>
+	</header>
+		
+	<ng-view></ng-view>
+
+	<footer ng-controller="footerCtrl">
+		<div class="copyright" ng-bind-html="about.copyright"></div>
+	    <div class="contact"><a href="mailto:{{ about.email }}" title="Email Vladimir" ng-bind="about.email"></a></div>
+	</footer>
+	
+	<audio-player></audio-player>
+</body>
+</html>
+
+
+
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery-ui-1.10.4.custom.min.js"></script>
+
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-animate.min.js"></script>
+<script src="lib/angular-resource.min.js"></script>
+<script src="lib/angular-route.min.js"></script>
+<script src="lib/angular-sanitize.min.js"></script>
+<script src="lib/angular-touch.min.js"></script>
+
+<script src="script.js"></script>
+

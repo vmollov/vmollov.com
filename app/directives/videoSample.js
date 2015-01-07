@@ -4,7 +4,7 @@ angular.module('vmMusic').directive('videoSample', function(){
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: '/templates/directives/videoSample.html',
+		templateUrl: '/directives/videoSample.html',
 		scope:{
 			videoSrc: "=",
 			videoTitle: "=",
@@ -28,7 +28,7 @@ angular.module('vmMusic').directive('videoSample', function(){
 				}
 				
 				var videoContainer = $("<div id='videoPlayerContainer'></div>");
-				var controlFrame = $("<div class='closeOverlay'><a href='#' class='closeButton'>close<img src='/img/site/btnPopupClose.png'/></a></div>");
+				var controlFrame = $("<div class='closeOverlay'><a href='#' class='closeButton'>close<img src='/assets/img/site/btnPopupClose.png'/></a></div>");
 				var videoFrame = $("<iframe width='" + (window.innerWidth*0.8) + "' height='" + (window.innerHeight*0.8) + "' src='" + $scope.videoSrc + "' frameborder='0' allowfullscreen></iframe>");
 				
 				videoContainer.append(controlFrame);

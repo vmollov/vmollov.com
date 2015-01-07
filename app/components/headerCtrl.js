@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vmMusic').controller('headerCtrl', function($scope, $location){
+angular.module('vmMusic').controller('headerCtrl', ['$scope', '$location', function($scope, $location){
 	
 	$scope.$watch(
 		function(){
@@ -40,4 +40,4 @@ angular.module('vmMusic').controller('headerCtrl', function($scope, $location){
 			});
 		});
 	}		
-});
+}]);
