@@ -1,4 +1,4 @@
 <div rel="{{ src }}" class="audioSample">
-	<img ng-src="{{ btnPlay.status }}" style="cursor: pointer;" ng-click="togglePlayPaused()" alt="play {{ songTitle }}">
+	<img ng-src="{{ btnPlay.status }}" style="cursor: pointer;" ng-click="togglePlayPaused()" on-enter="togglePlayPaused()" alt="play {{ songTitle }}" tabindex="0">
 	<div ng-transclude> </div>
 </div>

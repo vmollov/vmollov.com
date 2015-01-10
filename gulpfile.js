@@ -77,7 +77,7 @@ gulp.task('js-build', function(){
 		.pipe(uglify())
 		.pipe(gulp.dest('dist/'));
 });
-gulp.task('js-lib-deploy', function(){
+gulp.task('deploy-js-lib', function(){
 	gulp.src('app/lib/*').pipe(gulp.dest('dist/lib/'));
 });
 
@@ -88,7 +88,7 @@ gulp.task('process-html', function(){
 });
 // end file processing ----------------
 
-gulp.task('build', ['css-build', 'angular-templates', 'js-build', 'js-lib-deploy', 'process-html']);
+gulp.task('build', ['css-build', 'angular-templates', 'js-build', 'deploy-js-lib', 'process-html']);
 	
 gulp.task('watch', function(){
 	gulp.watch([

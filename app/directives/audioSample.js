@@ -1,6 +1,6 @@
-'use strict';
-
 angular.module('vmMusic').directive('audioSample', ['audioManager', function(audioManager){
+	'use strict';
+
 	return {
 		restrict: 'E',
 		replace: true,
@@ -26,15 +26,15 @@ angular.module('vmMusic').directive('audioSample', ['audioManager', function(aud
 			$scope.togglePlayPaused = function(){
 				if($scope.btnPlay.status == playStatus.paused) $scope.playAudio();
 				else $scope.pauseAudio();
-			}
+			};
 			$scope.playAudio = function(){
 				changePlayStatus("play");
 				$rootScope.$broadcast('playAudioStartRequestEvent', {src: $scope.src, title:$scope.songTitle});
-			}
+			};
 			$scope.pauseAudio = function(){
 				changePlayStatus("pause");
 				$rootScope.$broadcast('playAudioStopRequestEvent');
-			}
+			};
 			
 			//handle player events
 			$scope.$on('playAudioGlobalStopRequestEvent', function(){
