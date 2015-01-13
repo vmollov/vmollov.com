@@ -1010,8 +1010,19 @@ ng-view > * {
     float: left;
   }
 }
-div.event .eventDetails div:not(.itemTitle) {
-  margin: 7px 30px 5px 14px;
+div.event .eventDetails > div:not(.itemTitle) {
+  margin: 7px 9px 5px 14px;
+}
+div.event .eventDetails .eventMap {
+  display: none;
+}
+@media (min-width: 569px) {
+  div.event .eventDetails .eventMap {
+    display: block;
+    width: 210px;
+    height: 120px;
+    float: right;
+  }
 }
 div.event div {
   margin-bottom: 5px;

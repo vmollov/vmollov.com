@@ -1,4 +1,5 @@
 <div class='eventDetails'>
+	<div map-location="{{event.location}}" class="eventMap"></div>
 	<div class='itemTitle'>{{ event.title }}</div>
     <div class='eventTime'>{{ 
     	event.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a' 

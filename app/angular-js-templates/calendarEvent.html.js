@@ -1,4 +1,4 @@
 angular.module('vmMusic').run(['$templateCache', function($templateCache) {
     $templateCache.put('/directives/calendarEvent.html',
-        "<div class='eventDetails'>\n\t<div class='itemTitle'>{{ event.title }}</div>\n    <div class='eventTime'>{{ \n    \tevent.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a' \n    }}</div>\n\t<div class='eventLocation'>Location: <a href=\"http://mapof.it/{{ event.location }}\" target=\"_blank\">{{ event.location }}</a></div>\n\t<div class='info'><strong>More Info: </strong><span ng-bind-html=\"event.description | toTrusted\"></span></div>\n</div>");
+        "<div class='eventDetails'>\n\t<div map-location=\"{{event.location}}\" class=\"eventMap\"></div>\n\t<div class='itemTitle'>{{ event.title }}</div>\n    <div class='eventTime'>{{ \n    \tevent.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a' \n    }}</div>\n\t<div class='eventLocation'>Location: <a href=\"http://mapof.it/{{ event.location }}\" target=\"_blank\">{{ event.location }}</a></div>\n\t<div class='info'><strong>More Info: </strong><span ng-bind-html=\"event.description | toTrusted\"></span></div>\n</div>");
 }]);

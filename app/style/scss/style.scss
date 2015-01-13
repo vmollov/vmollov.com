@@ -203,8 +203,19 @@ div.event{
 	}
 
 	.eventDetails{
-	   	div:not(.itemTitle){
-	    	margin: 7px 30px 5px 14px;
+	   	&>div:not(.itemTitle){
+	    	margin: 7px 9px 5px 14px;
+		}
+
+	  	.eventMap{
+		  	display:none;
+
+		  	@include breakpoint($mediumSmall){
+			  	display: block;
+				width:210px;
+				height: 120px;
+				float: right;
+			}
 		}
 	}
 	div{
