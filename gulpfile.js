@@ -101,11 +101,6 @@ gulp.task('process-html', function(){
 });
 // end file processing ----------------
 
-gulp.task('compress-img', function(){
-	'use strict';
-
-});
-
 gulp.task('build', ['css-build', 'angular-templates', 'js-build', 'deploy-js-lib', 'process-html']);
 	
 gulp.task('watch', function(){
