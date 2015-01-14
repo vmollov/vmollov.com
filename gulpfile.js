@@ -6,11 +6,13 @@ var
 	minifyCss = require('gulp-minify-css'),
 	concat = require('gulp-concat'),
 	ngMin = require('gulp-ngmin'),
+	htmlify = require('gulp-angular-htmlify'),
 	angularTemplates = require('gulp-angular-templates'),
 	processHtml = require('gulp-processhtml');
 
 // server setup -------------------------------
 gulp.task('dev-server', function(){
+	'use strict';
 	connect.server({
 		port: 9000,
 		host: 'localhost',
@@ -22,6 +24,7 @@ gulp.task('dev-server', function(){
 });
 
 gulp.task('prod-server', function(){
+	'use strict';
 	connect.server({
 		port:9009,
 		host: 'localhost',
@@ -32,6 +35,7 @@ gulp.task('prod-server', function(){
 });
 
 gulp.task('refresh', function(){
+	'use strict';
 	gulp.src('app/index.html')
 		.pipe(connect.reload());
 });
@@ -39,6 +43,7 @@ gulp.task('refresh', function(){
 
 // file processing ---------------------
 gulp.task('compass', function(){
+	'use strict';
 	gulp.src('app/style/scss/*.scss')
 		.pipe(compass({
 			css: 'app/style',
@@ -50,19 +55,24 @@ gulp.task('compass', function(){
 });
 
 gulp.task('css-build', function(){
+	'use strict';
 	gulp.src('app/style/style.css')
 		.pipe(minifyCss())
 		.pipe(gulp.dest('dist'));
 });
 gulp.task('angular-templates', function(){
+	'use strict';
 	gulp.src('app/components/*.html')
+		.pipe(htmlify())
 		.pipe(angularTemplates({module: 'vmMusic', basePath: '/components/'}))
 		.pipe(gulp.dest('app/angular-js-templates'));
 	gulp.src('app/directives/*.html')
+		.pipe(htmlify())
 		.pipe(angularTemplates({module: 'vmMusic', basePath: '/directives/'}))
 		.pipe(gulp.dest('app/angular-js-templates'));
 });
 gulp.task('js-build', function(){
+	'use strict';
 	gulp.src([
 		'app/*.js',
 		'app/services/*.js',
@@ -78,19 +88,28 @@ gulp.task('js-build', function(){
 		.pipe(gulp.dest('dist/'));
 });
 gulp.task('deploy-js-lib', function(){
+	'use strict';
 	gulp.src('app/lib/*').pipe(gulp.dest('dist/lib/'));
 });
 
 gulp.task('process-html', function(){
+	'use strict';
 	gulp.src('app/index.html')
+		.pipe(htmlify())
 		.pipe(processHtml())
 		.pipe(gulp.dest('dist/'));
 });
 // end file processing ----------------
 
+gulp.task('compress-img', function(){
+	'use strict';
+
+});
+
 gulp.task('build', ['css-build', 'angular-templates', 'js-build', 'deploy-js-lib', 'process-html']);
 	
 gulp.task('watch', function(){
+	'use strict';
 	gulp.watch([
 		'app/*.js', 
 		'app/*/*.js', 
