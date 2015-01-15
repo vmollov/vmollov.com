@@ -8,7 +8,8 @@ var
 	ngMin = require('gulp-ngmin'),
 	htmlify = require('gulp-angular-htmlify'),
 	angularTemplates = require('gulp-angular-templates'),
-	processHtml = require('gulp-processhtml');
+	processHtml = require('gulp-processhtml'),
+	minifyHtml = require('gulp-minify-html');
 
 // server setup -------------------------------
 gulp.task('dev-server', function(){
@@ -94,9 +95,10 @@ gulp.task('deploy-js-lib', function(){
 
 gulp.task('process-html', function(){
 	'use strict';
-	gulp.src('app/index.html')
+	gulp.src('app/*.html')
 		.pipe(htmlify())
 		.pipe(processHtml())
+		.pipe(minifyHtml())
 		.pipe(gulp.dest('dist/'));
 });
 // end file processing ----------------
