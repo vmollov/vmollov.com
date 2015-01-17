@@ -1,6 +1,8 @@
 <div class='eventDetails'>
 	<div map-location="{{event.location}}" class="eventMap"></div>
-	<div class='itemTitle'>{{ event.title }}</div>
+	<div class='itemTitle'>{{ event.title }}
+		<span class="distanceToEvent" ng-if="distance"> ({{distance}} Away)</span>
+	</div>
     <div class='eventTime'>{{ 
     	event.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a' 
     }}</div>

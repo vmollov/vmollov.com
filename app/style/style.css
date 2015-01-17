@@ -1013,6 +1013,10 @@ ng-view > * {
 div.event .eventDetails > div:not(.itemTitle) {
   margin: 7px 9px 5px 14px;
 }
+div.event .eventDetails .distanceToEvent {
+  font-weight: normal;
+  font-size: small;
+}
 div.event .eventDetails .eventMap {
   display: none;
 }

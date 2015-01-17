@@ -51,8 +51,7 @@ gulp.task('compass', function(){
 			sass: 'app/style/scss',
 			require: ['susy', 'breakpoint']
 		}))
-		.pipe(gulp.dest('app/style/'))
-		.pipe(connect.reload());
+		.pipe(gulp.dest('app/style/'));
 });
 
 gulp.task('css-build', function(){
@@ -111,8 +110,11 @@ gulp.task('watch', function(){
 		'app/*.js', 
 		'app/*/*.js', 
 		'app/*.html', 
-		'app/*/*.html'
+		'app/*/*.html',
+		'app/*.css',
+		'app/*/*.css'
 	], ['refresh']);
+
 	gulp.watch('app/style/scss/*.scss', ['compass']);
 });
 
