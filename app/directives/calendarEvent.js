@@ -9,9 +9,11 @@ angular.module('vmMusic').directive('calendarEvent', ['geolocationService', func
 			event: '='
 		},
 		link: function(scope){
-			geolocation.getDistance(scope.event.location).then(function(distance){
-				scope.distance = distance;
-				console.log(distance);
+			geolocation.getDistance(scope.event.location).then(function(directions){
+				scope.distance = directions.distance;
+				scope.duration = directions.duration;
+
+				scope.showDuration = false;
 			});
 		}
 		

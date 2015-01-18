@@ -1016,6 +1016,7 @@ div.event .eventDetails > div:not(.itemTitle) {
 div.event .eventDetails .distanceToEvent {
   font-weight: normal;
   font-size: small;
+  cursor: pointer;
 }
 div.event .eventDetails .eventMap {
   display: none;

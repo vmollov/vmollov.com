@@ -91,7 +91,10 @@ angular.module('vmMusic').factory('geolocationService', ['$window', '$q', functi
                         avoidHighways: false,
                         avoidTolls: false
                     }, function(distanceObject){
-                        deferred.resolve(distanceObject.rows[0].elements[0].distance.text);
+                        deferred.resolve({
+                            distance: distanceObject.rows[0].elements[0].distance.text,
+                            duration: distanceObject.rows[0].elements[0].duration.text
+                        });
                     }
                 );
             });
