@@ -11,21 +11,36 @@ angular.module('vmMusic').directive('audioSample', ['audioManager', function(aud
 			songTitle: "="
 		},
 		controller: function($scope, $rootScope){
-			var playStatus = {playing: "/assets/img/site/btnPause_audio.png", paused: "/assets/img/site/btnPlay_audio.png"};
+			var playStatus = {
+                    playing: "/assets/img/site/btnPause_audio.png",
+                    paused: "/assets/img/site/btnPlay_audio.png"
+                },
+                changePlayStatus = function(status){
+                    if(status === "play") {
+                        $scope.btnPlay.status = playStatus.playing;
+                    }
+                    else {
+                        $scope.btnPlay.status = playStatus.paused;
+                    }
+                };
+
 			$scope.btnPlay = {};
 			
 			//check whether this audio is currently being played
-			if(audioManager.getCurrentlyPlayingAudio() == $scope.src) $scope.btnPlay.status = playStatus.playing; 
-			else $scope.btnPlay.status = playStatus.paused;
-			
-			function changePlayStatus(status){
-				if(status == "play") $scope.btnPlay.status = playStatus.playing;
-				else $scope.btnPlay.status = playStatus.paused;
-			}
+			if(audioManager.getCurrentlyPlayingAudio() === $scope.src) {
+                $scope.btnPlay.status = playStatus.playing;
+            }
+			else {
+                $scope.btnPlay.status = playStatus.paused;
+            }
 		
 			$scope.togglePlayPaused = function(){
-				if($scope.btnPlay.status == playStatus.paused) $scope.playAudio();
-				else $scope.pauseAudio();
+				if($scope.btnPlay.status === playStatus.paused) {
+                    $scope.playAudio();
+                }
+				else {
+                    $scope.pauseAudio();
+                }
 			};
 			$scope.playAudio = function(){
 				changePlayStatus("play");
@@ -42,11 +57,14 @@ angular.module('vmMusic').directive('audioSample', ['audioManager', function(aud
 				$scope.$apply();
 			});
 			$scope.$on('playAudioGlobalStartRequestEvent', function(event, audioData){
-				if(audioData.src == $scope.src) changePlayStatus('play');
-				else changePlayStatus('pause');
+				if(audioData.src === $scope.src) {
+                    changePlayStatus('play');
+                }
+				else {
+                    changePlayStatus('pause');
+                }
 				$scope.$apply();
-			})
-
+			});
 		}
 	};
 }]);

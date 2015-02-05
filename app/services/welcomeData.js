@@ -1,6 +1,6 @@
-'use strict';
-
 angular.module('vmMusic').factory('welcomeData', ['$http', '$q', function($http, $q){
+    'use strict';
+
 	var deferred = $q.defer();
 	
 	return {
@@ -11,5 +11,5 @@ angular.module('vmMusic').factory('welcomeData', ['$http', '$q', function($http,
 				});
 			return deferred.promise;
 		}
-	}
+	};
 }]);

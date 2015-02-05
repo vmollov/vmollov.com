@@ -1,5 +1,7 @@
-'use strict';
-
 angular.module('vmMusic').controller('contactCtrl', ['$scope', 'contactData', function($scope, contactData){
-		$scope.contact = contactData.getContactData();	
+    'use strict';
+
+	contactData.getContactData().then(function(contactData){
+        $scope.contact = contactData;
+    });
 }]);

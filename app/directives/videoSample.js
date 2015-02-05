@@ -1,6 +1,6 @@
-'use strict';
-
 angular.module('vmMusic').directive('videoSample', function(){
+    'use strict';
+
 	return {
 		restrict: 'E',
 		replace: true,

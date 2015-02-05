@@ -1,25 +1,70 @@
-'use strict';
-
 angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(audioManager){
+    'use strict';
+
 	return {
 		restrict: 'E',
 		replace: true,
 		templateUrl: '/directives/audioPlayer.html',
 		scope:{ },
 		controller: function($scope, $rootScope){
-			var playerContainer = $("#audioPlayerContainer");
-			var playerElement = $("#audioPlayer");
-			var playerVisible = false;
-			var hidePlayerTimeout;
+			var playerContainer = $("#audioPlayerContainer"),
+			    playerElement = $("#audioPlayer"),
+			    playerVisible = false,
+			    hidePlayerTimeout,
+                //player show/hide
+                showPlayer = function(){
+                    if(playerVisible) {
+                        return; //if player is already visible do nothing
+                    }
+
+                    playerContainer.css({'display':'block'});
+                    playerContainer.animate({
+                        bottom:1
+                    }, 700, function(){
+                        playerVisible = true;
+                    });
+                },
+                hidePlayer = function(){
+                    if(!playerElement.get(0).paused) return; //if the player is playing don't hide it
+
+                    playerContainer.animate({
+                        bottom:'-100%'
+                    }, 700, function(){
+                        playerVisible = false;
+                        playerContainer.css({'display':'none'});
+                    });
+                },
+                //player control functions
+                play = function(){
+                    showPlayer(); //show the player if hidden
+                    clearTimeout(hidePlayerTimeout); //clear the hide player timeout if set
+
+                    $("#mpegSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".mp3");
+                    $("#oggSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".ogg");
+
+                    playerElement.load().get(0).play();
+                },
+                stop = function(){
+                    playerElement.get(0).pause();
+
+                    hidePlayerTimeout = setTimeout(hidePlayer, 1500);
+                };
 						
 			//player ui controls update
 			$scope.btnPlayStatus = function(){
-				if(playerElement.get(0).paused) return '/assets/img/site/btnPlay_audio.png';
-				else return '/assets/img/site/btnPause_audio.png';
+				if(playerElement.get(0).paused) {
+                    return '/assets/img/site/btnPlay_audio.png';
+                } else {
+                    return '/assets/img/site/btnPause_audio.png';
+                }
 			};
 			$scope.togglePlay = function(){
-				if(playerElement.get(0).paused) play();
-				else stop();
+				if(playerElement.get(0).paused) {
+                    play();
+                }
+				else {
+                    stop();
+                }
 			};
 			$scope.volume = 0.75;
 			$scope.changeVolume = function(){
@@ -56,45 +101,7 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
 			playerElement.bind('ended', function(){
 				$scope.timeIndicator = '00:00';
 				$scope.$apply();
-			})
-						
-			//player control functions
-			function play(){
-				showPlayer(); //show the player if hidden
-				clearTimeout(hidePlayerTimeout); //clear the hide player timeout if set
-
-				$("#mpegSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".mp3");
-				$("#oggSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".ogg");
-				
-				playerElement.load().get(0).play();
-			}
-			function stop(){
-				playerElement.get(0).pause();
-				
-				hidePlayerTimeout = setTimeout(hidePlayer, 1500);
-			}
-
-			//player show/hide
-			function showPlayer(){
-				if(playerVisible) return; //if player is already visible do nothing
-				
-				playerContainer.css({'display':'block'});
-				playerContainer.animate({
-					bottom:1
-				}, 700, function(){
-					playerVisible = true;
-				});
-			}
-			function hidePlayer(){
-				if(!playerElement.get(0).paused) return; //if the player is playing don't hide it
-				
-				playerContainer.animate({
-					bottom:'-100%'
-				}, 700, function(){
-					playerVisible = false;
-					playerContainer.css({'display':'none'});
-				});
-			}
+			});
 		}
 		
 	};

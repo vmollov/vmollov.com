@@ -1,6 +1,6 @@
-'use strict';
-
 angular.module('vmMusic').directive('navigation', function(){
+    'use strict';
+
 	return {
 		restrict: 'E',
 		replace: true,
@@ -8,12 +8,14 @@ angular.module('vmMusic').directive('navigation', function(){
 		scope:{ },
 		controller: function($scope, $location){
 			$scope.currentPage = function(){
-				if($location.$$path == "/") return "";
-				else return " - " + $location.$$path.substr(1).toUpperCase();
+				if($location.$$path === "/") {
+                    return "";
+                }
+                return " - " + $location.$$path.substr(1).toUpperCase();
 			};
 			
 			$("li.hasSub").on('mouseleave',function(){
-					$("li.hasSub").toggleClass("hover", false);
+				$("li.hasSub").toggleClass("hover", false);
 			});
 			$('#close').on('touchstart',function(){
 				$('li.hasSub').off('mouseover');

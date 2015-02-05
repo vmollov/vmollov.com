@@ -1,11 +1,11 @@
-'use strict';
+angular.module('vmMusic').factory('contactData', ['$resource', function($resource){
+    'use strict';
 
-angular.module('vmMusic').factory('contactData', ['$resource', function($resource){	
-	var newsResource = $resource('/data/about.json');
+	var contactResource = $resource('/data/about.json');
 
 	return{
 		getContactData: function(){
-			return newsResource.get();
+			return contactResource.get();
 		}
 	};
 }]);
