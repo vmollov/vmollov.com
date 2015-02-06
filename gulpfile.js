@@ -9,7 +9,8 @@ var
 	htmlify = require('gulp-angular-htmlify'),
 	angularTemplates = require('gulp-angular-templates'),
 	processHtml = require('gulp-processhtml'),
-	minifyHtml = require('gulp-minify-html');
+	minifyHtml = require('gulp-minify-html'),
+    rename = require('gulp-rename');
 
 // server setup -------------------------------
 gulp.task('dev-server', function(){
@@ -100,9 +101,23 @@ gulp.task('process-html', function(){
 		.pipe(minifyHtml())
 		.pipe(gulp.dest('dist/'));
 });
+
+gulp.task('process-config', function(){
+    'use strict';
+    gulp.src('app/config/htaccess.txt')
+        .pipe(rename('.htaccess'))
+        .pipe(gulp.dest('dist/'));
+});
 // end file processing ----------------
 
-gulp.task('build', ['css-build', 'angular-templates', 'js-build', 'deploy-js-lib', 'process-html']);
+gulp.task('build',[
+    'css-build',
+    'angular-templates',
+    'js-build',
+    'deploy-js-lib',
+    'process-html',
+    'process-config'
+]);
 	
 gulp.task('watch', function(){
 	'use strict';

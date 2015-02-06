@@ -28,5 +28,5 @@ describe('audioSample directive', function(){
 
     });
 
-    //todo: write assertions aboout the broadcasted events
+    //todo: write assertions about the broadcasted events
 });

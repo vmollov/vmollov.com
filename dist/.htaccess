@@ -10,4 +10,3 @@
     RewriteCond %{REQUEST_URI} !.*\.(css¦js|html|png)
     RewriteRule (.*) index.html [L]
 </ifModule>
-
