@@ -28,7 +28,7 @@ describe('contactCtrl', function(){
     });
 
     beforeEach(function(){ //setup spies
-        spyOn(contactDataMock, 'getContactData').andCallThrough();
+        spyOn(contactDataMock, 'getContactData').and.callThrough();
 
         contactCtrl = $controller('contactCtrl', {$scope: scope, contactData: contactDataMock});
         scope.$digest();

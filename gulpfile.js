@@ -82,7 +82,7 @@ gulp.task('js-build', function(){
 		'app/directives/*.js',
 		'app/filters/*.js',
 		'app/angular-js-templates/*.js'
-		
+
 	])
 		.pipe(ngMin())
 		.pipe(concat('script.js'))
@@ -113,8 +113,16 @@ gulp.task('process-config', function(){
 
 //running tests
 gulp.task('run-tests', function(){
-    gulp.src('tests/*.js')
-        .pipe(karma({
+    gulp.src([
+        'app/lib/jquery.min.js',
+        'app/lib/angular.min.js',
+        'app/lib/angular-resource.min.js',
+        'tests/lib/*.js',
+        'app/app.js',
+        'app/**/*.js',
+        'app/directives/*.html',
+        'tests/unit/*.js'
+    ]).pipe(karma({
             configFile: 'tests/karma.config.js',
             action: 'watch'
         }));
@@ -130,13 +138,13 @@ gulp.task('build',[
     'process-html',
     'process-config'
 ]);
-	
+
 gulp.task('watch', function(){
 	'use strict';
 	gulp.watch([
-		'app/*.js', 
-		'app/*/*.js', 
-		'app/*.html', 
+		'app/*.js',
+		'app/*/*.js',
+		'app/*.html',
 		'app/*/*.html',
 		'app/*.css',
 		'app/*/*.css'
@@ -145,4 +153,4 @@ gulp.task('watch', function(){
 	gulp.watch('app/style/scss/*.scss', ['compass']);
 });
 
-gulp.task('default', ['dev-server', 'watch']);
+gulp.task('default', ['dev-server', 'run-tests', 'watch']);

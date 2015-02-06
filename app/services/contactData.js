@@ -1,11 +1,17 @@
-angular.module('vmMusic').factory('contactData', ['$resource', function($resource){
+angular.module('vmMusic').factory('contactData', ['$http', '$q', function($http, $q){
     'use strict';
 
-	var contactResource = $resource('/data/about.json');
+	var defer = $q.defer();
+
+    $http({method: 'GET', url: '/data/about.json'}).success(
+        function(data){
+            defer.resolve(data);
+        }
+    );
 
 	return{
 		getContactData: function(){
-			return contactResource.get();
+			return defer.promise;
 		}
 	};
 }]);

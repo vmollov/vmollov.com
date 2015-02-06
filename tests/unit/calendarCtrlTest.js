@@ -57,8 +57,8 @@ describe('calendarCtrl', function(){
     });
 
     beforeEach(function(){ //setup spies
-        spyOn(calendarDataMock, 'getUpcomingEvents').andCallThrough();
-        spyOn(calendarDataMock, 'getRecentEvents').andCallThrough();
+        spyOn(calendarDataMock, 'getUpcomingEvents').and.callThrough();
+        spyOn(calendarDataMock, 'getRecentEvents').and.callThrough();
 
         calendarCtrl = $controller('calendarCtrl', {$scope: scope, calendarData: calendarDataMock});
         scope.$digest();
