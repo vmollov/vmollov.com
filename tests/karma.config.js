@@ -16,14 +16,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'app/lib/jquery.min.js',
-        'app/lib/angular.min.js',
-        'app/lib/angular-resource.min.js',
-        'tests/lib/angular-mocks.js',
-        'app/app.js',
-        'app/**/*.js',
-        'app/directives/*.html',
-        'tests/*.js'
+        '../app/lib/jquery.min.js',
+        '../app/lib/angular.min.js',
+        '../app/lib/angular-resource.min.js',
+        'lib/*.js',
+        '../app/app.js',
+        '../app/**/*.js',
+        '../app/directives/*.html',
+        '*.js'
     ],
 
 
@@ -36,7 +36,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'app/directives/*.html': ['ng-html2js']
+        '../app/directives/*.html': ['ng-html2js']
     },
 
       ngHtml2JsPreprocessor: {

@@ -10,7 +10,8 @@ var
 	angularTemplates = require('gulp-angular-templates'),
 	processHtml = require('gulp-processhtml'),
 	minifyHtml = require('gulp-minify-html'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    karma = require('gulp-karma');
 
 // server setup -------------------------------
 gulp.task('dev-server', function(){
@@ -109,6 +110,17 @@ gulp.task('process-config', function(){
         .pipe(gulp.dest('dist/'));
 });
 // end file processing ----------------
+
+//running tests
+gulp.task('run-tests', function(){
+    gulp.src('tests/*.js')
+        .pipe(karma({
+            configFile: 'tests/karma.config.js',
+            action: 'watch'
+        }));
+});
+
+//end running tests
 
 gulp.task('build',[
     'css-build',

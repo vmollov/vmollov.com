@@ -1,16 +1,17 @@
 describe('audioSample directive', function(){
     'use strict';
 
-    var scope, isoScope, element;
+    var scope, isoScope, rootScope, element;
 
     beforeEach(module('vmMusic', 'templates'));
 
     beforeEach(inject(function($injector){
         var compile = $injector.get('$compile');
 
-        scope = $injector.get('$rootScope').$new();
+        rootScope = $injector.get('$rootScope');
+        scope = rootScope.$new();
 
-        element = '<audio-sample></audio-sample>';
+        element = '<audio-sample src="testAudio"></audio-sample>';
 
         element = compile(element)(scope);
         scope.$digest();
@@ -25,8 +26,11 @@ describe('audioSample directive', function(){
         expect(isoScope.btnPlay.status).toContain('btnPlay_audio');
         isoScope.togglePlayPaused();
         expect(isoScope.btnPlay.status).toContain('btnPause_audio');
-
     });
 
     //todo: write assertions about the broadcasted events
+    it('should respond to broadcast events playAudioGlobalStopRequestEvent and playAudioGlobalStartRequestEvent', function(){
+        rootScope.$broadcast('playAudioGlobalStartRequestEvent', {src: 'testAudio'});
+        //expect()
+    });
 });
