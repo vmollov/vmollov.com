@@ -1,12 +1,9 @@
-'use strict';
-
 angular.module('vmMusic').controller('videosCtrl', ['$scope', 'videosData', function($scope, videosData){
+    'use strict';
+
 	videosData.getYouTubeVideos().then(
-		function(data){
-			$scope.allVideos = videosData.sanitizeYouTubeVideos(data.feed.entry);
-		},
-		function(status){
-			console.log("error fetching videos: " + status);
+		function(response){
+			$scope.allVideos = videosData.sanitizeYouTubeVideos(response);
 		}
 	);	
 }]);

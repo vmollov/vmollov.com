@@ -3,59 +3,68 @@
 angular.module('vmMusic', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngTouch'])
 	.config(['$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider){
-			
-			$routeProvider.when('/',
-				{
+			$routeProvider.when('/', {
 					templateUrl:'/components/home.html',
 					controller: 'homeCtrl'
 				}
 			);
-			$routeProvider.when('/biography',
-				{
+			$routeProvider.when('/biography', {
 					templateUrl: '/components/bio.html',
 					controller: 'bioCtrl'
 				}
 			);
-			$routeProvider.when('/calendar',
-				{
+			$routeProvider.when('/calendar', {
 					templateUrl: '/components/calendar.html',
 					controller: 'calendarCtrl'
 				}
 			);
-			$routeProvider.when('/recordings',
-				{
+			$routeProvider.when('/recordings', {
 					templateUrl: '/components/recordings.html',
 					controller: 'recordingsCtrl'
 				}
 			);
-			$routeProvider.when('/photos',
-				{
+			$routeProvider.when('/photos', {
 					templateUrl: '/components/photos.html',
 					controller: 'photosCtrl'
 				}
 			);
-			$routeProvider.when('/videos',
-				{
+			$routeProvider.when('/videos', {
 					templateUrl: '/components/videos.html',
 					controller: 'videosCtrl'
 				}
 			);
-			$routeProvider.when('/contact',
-				{
+			$routeProvider.when('/contact', {
 					templateUrl: '/components/contact.html',
 					controller: 'contactCtrl'
 				}
 			);
-            $routeProvider.otherwise({
-                redirectTo: '/'
+            $routeProvider.otherwise({ o: '/'
             });
 			
 			$locationProvider.html5Mode(true).hashPrefix('!');
-			
 		}
 	])
 	
 	.constant('gCalUrl', 'https://www.googleapis.com/calendar/v3/calendars/5s80mf8pl7rtkj9bpasndqqe58%40group.calendar.google.com/events?maxResults=30&orderBy=startTime&singleEvents=true&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI')
+
+    .constant('youtubeApi', {
+        searchTerm: 'Vladimir Mollov',
+        resultCount: 18,
+        excludeList: ["iUL7wOzp698", "FDFBDw97Epg", "tbQHOigF8WA", "WuZE2vidsIM", "U9Tb3HWkJRE", "xLWH0DOJ6Co"],
+        getFeedUrl: function(){
+            return "http://gdata.youtube.com/feeds/api/videos/-/" + this.searchTerm.replace(/ +/, '/') + "?max-results=" + (this.resultCount + this.excludeList.length) + "&alt=json&orderby=published";
+        },
+        isExcluded: function(entryUrl){
+            var i, excludeListLength = this.excludeList.length;
+
+            for(i = 0; i < excludeListLength; i++){
+                if(entryUrl.indexOf(this.excludeList[i]) > -1){
+                    return true;
+                }
+            }
+            return false;
+        }
+    })
 
     .constant('flickrApi', {
         apiKey: '48dad8a586fe5931b1db3c1026e0564b',

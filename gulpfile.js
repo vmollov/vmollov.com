@@ -121,7 +121,8 @@ gulp.task('run-tests', function(){
         'app/app.js',
         'app/**/*.js',
         'app/directives/*.html',
-        'tests/unit/*.js'
+        'tests/mockData/*.js',
+        'tests/unit/**/*.js'
     ]).pipe(karma({
             configFile: 'tests/karma.config.js',
             action: 'watch'
