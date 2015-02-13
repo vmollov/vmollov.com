@@ -6,9 +6,9 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
 		replace: true,
 		templateUrl: '/directives/audioPlayer.html',
 		scope:{ },
-		controller: function($scope, $rootScope){
-			var playerContainer = $("#audioPlayerContainer"),
-			    playerElement = $("#audioPlayer"),
+		controller: function($scope, $rootScope, $element){
+			var playerContainer = angular.element($element),
+			    playerElement = playerContainer.find("#audioPlayer"),
 			    playerVisible = false,
 			    hidePlayerTimeout,
                 //player show/hide
@@ -39,8 +39,8 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
                     showPlayer(); //show the player if hidden
                     clearTimeout(hidePlayerTimeout); //clear the hide player timeout if set
 
-                    $("#mpegSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".mp3");
-                    $("#oggSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".ogg");
+                    playerElement.find("#mpegSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".mp3");
+                    playerElement.find("#oggSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".ogg");
 
                     playerElement.load().get(0).play();
                 },

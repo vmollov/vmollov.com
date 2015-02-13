@@ -10,12 +10,9 @@ describe('audioSample directive', function(){
 
         rootScope = $injector.get('$rootScope');
         scope = rootScope.$new();
-
-        element = '<audio-sample src="testAudio"></audio-sample>';
-
+        element = '<audio-sample src="\'testAudio\'"></audio-sample>';
         element = compile(element)(scope);
         scope.$digest();
-
         isoScope = element.isolateScope();
     }));
 
@@ -28,9 +25,12 @@ describe('audioSample directive', function(){
         expect(isoScope.btnPlay.status).toContain('btnPause_audio');
     });
 
-    //todo: write assertions about the broadcasted events
     it('should respond to broadcast events playAudioGlobalStopRequestEvent and playAudioGlobalStartRequestEvent', function(){
         rootScope.$broadcast('playAudioGlobalStartRequestEvent', {src: 'testAudio'});
-        //expect()
+        expect(isoScope.btnPlay.status).toContain('btnPause_audio');
+        expect(angular.element(element).find('img').attr('src')).toContain('btnPause_audio');
+        rootScope.$broadcast('playAudioGlobalStopRequestEvent');
+        expect(isoScope.btnPlay.status).toContain('btnPlay_audio');
+        expect(angular.element(element).find('img').attr('src')).toContain('btnPlay_audio');
     });
 });

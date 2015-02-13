@@ -1,15 +1,15 @@
-angular.module('vmMusic').factory('welcomeData', ['$http', '$q', function($http, $q){
+angular.module('vmMusic').factory('welcomeData', ['$http', function($http){
     'use strict';
 
-	var deferred = $q.defer();
+	var deferred = $http({method: 'GET', url:'data/welcome.json'}).then(
+        function(response){
+            return response.data;
+        }
+    );
 	
 	return {
 		getWelcomeMessage: function(){
-			$http({method: 'GET', url:'data/welcome.json'})
-				.success(function(data){
-					deferred.resolve(data);
-				});
-			return deferred.promise;
+			return deferred;
 		}
 	};
 }]);

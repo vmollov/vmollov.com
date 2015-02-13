@@ -1,40 +1,53 @@
-'use strict';
-
 angular.module('vmMusic').controller('photosCtrl', ['$scope', 'photosData', function($scope, photosData){
-	$scope.photos = [];
+    'use strict';
+
+    var thumbsViewWidth = 0,
+        thumbsImageOffset = 0,
+        _Index = 0, //initial image index
+        //utility functions
+        animateThumbView = function(){
+            var thumbSliderOffset = (function(){
+                var totalOffset = 0,
+                    elementCollection = $("ul.nav>li>img"),
+                    i;
+                for(i = 0; i < thumbsImageOffset; i++){
+                    totalOffset += elementCollection[i].width + 10;
+                }
+                return totalOffset;
+            }());
+
+            $('.thumbSlider .nav').animate({
+                marginLeft: -thumbSliderOffset
+            }, 400);
+        },
+        getNumberOfDisplayedThumbs = function(){
+            var avgThumbWidth = thumbsViewWidth / $scope.photos.length;
+            return $(".thumbSlider").width() / avgThumbWidth;
+        },
+        getThumbsViewBounds = function(){
+            return {
+                low: Math.floor(getNumberOfDisplayedThumbs() * (1/4)) + 1,
+                high: Math.floor(getNumberOfDisplayedThumbs() * (3/4)) - 1
+            };
+        };
+
+    $scope.photos = [];
 	
 	photosData.getAllImages().then(
 		function(data){
-			$scope.photos[0] = data[0];
-			
-			//sort photos by dateuploaded
-			for(var i=1; i<data.length; i++){
-				var placedImage = false;
-				for(var n=0; n<$scope.photos.length; n++){
-					if(data[i].dateupload >= $scope.photos[n].dateupload){
-						$scope.photos.splice(n, 0, data[i]);
-						placedImage = true;
-						break;
-					}
-				}
-				if(!placedImage) $scope.photos.push(data[i]);
-			}
+            $scope.photos = data.sort(function(a, b){
+                return b.dateupload - a.dateupload;
+            });
 			
 			$scope.photo = $scope.photos[0];
-			
-			
 		}	
 	);
-	
-	var thumbsViewWidth = 0;
-	var thumbsImageOffset = 0;
-	var _Index = 0; //initial image index
-	
+
 	$scope.getThumbsWidth = function(){
 		return {width: thumbsViewWidth + 'px'};
-	}
+	};
 	
-	$scope.updateThumbViewWidth = function(imageElement){
+	$scope.updateThumbViewWidth = function(imageElement){ //not unit tested
 		//when the thumbs all get loaded their width is added up to determine the width of the thumb slider
 		thumbsViewWidth += imageElement.width() + 15;
 	};
@@ -42,14 +55,6 @@ angular.module('vmMusic').controller('photosCtrl', ['$scope', 'photosData', func
     $scope.isActive = function (index) {
     	return _Index === index;
     };
-    
-    $scope.updateSlideCaptionWidth = function(){
-	    //fix for firefox
-	    /*
-$(".slideCaption").css({'width':'99%'});
-        $(".slideCaption").css({'width':'100%'});
-*/
-    }
 
 	//slider
     $scope.showPrev = function () {
@@ -66,13 +71,15 @@ $(".slideCaption").css({'width':'99%'});
         _Index = index;
         $scope.photo = $scope.photos[index];
         
-        //slide the thumbview
-        if(index == $scope.photos.length-1) thumbsImageOffset = index - getThumbsViewBounds().high;
-        while(thumbsImageOffset < index - getThumbsViewBounds().high && index<$scope.photos.length-1){
-	        thumbsImageOffset++
+        //slide the thumb view - not tested
+        if(index === $scope.photos.length-1){
+            thumbsImageOffset = index - getThumbsViewBounds().high;
+        }
+        while(thumbsImageOffset < index - getThumbsViewBounds().high && index < $scope.photos.length - 1){
+	        thumbsImageOffset++;
         } 
         while(thumbsImageOffset > index - getThumbsViewBounds().low && thumbsImageOffset > 0){
-        	thumbsImageOffset--
+        	thumbsImageOffset--;
         }
         animateThumbView();
    	};
@@ -80,9 +87,9 @@ $(".slideCaption").css({'width':'99%'});
 	//thumb view 	
 	$scope.imageCounter = function(){
 		return (_Index+1) + "/" + $scope.photos.length;
-	}
+	};
 	
-	$scope.thumbViewNext = function(){
+	$scope.thumbViewNext = function(){ //not tested
 		if(thumbsImageOffset > $scope.photos.length - getThumbsViewBounds().high){
 			thumbsImageOffset = $scope.photos.length - getThumbsViewBounds().high;
 			return;
@@ -92,48 +99,32 @@ $(".slideCaption").css({'width':'99%'});
 		animateThumbView();
 	};
 	
-	$scope.thumbViewPrevious = function(){
-		if(thumbsImageOffset == 0) return;
+	$scope.thumbViewPrevious = function(){ //not tested
+		if(thumbsImageOffset === 0) {
+            return;
+        }
 		
 		thumbsImageOffset -= 2;
 		animateThumbView();
 	};
 	
 	//bind keyboard keys and swipe actions
-	$(document).keydown(function(e){
-	    if (e.keyCode == 37) $scope.showPrev();
-	    if (e.keyCode == 39) $scope.showNext();
+	$(document).keydown(function(e){ //not tested
+	    if (e.keyCode === 37) {
+            $scope.showPrev();
+        }
+	    if (e.keyCode === 39) {
+            $scope.showNext();
+        }
 	    $scope.$apply();
 	});
 	$scope.thumbViewSwipeAdvance = function(forward){
-		forward ? thumbsImageOffset ++ : thumbsImageOffset --;
-		forward ? $scope.thumbViewNext() : $scope.thumbViewPrevious();
+        if(forward){
+            thumbsImageOffset ++;
+            $scope.thumbViewNext();
+        }else{
+            thumbsImageOffset --;
+            $scope.thumbViewPrevious();
+        }
 	};
-	
-	//utility functions
-	function animateThumbView(){
-		var thumbSliderOffset = function(){
-			var totalOffset = 0;
-			var imageCounter = 0;
-			var elementCollection = $("ul.nav>li>img");
-			for(var i=0; i<thumbsImageOffset; i++){
-				totalOffset += elementCollection[i].width + 10;
-			}
-			return totalOffset;
-		}();
-		
-		$('.thumbSlider .nav').animate({
-			marginLeft: -thumbSliderOffset
-		}, 400);
-	};
-	
-	function getThumbsViewBounds(){
-		return { low: Math.floor(getNumberOfDisplayedThums() * (1/4)) + 1, high: Math.floor(getNumberOfDisplayedThums() * (3/4)) - 1 };
-	}
-	
-	function getNumberOfDisplayedThums(){
-		var avgThumbWidth = thumbsViewWidth / $scope.photos.length
-		return $(".thumbSlider").width() / avgThumbWidth;
-	}
-
 }]);

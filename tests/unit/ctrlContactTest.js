@@ -1,12 +1,12 @@
 describe('contactCtrl', function(){
     'use strict';
 
-    var scope, $controller, contactCtrl, contactDataMock, $q;
+    var scope, controller, contactCtrl, contactDataMock, $q;
 
     beforeEach(module('vmMusic'));
 
     beforeEach(inject(function($injector){ //inject dependencies
-        $controller = $injector.get('$controller');
+        controller = $injector.get('$controller');
         $q = $injector.get('$q');
         scope = $injector.get('$rootScope').$new();
 
@@ -30,7 +30,7 @@ describe('contactCtrl', function(){
     beforeEach(function(){ //setup spies
         spyOn(contactDataMock, 'getContactData').and.callThrough();
 
-        contactCtrl = $controller('contactCtrl', {$scope: scope, contactData: contactDataMock});
+        contactCtrl = controller('contactCtrl', {$scope: scope, contactData: contactDataMock});
         scope.$digest();
     });
 

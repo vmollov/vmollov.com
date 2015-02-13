@@ -6,7 +6,15 @@ angular.module('vmMusic').directive('navigation', function(){
 		replace: true,
 		templateUrl: '/directives/navigation.html',
 		scope:{ },
-		controller: function($scope, $location){
+		controller: function($scope, $element, $location){
+            var subMenuContainer = angular.element($element).find("li.hasSub"),
+                menuTitleItem = angular.element($element).find(".menuTitle"), //only used for phone size screens
+                nonMenuTitleItems = angular.element($element).find("ul li:not(.menuTitle)"),
+                getLeafMenuItemOn = function(){
+                    return angular.element($element).find(".menuItemOn:not(.hasSub)");
+
+                };
+
 			$scope.currentPage = function(){
 				if($location.$$path === "/") {
                     return "";
@@ -14,26 +22,22 @@ angular.module('vmMusic').directive('navigation', function(){
                 return " - " + $location.$$path.substr(1).toUpperCase();
 			};
 			
-			$("li.hasSub").on('mouseleave',function(){
-				$("li.hasSub").toggleClass("hover", false);
-			});
-			$('#close').on('touchstart',function(){
-				$('li.hasSub').off('mouseover');
-				
-			});
-			$("li.hasSub").on('click', function(){
-				$("li.hasSub").toggleClass("hover");
-			});			
+			subMenuContainer
+                .on('mouseleave',function(){
+                    subMenuContainer.toggleClass("hover", false);
+                })
+                .on('click', function(){
+                    subMenuContainer.toggleClass("hover");
+                });
 			
-			$(".menuTitle").on('click', function(){
-				$("nav > ul li:not(.menuTitle)").toggleClass("menuItemOn");
-				$(".menuItemOn:not(.hasSub)").off('click');
-				
-				$(".menuItemOn:not(.hasSub)").on('click', function(event){
-					$("nav > ul li:not(.menuTitle)").toggleClass("menuItemOn", false);
-				})
+			menuTitleItem.on('click', function(){
+				nonMenuTitleItems.toggleClass("menuItemOn");
+                getLeafMenuItemOn()
+                    .off('click')
+                    .on('click', function(){
+                        nonMenuTitleItems.toggleClass("menuItemOn", false);
+                    });
 			});
-
 		}
 	};
 });

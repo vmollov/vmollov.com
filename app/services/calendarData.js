@@ -1,8 +1,15 @@
-angular.module('vmMusic').factory('calendarData', ['$http', '$q', 'gCalUrl', function($http, $q, gCalUrl){
+angular.module('vmMusic').factory('calendarData', ['$http', 'gCalUrl', function($http, gCalUrl){
     'use strict';
 
 	var
-        calData = $q.defer(),
+        calData = $http({method:'GET', url:gCalUrl}).then(
+            function(response){
+                return response.data.items;
+            },
+            function(error){
+                console.log('An error occurred while getting calendar events. ' + error);
+            }
+        ),
         //creates a calendar event object from the retrieved raw json
         getCalendarEventFromRawData = function(data){
             return {
@@ -24,17 +31,17 @@ angular.module('vmMusic').factory('calendarData', ['$http', '$q', 'gCalUrl', fun
             }
             return events;
         },
-        upcomingEvents = calData.promise.then(
+        upcomingEvents = calData.then(
             function(data){
                 return parseCalendarData(data, true);
             }
         ),
-        recentEvents = calData.promise.then(
+        recentEvents = calData.then(
             function(data){
                 return parseCalendarData(data, false);
             }
         ),
-        nextEvent = calData.promise.then(
+        nextEvent = calData.then(
             function(data){
                 var nextEventData, i, length, thisEvent, startTime;
                 for(i = 0, length = data.length; i < length; i++){
@@ -49,14 +56,6 @@ angular.module('vmMusic').factory('calendarData', ['$http', '$q', 'gCalUrl', fun
                 return nextEventData;
             }
         );
-
-    $http({method:'GET', url:gCalUrl})
-        .success(function(result){
-            calData.resolve(result.items);
-        })
-        .error(function(error){
-            console.log('An error occurred while getting calendar events. ' + error);
-        });
 
 	return {
 		getUpcomingEvents: function(){

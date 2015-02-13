@@ -1,7 +1,6 @@
-'use strict';
-
 angular.module('vmMusic').controller('homeCtrl', ['$scope', '$sce', 'welcomeData', 'newsData', 'featureData', function($scope, $sce, welcomeData, newsData, featureData){
-	
+    'use strict';
+
 	//welcome section
 	welcomeData.getWelcomeMessage().then(
 		function(data){

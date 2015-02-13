@@ -4,6 +4,7 @@ describe('calendarCtrl', function(){
     var calendarCtrl, scope, calendarDataMock, $q, $controller;
 
     beforeEach(module('vmMusic'));
+
     beforeEach(inject(function($injector) { //inject dependencies
         $controller = $injector.get('$controller');
         $q = $injector.get('$q');

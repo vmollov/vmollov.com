@@ -1,16 +1,15 @@
-angular.module('vmMusic').factory('featureData', ['$http', '$q', function($http, $q){
+angular.module('vmMusic').factory('featureData', ['$http', function($http){
     'use strict';
 
-    var deferred = $q.defer();
+    var deferred = $http({method: 'GET', url: '/data/features.json'}).then(
+        function(response){
+           return response.data;
+        }
+    );
 
 	return {
 		getFeatures: function(){
-			$http({method: 'GET', url: '/data/features.json'})
-				.success(function(data){
-					deferred.resolve(data);
-				});
-			
-			return deferred.promise;
+			return deferred;
 		}
 	};
 }]);

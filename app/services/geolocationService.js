@@ -1,5 +1,6 @@
 angular.module('vmMusic').factory('geolocationService', ['$window', '$q', function($window, $q){
     'use strict';
+    //not tested
 
     var mapDeferred = $q.defer(),
         loadGoogleMapsScript = function () {
