@@ -1,5 +1,8 @@
 angular.module('vmMusic').controller('footerCtrl', ['$scope', 'contactData', function($scope, contactData){
     'use strict';
 
-    $scope.about = contactData.getContactData();
+    contactData.getContactData().then(function(response){
+        $scope.about = response;
+    });
+
 }]);
