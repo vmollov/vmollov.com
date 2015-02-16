@@ -46,11 +46,14 @@ describe('homeCtrl', function(){
         };
         newsData = {
             getAllNewsItems: function(){
-                return [{title: 'news title'}];
+                var defered = q.defer();
+                defered.resolve([{title: 'news title'}]);
+                return defered.promise;
             }
         };
 
         spyOn(welcomeData, 'getWelcomeMessage').and.callThrough();
+        spyOn(newsData, 'getAllNewsItems').and.callThrough();
         spyOn(featureData, 'getFeatures').and.callThrough();
 
         homeCtrl = controller('homeCtrl', {$scope:scope, $sce: sce, welcomeData: welcomeData, newsData: newsData, featureData: featureData});

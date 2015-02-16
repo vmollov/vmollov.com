@@ -1,10 +1,15 @@
-angular.module('vmMusic').factory('newsData', ['$resource', function($resource){
+angular.module('vmMusic').factory('newsData', ['$http', function($http){
     'use strict';
-	var newsResource = $resource('/data/news.json');
+
+    var defer = $http({method: 'GET', url: '/data/news.json'}).then(
+        function(response){
+            return response.data;
+        }
+    );
 	
 	return {
 		getAllNewsItems: function(){
-			return newsResource.query();
+            return defer;
 		}
 	};
 }]);

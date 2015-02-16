@@ -12,8 +12,10 @@ angular.module('vmMusic').controller('homeCtrl', ['$scope', '$sce', 'welcomeData
 	);
 	
 	//news section
-	$scope.news = newsData.getAllNewsItems();
-	$scope.newsOrderPredicate = '-id';
+    newsData.getAllNewsItems().then(function(response){
+        $scope.news = response;
+        $scope.newsOrderPredicate = '-id';
+    });
 	
 	//features section
 	featureData.getFeatures().then(

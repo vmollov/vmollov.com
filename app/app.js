@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vmMusic', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngTouch'])
+angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 	.config(['$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider){
 			$routeProvider.when('/', {
@@ -38,8 +38,7 @@ angular.module('vmMusic', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
 					controller: 'contactCtrl'
 				}
 			);
-            $routeProvider.otherwise({ o: '/'
-            });
+            $routeProvider.otherwise({ redirectTo: '/' });
 			
 			$locationProvider.html5Mode(true).hashPrefix('!');
 		}
@@ -69,10 +68,10 @@ angular.module('vmMusic', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
     .constant('flickrApi', {
         apiKey: '48dad8a586fe5931b1db3c1026e0564b',
         getAlbumUrl: function(){
-            return "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=48dad8a586fe5931b1db3c1026e0564b&photoset_id=72157645114741942&extras=date_upload&format=json&nojsoncallback=1";
+            return "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + this.apiKey + "&photoset_id=72157645114741942&extras=date_upload&format=json&nojsoncallback=1";
         },
         getImageSizesUrl: function(photoId){
-            return "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=48dad8a586fe5931b1db3c1026e0564b&photo_id=" + photoId + "&format=json&nojsoncallback=1";
+            return "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + this.apiKey + "&photo_id=" + photoId + "&format=json&nojsoncallback=1";
         }
     });
 
