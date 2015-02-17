@@ -42,6 +42,8 @@ body, p, div, span{
 }
 
 a{
+    cursor: pointer;
+
 	&, &:visited{
 	    color:$linkcolor;
 		text-decoration:underline;

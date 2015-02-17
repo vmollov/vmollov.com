@@ -2,7 +2,9 @@ var
 	gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	compass = require('gulp-compass'),
+    mainBowerFiles = require('main-bower-files'),
 	uglify = require('gulp-uglify'),
+    clean = require('gulp-clean'),
 	minifyCss = require('gulp-minify-css'),
 	concat = require('gulp-concat'),
 	ngMin = require('gulp-ngmin'),
@@ -56,7 +58,7 @@ gulp.task('compass', function(){
 		.pipe(gulp.dest('app/style/'));
 });
 
-gulp.task('css-build', function(){
+gulp.task('css-build', ['compass'], function(){
 	'use strict';
 	gulp.src('app/style/style.css')
 		.pipe(minifyCss())
@@ -73,9 +75,9 @@ gulp.task('angular-templates', function(){
 		.pipe(angularTemplates({module: 'vmMusic', basePath: '/directives/'}))
 		.pipe(gulp.dest('app/angular-js-templates'));
 });
-gulp.task('js-build', function(){
+gulp.task('js-app-build', function(){
 	'use strict';
-	gulp.src([
+	return gulp.src([
 		'app/*.js',
 		'app/services/*.js',
 		'app/components/*.js',
@@ -85,13 +87,32 @@ gulp.task('js-build', function(){
 
 	])
 		.pipe(ngMin())
-		.pipe(concat('script.js'))
-		.pipe(uglify())
+		.pipe(concat('app.js'))
 		.pipe(gulp.dest('dist/'));
 });
-gulp.task('deploy-js-lib', function(){
+gulp.task('js-lib-build', function(){
 	'use strict';
-	gulp.src('app/lib/*').pipe(gulp.dest('dist/lib/'));
+    return gulp.src(mainBowerFiles())
+        .pipe(concat('lib.js'))
+        .pipe(gulp.dest('dist/'));
+});
+gulp.task('js-build', ['js-lib-build', 'js-app-build'], function(){
+    'use strict';
+    return gulp.src([
+        'dist/lib.js',
+        'dist/app.js'
+    ])
+        .pipe(concat('script.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/'));
+});
+gulp.task('js-deploy', ['js-build'], function(){
+    'use strict';
+    return gulp.src([
+        'dist/lib.js',
+        'dist/app.js'
+    ], {read:false})
+        .pipe(clean());
 });
 
 gulp.task('process-html', function(){
@@ -112,11 +133,11 @@ gulp.task('process-config', function(){
 // end file processing ----------------
 
 //running tests
-gulp.task('run-tests', function(){
+gulp.task('run-unit-tests', function(){
+    'use strict';
     gulp.src([
         'app/lib/jquery.min.js',
         'app/lib/angular.min.js',
-        'app/lib/angular-resource.min.js',
         'tests/lib/*.js',
         'app/app.js',
         'app/**/*.js',
@@ -134,8 +155,7 @@ gulp.task('run-tests', function(){
 gulp.task('build',[
     'css-build',
     'angular-templates',
-    'js-build',
-    'deploy-js-lib',
+    'js-deploy',
     'process-html',
     'process-config'
 ]);
@@ -154,4 +174,4 @@ gulp.task('watch', function(){
 	gulp.watch('app/style/scss/*.scss', ['compass']);
 });
 
-gulp.task('default', ['dev-server', 'run-tests', 'watch']);
+gulp.task('default', ['dev-server', 'run-unit-tests', 'watch']);

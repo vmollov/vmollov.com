@@ -851,6 +851,9 @@ body, p, div, span {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+a {
+  cursor: pointer;
+}
 a, a:visited {
   color: #acaa8a;
   text-decoration: underline;

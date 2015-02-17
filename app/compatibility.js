@@ -1,6 +1,6 @@
 var Browser = {
     IsIe: function () {
-        return navigator.appVersion.indexOf("MSIE") != -1;
+        return navigator.appVersion.indexOf("MSIE") !== -1;
     },
     Version: function() {
     	// we assume a sane browser and downgrade if necessary
