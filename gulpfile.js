@@ -41,7 +41,7 @@ gulp.task('prod-server', function(){
 
 gulp.task('refresh', function(){
 	'use strict';
-	gulp.src('app/index.html')
+	return gulp.src('app/index.html')
 		.pipe(connect.reload());
 });
 // end server setup --------------------
@@ -49,7 +49,7 @@ gulp.task('refresh', function(){
 // file processing ---------------------
 gulp.task('compass', function(){
 	'use strict';
-	gulp.src('app/style/scss/*.scss')
+	return gulp.src('app/style/scss/*.scss')
 		.pipe(compass({
 			css: 'app/style',
 			sass: 'app/style/scss',
@@ -60,13 +60,13 @@ gulp.task('compass', function(){
 
 gulp.task('css-build', ['compass'], function(){
 	'use strict';
-	gulp.src('app/style/style.css')
+	return gulp.src('app/style/style.css')
 		.pipe(minifyCss())
 		.pipe(gulp.dest('dist'));
 });
 gulp.task('angular-templates', function(){
 	'use strict';
-	gulp.src('app/components/*.html')
+    gulp.src('app/components/*.html')
 		.pipe(htmlify())
 		.pipe(angularTemplates({module: 'vmMusic', basePath: '/components/'}))
 		.pipe(gulp.dest('app/angular-js-templates'));
@@ -117,7 +117,7 @@ gulp.task('js-deploy', ['js-build'], function(){
 
 gulp.task('process-html', function(){
 	'use strict';
-	gulp.src('app/*.html')
+	return gulp.src('app/*.html')
 		.pipe(htmlify())
 		.pipe(processHtml())
 		.pipe(minifyHtml())
@@ -126,7 +126,7 @@ gulp.task('process-html', function(){
 
 gulp.task('process-config', function(){
     'use strict';
-    gulp.src('app/config/htaccess.txt')
+    return gulp.src('app/config/htaccess.txt')
         .pipe(rename('.htaccess'))
         .pipe(gulp.dest('dist/'));
 });
@@ -135,7 +135,7 @@ gulp.task('process-config', function(){
 //running tests
 gulp.task('run-unit-tests', function(){
     'use strict';
-    gulp.src([
+    return gulp.src([
         'app/lib/jquery.min.js',
         'app/lib/angular.min.js',
         'tests/lib/*.js',
