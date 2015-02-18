@@ -13,7 +13,21 @@ var
 	processHtml = require('gulp-processhtml'),
 	minifyHtml = require('gulp-minify-html'),
     rename = require('gulp-rename'),
-    karma = require('gulp-karma');
+    karma = require('gulp-karma'),
+    insert = require('gulp-insert'),
+    packageConfig = require('./package.json'),
+    unitTestGlob = [
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/angular/angular.min.js',
+        'bower_components/angular-mocks/angular-mocks.js',
+        'bower_components/angular-*/*.js',
+        'app/app.js',
+        'app/**/*.js',
+        'app/directives/*.html',
+        'tests/mockData/*.js',
+        'tests/unit/**/*.js',
+        '!app/bower/**/*'
+    ];
 
 // server setup -------------------------------
 gulp.task('dev-server', function(){
@@ -64,6 +78,7 @@ gulp.task('css-build', ['compass'], function(){
 		.pipe(minifyCss())
 		.pipe(gulp.dest('dist'));
 });
+
 gulp.task('angular-templates', function(){
 	'use strict';
     gulp.src('app/components/*.html')
@@ -75,6 +90,7 @@ gulp.task('angular-templates', function(){
 		.pipe(angularTemplates({module: 'vmMusic', basePath: '/directives/'}))
 		.pipe(gulp.dest('app/angular-js-templates'));
 });
+
 gulp.task('js-app-build', function(){
 	'use strict';
 	return gulp.src([
@@ -90,12 +106,14 @@ gulp.task('js-app-build', function(){
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest('dist/'));
 });
+
 gulp.task('js-lib-build', function(){
 	'use strict';
     return gulp.src(mainBowerFiles())
         .pipe(concat('lib.js'))
         .pipe(gulp.dest('dist/'));
 });
+
 gulp.task('js-build', ['js-lib-build', 'js-app-build'], function(){
     'use strict';
     return gulp.src([
@@ -104,8 +122,15 @@ gulp.task('js-build', ['js-lib-build', 'js-app-build'], function(){
     ])
         .pipe(concat('script.js'))
         .pipe(uglify())
+        .pipe(insert.prepend('/*\n name: ' + packageConfig.name +
+            '\n description: ' + packageConfig.description +
+            '\n version: ' + packageConfig.version +
+            '\n copyright: ' + packageConfig.author +
+            '\n*/\n')
+        )
         .pipe(gulp.dest('dist/'));
 });
+
 gulp.task('js-deploy', ['js-build'], function(){
     'use strict';
     return gulp.src([
@@ -133,26 +158,23 @@ gulp.task('process-config', function(){
 // end file processing ----------------
 
 //running tests
+gulp.task('unit-tests-watch', function(){
+    'use strict';
+    return gulp.src(unitTestGlob).pipe(karma({
+        configFile: 'tests/karma.config.js',
+        action: 'watch'
+    }));
+});
+
 gulp.task('run-unit-tests', function(){
     'use strict';
-    return gulp.src([
-        'app/lib/jquery.min.js',
-        'app/lib/angular.min.js',
-        'tests/lib/*.js',
-        'app/app.js',
-        'app/**/*.js',
-        'app/directives/*.html',
-        'tests/mockData/*.js',
-        'tests/unit/**/*.js'
-    ]).pipe(karma({
-            configFile: 'tests/karma.config.js',
-            action: 'watch'
-        }));
+    return gulp.src(unitTestGlob).pipe(karma({ configFile: 'tests/karma.config.js' }));
 });
 
 //end running tests
 
 gulp.task('build',[
+    'run-unit-tests',
     'css-build',
     'angular-templates',
     'js-deploy',
@@ -174,4 +196,4 @@ gulp.task('watch', function(){
 	gulp.watch('app/style/scss/*.scss', ['compass']);
 });
 
-gulp.task('default', ['dev-server', 'run-unit-tests', 'watch']);
+gulp.task('default', ['dev-server', 'unit-tests-watch', 'watch']);

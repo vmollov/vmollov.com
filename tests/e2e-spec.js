@@ -40,26 +40,33 @@ describe('vmollov.com', function(){
             browser.get('/');
 
             navElement.$$('ul li a[href="/contact"').click();
+            browser.waitForAngular();
             expect(browser.getCurrentUrl()).toContain('/contact');
 
             navElement.$$('ul li.hasSub a[title="Gallery').click();
             navElement.$$('ul li a[href="/photos"').click();
+            browser.waitForAngular();
             expect(browser.getCurrentUrl()).toContain('/photos');
 
             navElement.$$('ul li.hasSub a[title="Gallery').click();
             navElement.$$('ul li a[href="/videos"').click();
+            browser.waitForAngular();
             expect(browser.getCurrentUrl()).toContain('/videos');
 
             navElement.$$('ul li a[href="/recordings"').click();
+            browser.waitForAngular();
             expect(browser.getCurrentUrl()).toContain('/recordings');
 
             navElement.$$('ul li a[href="/calendar"').click();
+            browser.waitForAngular();
             expect(browser.getCurrentUrl()).toContain('/calendar');
 
             navElement.$$('ul li a[href="/biography"').click();
+            browser.waitForAngular();
             expect(browser.getCurrentUrl()).toContain('/biography');
 
             navElement.$$('ul li a[href="/"').click();
+            browser.waitForAngular();
             expect(browser.getCurrentUrl()).toContain('/');
         });
     });
