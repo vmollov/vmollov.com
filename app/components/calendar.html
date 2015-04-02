@@ -1,4 +1,4 @@
-<h1 ng-show="upcomingEvents.length > 0">Upcoming Events</h1>
+<h1 ng-if="upcomingEvents.length > 0">Upcoming Events</h1>
 <div class='event itemBackground' ng-repeat='event in upcomingEvents | orderBy: upcommingEventOrderPredicate'>
 	<calendar-event event='event'></calendar-event>
 </div>
