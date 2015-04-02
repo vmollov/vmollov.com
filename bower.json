@@ -1,12 +1,5 @@
 {
   "name": "vmMusic",
-  "version": "2.1.1",
-  "authors": [
-    "Vladimir Mollov <vmollog@gmail.com>"
-  ],
-  "description": "Vladimir Mollov's music website at vmollov.com",
-  "license": "vmollov.com",
-  "homepage": "http://vmollov.com",
   "private": true,
   "ignore": [
     "**/.*",
