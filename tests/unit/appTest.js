@@ -42,12 +42,12 @@ describe('application configuration', function(){
             expect(youtubeApi.excludeList.length).toBeGreaterThan(0);
         });
         it('should compose a feed url', function(){
-            expect(youtubeApi.getFeedUrl()).toContain('Vladimir/Mollov');
-            expect(youtubeApi.getFeedUrl()).toContain('max-results=' + (youtubeApi.resultCount + youtubeApi.excludeList.length));
+            expect(youtubeApi.getFeedUrl()).toContain('Vladimir+Mollov');
+            expect(youtubeApi.getFeedUrl()).toContain('maxResults=' + (youtubeApi.resultCount + youtubeApi.excludeList.length));
         });
         it('should return false if isExcluded is gien an excluded item', function(){
-            expect(youtubeApi.isExcluded('someUrl' + youtubeApi.excludeList[0])).toBeTruthy();
-        })
+            expect(youtubeApi.isExcluded(youtubeApi.excludeList[0])).toBeTruthy();
+        });
     });
 
     describe('flickrApi constant', function(){

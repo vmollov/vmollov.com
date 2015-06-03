@@ -47,22 +47,19 @@ angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 	.constant('gCalUrl', 'https://www.googleapis.com/calendar/v3/calendars/5s80mf8pl7rtkj9bpasndqqe58%40group.calendar.google.com/events?maxResults=30&orderBy=startTime&singleEvents=true&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI')
 
     .constant('youtubeApi', {
+		apiKey: 'AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI',
         searchTerm: 'Vladimir Mollov',
         resultCount: 18,
         excludeList: ["iUL7wOzp698", "FDFBDw97Epg", "tbQHOigF8WA", "WuZE2vidsIM", "U9Tb3HWkJRE", "xLWH0DOJ6Co"],
         getFeedUrl: function(){
-            return "http://gdata.youtube.com/feeds/api/videos/-/" + this.searchTerm.replace(/ +/, '/') + "?max-results=" + (this.resultCount + this.excludeList.length) + "&alt=json&orderby=published";
+            return 'https://www.googleapis.com/youtube/v3/search?order=date&part=id%2Csnippet&q=' + this.searchTerm.replace(/ +/, '+') + '&maxResults=' + (this.resultCount + this.excludeList.length) + '&key=' + this.apiKey;
         },
-        isExcluded: function(entryUrl){
-            var i, excludeListLength = this.excludeList.length;
-
-            for(i = 0; i < excludeListLength; i++){
-                if(entryUrl.indexOf(this.excludeList[i]) > -1){
-                    return true;
-                }
-            }
-            return false;
-        }
+        isExcluded: function(videoId){
+            return this.excludeList.indexOf(videoId) > -1;
+        },
+		getEmbedVideoUrl: function(video){
+			return 'https://www.youtube.com/embed/' + video.id.videoId + '?autoplay=1';
+		}
     })
 
     .constant('flickrApi', {
