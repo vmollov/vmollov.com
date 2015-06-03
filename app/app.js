@@ -50,9 +50,9 @@ angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 		apiKey: 'AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI',
         searchTerm: 'Vladimir Mollov',
         resultCount: 18,
-        excludeList: ["iUL7wOzp698", "FDFBDw97Epg", "tbQHOigF8WA", "WuZE2vidsIM", "U9Tb3HWkJRE", "xLWH0DOJ6Co"],
+        excludeList: ["iUL7wOzp698", "FDFBDw97Epg", "tbQHOigF8WA", "WuZE2vidsIM", "U9Tb3HWkJRE", "xLWH0DOJ6Co", "_W4aOMpTtWA"],
         getFeedUrl: function(){
-            return 'https://www.googleapis.com/youtube/v3/search?order=date&part=id%2Csnippet&q=' + this.searchTerm.replace(/ +/, '+') + '&maxResults=' + (this.resultCount + this.excludeList.length) + '&key=' + this.apiKey;
+            return 'https://www.googleapis.com/youtube/v3/search?order=date&part=id%2Csnippet&type=video&q=' + this.searchTerm.replace(/ +/, '+') + '&maxResults=' + (this.resultCount + this.excludeList.length) + '&key=' + this.apiKey;
         },
         isExcluded: function(videoId){
             return this.excludeList.indexOf(videoId) > -1;
