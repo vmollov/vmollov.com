@@ -825,15 +825,12 @@ header #hEvent {
 }
 
 /* general styles */
-html {
+body {
   max-width: 1200px;
   min-width: 319px;
   margin: 0 auto;
   position: relative;
   height: 100%;
-}
-
-body {
   font-size: .9em;
   color: #ccc;
   background: #000;
@@ -844,7 +841,6 @@ body {
   background: -ms-linear-gradient(300deg, #707070 0%, black 40%) fixed;
   background: linear-gradient(140deg, #707070 0%, #000000 40%) fixed;
   background-repeat: no-repeat;
-  height: 100%;
 }
 
 body, p, div, span {

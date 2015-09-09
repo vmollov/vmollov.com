@@ -16,15 +16,17 @@
 
 /* general styles */
 html {
+
+}
+
+body{
 	max-width: $maxWidth;
 	min-width: $minWidth;
 	margin: 0 auto;
 	position: relative;
-	height: 100%;	
-}
-
-body{
+	height: 100%;
 	font-size:.9em;
+
 	color: #ccc;
 	background:#000; 
 	background:-moz-linear-gradient(300deg, $background_light 0%, $background_dark 40%) fixed; 
@@ -34,7 +36,6 @@ body{
 	background:-ms-linear-gradient(300deg, $background_light 0%, $background_dark 40%) fixed; 
 	background: linear-gradient(140deg, $background_light 0%,$background_dark 40%) fixed;
 	background-repeat: no-repeat;
-	height: 100%;
 }//body
 
 body, p, div, span{
