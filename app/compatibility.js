@@ -9,5 +9,5 @@ var Browser = {
 };
 //redirect to classic site if IE9 or lower
 if (Browser.IsIe() && Browser.Version() <= 9) {
-	window.location.href="http://" + window.location.host + "/compatibility/index.php";
+	window.location.href="http://" + window.location.host + "/compatibility.html";
 }
