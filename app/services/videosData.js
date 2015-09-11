@@ -5,7 +5,6 @@ angular.module('vmMusic').factory('videosData', ['$http', 'youtubeApi', function
 		getYouTubeVideos: function(){
 			return $http({method:'GET', url: youtubeApi.getFeedUrl()}).then(
                 function(response){
-                    console.log(response.data.items);
                     return response.data.items;
                 },
                 function(status){

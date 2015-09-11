@@ -151,16 +151,15 @@ describe('vmollov.com', function(){
                 recentEvents = element.all(by.repeater('event in recentEvents'));
 
             upcomingEvents.count().then(function(result){
-                if(result === 0){
-                    expect(element(by.css('h1(:nth-of-type(1))')).isDisplayed(0)).toBeTruthy();
-                }
+                expect(element(by.css('h1')).isPresent(0)).toBeTruthy();
+
                 if(result < 3){
                     expect(recentEvents.count()).toBe(3);
-                    expect(element(by.css('h1:not(:nth-of-type(1))')).isDisplayed(0)).toBeTruthy();
+                    expect(element(by.css('h1:not(:nth-of-type(1))')).isPresent()).toBeFalsy();
                 }
                 else{
                     expect(recentEvents.count()).toBe(0);
-                    expect(element(by.css('h1:not(:nth-of-type(1))')).isDisplayed(0)).toBeFalsy();
+                    expect(element(by.css('h1:not(:nth-of-type(1))')).isPresent()).toBeFalsy();
                 }
             });
         });
