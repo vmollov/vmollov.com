@@ -161,7 +161,7 @@ gulp.task('process-config', function(){
 gulp.task('unit-tests-watch', function(){
     'use strict';
     return gulp.src(unitTestGlob).pipe(karma({
-        configFile: 'tests/karma.config.js',
+        configFile: 'karma.config.js',
         action: 'watch'
     }));
 });
