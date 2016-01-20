@@ -2,11 +2,11 @@ var
 	gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	less = require('gulp-less'),
-    mainBowerFiles = require('main-bower-files'),
 	uglify = require('gulp-uglify'),
     clean = require('gulp-clean'),
 	minifyCss = require('gulp-minify-css'),
 	concat = require('gulp-concat'),
+    concatVendor = require('gulp-concat-vendor'),
 	ngMin = require('gulp-ngmin'),
 	htmlify = require('gulp-angular-htmlify'),
 	angularTemplates = require('gulp-angular-templates'),
@@ -16,6 +16,12 @@ var
     karma = require('gulp-karma'),
     insert = require('gulp-insert'),
     packageConfig = require('./package.json'),
+    libGlob = [
+        'bower_components/jquery/dist/jquery.js',
+        'bower_components/angular/angular.js',
+        'bower_components/angular-*/angular-*.js',
+        '!bower_components/angular-mocks/angular-mocks.js'
+    ],
     unitTestGlob = [
 		'bower_components/jquery/dist/jquery.min.js',
 		'bower_components/angular/angular.min.js',
@@ -107,8 +113,8 @@ gulp.task('js-app-build', function(){
 
 gulp.task('js-lib-build', function(){
 	'use strict';
-    return gulp.src(mainBowerFiles())
-        .pipe(concat('lib.js'))
+    return gulp.src(libGlob)
+        .pipe(concatVendor('lib.js'))
         .pipe(gulp.dest('dist/'));
 });
 
@@ -166,7 +172,7 @@ gulp.task('unit-tests-watch', function(){
 
 gulp.task('run-unit-tests', function(){
     'use strict';
-    return gulp.src(unitTestGlob).pipe(karma({ configFile: 'tests/karma.config.js' }));
+    return gulp.src(unitTestGlob).pipe(karma({ configFile: 'karma.config.js' }));
 });
 
 //end running tests
