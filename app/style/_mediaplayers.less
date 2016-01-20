@@ -12,7 +12,7 @@
 		-moz-opacity:0.79;
 		-khtml-opacity: 0.79;
 		opacity: 0.95;
-		@include linearGradient(#505050,#1e1e1e);
+		.linearGradient(#505050,#1e1e1e);
 		
 		a{
 			margin: .3em;
@@ -45,16 +45,16 @@
 		padding:.5em;
 		opacity: .9;
 		
-		@include breakpoint($mediumSmall){
+		@media @mediumSmall{
 			width: 27%;
 		}
 		
-		@include breakpoint($medium){
+		@media @medium{
 			min-width: 339px;
 			max-width: 430px;
 		}
 		
-		@include linearGradient(#505050,#1e1e1e);
+		.linearGradient(#505050,#1e1e1e);
 		
 		.btnplay{
 			float: left;
@@ -74,7 +74,7 @@
 		.volumecontroll{
 			display:none;
 		
-			@include breakpoint($medium){
+			@media @medium{
 				display: inline-block;
 				margin-right:1.5em;
 				vertical-align: middle;

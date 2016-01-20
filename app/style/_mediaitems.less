@@ -57,7 +57,7 @@
 		
 	}
 	
-	@include breakpoint($mediumSmall){
+	@media @mediumSmall{
 		min-width: 7.5em;
 	}
 
@@ -75,7 +75,7 @@
 		width:36%;
 		float:left;
 		
-		@include breakpoint($mediumSmall){
+		@media @mediumSmall{
 			width: 33%;
 		}
 		
@@ -106,7 +106,7 @@
 			width:100%;
 		}
 		
-		@include breakpoint($mediumSmall){
+		@media @mediumSmall{
 			margin-bottom:.5em;
 			
 			&:not(:last-child):not(:first-child){
@@ -116,13 +116,13 @@
 			margin-top:0;
 			padding:0 10px 0 0;
 		}
-		@include breakpoint($medium800){
+		@media @medium800{
 			&:not(:last-child):not(:first-child){
 				width:27%;
 				float: left;
 			}
 		}
-		@include breakpoint($medium){
+		@media @medium{
 			&:not(:last-child):not(:first-child){
 				width:30%;
 			}
@@ -138,10 +138,10 @@
 	
 	& > div.albumDesc{
 		
-		@include breakpoint($mediumSmall){
+		@media @mediumSmall{
 			width: 53%;
 		}
-		@include breakpoint($medium){
+		@media @medium{
 			width: 33%;
 		}
 		
@@ -159,14 +159,14 @@
 	.albumSamples{
 		clear:left;
 		
-		@include breakpoint($medium800){
+		@media @medium800{
 			clear:none;
 		}
 	}
 	
 	.storeLinks{
 			
-		@include breakpoint($medium){
+		@media @medium{
 			width:15%;
 			margin-top:0;
 			float:right;

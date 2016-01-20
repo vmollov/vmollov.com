@@ -1,35 +1,36 @@
-nav{ 
+@import "_variables";
+@import "_mixins";
+
+nav{
 	width:100%;
-	display:inline-block; 
-	padding:0; 
-	margin: 0;  
-	border:1px solid; 
-	border-color:#000; 
-	margin-bottom:1px; 
-	
-	@include breakpoint($small){
+	display:inline-block;
+	padding:0;
+	margin: 0 0 1px 0;
+	border:1px solid #000;
+
+	@media @small{
 		border-radius:5px;
 	}
-	
-	&, > ul > li > ul > li a:hover{ 
-		@include linearGradient(#505050,#1e1e1e);
+
+	&, > ul > li > ul > li a:hover{
+		.linearGradient(#505050,#1e1e1e);
 	}
 
 	a{
-		font:bold 1em $generalFonts; 
-		text-align:center; 
-		text-decoration:none; 
-		
-		@include breakpoint($small){
-			font:bold .8em $generalFonts; 
+		font:bold 1em @generalFonts;
+		text-align:center;
+		text-decoration:none;
+
+		@media @small{
+			font:bold .8em @generalFonts;
 		}
 	}
-	
+
 	> ul {
-		list-style:inside none; 
-		padding:0; 
+		list-style:inside none;
+		padding:0;
 		margin:0;
-		
+
 		.menuTitle{ //displays only on small screens
 			display: block;
 			
@@ -45,7 +46,7 @@ nav{
 				} 
 			}
 			
-			@include breakpoint($small){
+			@media @small{
 				display:none;
 			}
 			
@@ -73,7 +74,7 @@ nav{
 					display:none;
 				}
 				
-				@include breakpoint($small){
+				@media @small{
 					display: block;
 					&:not(.menuItemOn){
 						display:block;
@@ -81,7 +82,7 @@ nav{
 				}
 			}
 			
-			@include breakpoint($small){
+			@media @small{
 				float:left; 
 				width:16.6%; 
 				border: none;
@@ -95,7 +96,7 @@ nav{
 				text-shadow:1px 1px 0 rgba(0,0,0, 0.4); 
 				
 				&, &:visited{
-					@include breakpoint($mediumSmall){
+					@media @mediumSmall{
 						border-right:1px solid #000;
 					}
 					color:#9b9b9b;
@@ -111,7 +112,7 @@ nav{
 				}
 				
 				&:hover{
-					@include linearGradient(#5e5e5e,#2d2d2d);
+					.linearGradient(#5e5e5e,#2d2d2d);
 				}
 			}//>a
 			
@@ -119,7 +120,7 @@ nav{
 				border-radius:5px 0 0 5px;
 			}
 			
-			@include breakpoint($mediumSmall){
+			@media @mediumSmall{
 				&:last-child > a{
 					border-right:none;
 					&:after{
@@ -132,7 +133,7 @@ nav{
 				> a{
 					display:none;
 					
-					@include breakpoint($small){
+					@media @small{
 						display: block;
 						&:before{ 
 							content:''; 
@@ -166,16 +167,16 @@ nav{
 				} 
 			}//.hasSub
 			
-			//submenus
+			//sub menus
 			>ul{
-				@include animation('fadeIn_slide 0.3s');  
+				.animation('fadeIn_slide 0.3s');
 				display:block; 
 				width:100%;  
 				top:25px;  
 				border-radius:0 0 5px 5px; 
 				z-index:999;
 				
-				@include breakpoint($small){
+				@media @small{
 					display:none;
 					position:absolute; 
 					padding:10px 0; 
@@ -192,7 +193,7 @@ nav{
 					&:not(:first-child){
 						border-top: 1px solid #000000;
 					}
-					@include breakpoint($small){
+					@media @small{
 						border-top: 1px solid #000000;
 					}
 					

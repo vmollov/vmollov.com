@@ -1,4 +1,4 @@
-@import "mainmenu";
+@import "_mainmenu";
 
 header{	
 	.banner{
@@ -28,13 +28,13 @@ header{
 		display: none;
 		
 		&.displayControl{
-			@include breakpoint($mediumSmall){
+			@media @mediumSmall{
 				display: block;
 			}
 		}
 		
 			
-		@include breakpoint($mediumSmall){
+		@media @mediumSmall{
 			position:absolute;
 			bottom:5%;
 			left:7%;
@@ -55,7 +55,7 @@ header{
 	
 		}
 		
-		@include breakpoint($medium){
+		@media @medium{
 			padding:9px 21px 21px 21px;
 		}
 	}//feature event

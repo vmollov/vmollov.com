@@ -1,7 +1,7 @@
 var
 	gulp = require('gulp'),
 	connect = require('gulp-connect'),
-	compass = require('gulp-compass'),
+	less = require('gulp-less'),
     mainBowerFiles = require('main-bower-files'),
 	uglify = require('gulp-uglify'),
     clean = require('gulp-clean'),
@@ -61,18 +61,16 @@ gulp.task('refresh', function(){
 // end server setup --------------------
 
 // file processing ---------------------
-gulp.task('compass', function(){
+gulp.task('less', function(){
 	'use strict';
-	return gulp.src('app/style/scss/*.scss')
-		.pipe(compass({
-			css: 'app/style',
-			sass: 'app/style/scss',
-			require: ['susy', 'breakpoint']
-		}))
+	return gulp.src('app/style/style.less')
+        .pipe(less({
+            paths: [ 'app/style' ]
+        }))
 		.pipe(gulp.dest('app/style/'));
 });
 
-gulp.task('css-build', ['compass'], function(){
+gulp.task('css-build', ['less'], function(){
 	'use strict';
 	return gulp.src('app/style/style.css')
 		.pipe(minifyCss())
@@ -193,7 +191,7 @@ gulp.task('watch', function(){
 		'app/*/*.css'
 	], ['refresh']);
 
-	gulp.watch('app/style/scss/*.scss', ['compass']);
+	gulp.watch('app/style/*.less', ['less']);
 });
 
 gulp.task('default', ['dev-server', 'unit-tests-watch', 'watch']);

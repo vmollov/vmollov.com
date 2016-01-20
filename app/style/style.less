@@ -1,27 +1,22 @@
-@import "compass";
-@import "compass/reset";
-@import "susy";
-@import "breakpoint";
-
-@import "mixins";
-@import "variables";
-@import "animations";
+@import "_mixins";
+@import "_variables";
+@import "_animations";
 
 /* Object styles */
-@import "header";
-@import "mediaplayers";
-@import "mediaitems";
-@import "gallery"; 
+@import "_header";
+@import "_mediaplayers";
+@import "_mediaitems";
+@import "_gallery";
 
 
-/* general styles */
+/* general styles renewed*/
 html {
 
 }
 
 body{
-	max-width: $maxWidth;
-	min-width: $minWidth;
+	max-width: @maxWidth;
+	min-width: @minWidth;
 	margin: 0 auto;
 	position: relative;
 	height: 100%;
@@ -29,24 +24,24 @@ body{
 
 	color: #ccc;
 	background:#000; 
-	background:-moz-linear-gradient(300deg, $background_light 0%, $background_dark 40%) fixed; 
-	background:-webkit-gradient(linear, 300deg, color-stop(0%,$background_light), color-stop(40%,$background_dark)) fixed; 
-	background:-webkit-linear-gradient(300deg, $background_light 0%,$background_dark 40%) fixed; 
-	background:-o-linear-gradient(300deg, $background_light 0%, $background_dark 40%) fixed; 
-	background:-ms-linear-gradient(300deg, $background_light 0%, $background_dark 40%) fixed; 
-	background: linear-gradient(140deg, $background_light 0%,$background_dark 40%) fixed;
+	background:-moz-linear-gradient(300deg, @background_light 0%, @background_dark 40%) fixed;
+	background:-webkit-gradient(linear, 300deg, color-stop(0%,@background_light), color-stop(40%,@background_dark)) fixed;
+	background:-webkit-linear-gradient(300deg, @background_light 0%,@background_dark 40%) fixed;
+	background:-o-linear-gradient(300deg, @background_light 0%, @background_dark 40%) fixed;
+	background:-ms-linear-gradient(300deg, @background_light 0%, @background_dark 40%) fixed;
+	background: linear-gradient(140deg, @background_light 0%,@background_dark 40%) fixed;
 	background-repeat: no-repeat;
 }//body
 
 body, p, div, span{
-	font-family: $generalFonts;
+	font-family: @generalFonts;
 }
 
 a{
     cursor: pointer;
 
 	&, &:visited{
-	    color:$linkcolor;
+	    color:@linkcolor;
 		text-decoration:underline;
 	}
 	&:focus{
@@ -55,7 +50,7 @@ a{
 }
 
 h1, h2, h3{
-	font-family: $titleFonts;
+	font-family: @titleFonts;
 	font-weight:normal;
 	font-style:italic;
 	text-align:left;
@@ -93,7 +88,7 @@ data-ng-view > *{
 .pageHeader{
 	display:none;
 	
-	@include breakpoint($mediumSmall){
+	@media @mediumSmall{
 		display:inline;
 		float: left;
 		margin:10px 0 14px 0;
@@ -117,7 +112,7 @@ data-ng-view > *{
 	margin-bottom:1em;
     font-weight: bold;
     font-size:1.25em;
-	font-family: $titleFonts;
+	font-family: @titleFonts;
     color: #ccccaa;
 }
 
@@ -128,7 +123,7 @@ data-ng-view > *{
 
 .hideOnSmall{
 	display:none;
-	@include breakpoint($medium){
+	@media @medium{
 		display: block;
 	}
 }
@@ -136,22 +131,22 @@ data-ng-view > *{
 .home_left{
 	display:inline-block;
 	
-	@include breakpoint($mediumSmall){
+	@media @mediumSmall{
 		float: left;
 		clear: left;
 		width: 45%;
 		position: relative;
 	}
-	@include breakpoint($medium){
+	@media @medium{
 		width: 34%;
 	}
 	
 	#h_news {
-		@include breakpoint($mediumSmall){
+		@media @mediumSmall{
 			margin-top: 3em;
 		}
 		
-		@include breakpoint($mediumSmall){
+		@media @mediumSmall{
 			p{
 				padding-bottom: 1em;
 			}
@@ -171,7 +166,7 @@ data-ng-view > *{
 		margin-top: 2em;
 	}
 	
-	@include breakpoint($mediumSmall){
+	@media @mediumSmall{
 		float:right;
 		clear: right;
 		position: relative;
@@ -180,7 +175,7 @@ data-ng-view > *{
 		
 	}
 	
-	@include breakpoint($medium){
+	@media @medium{
 		width:61%;
 		
 		.h_videoFeature, .h_audioFeature{
@@ -199,7 +194,7 @@ data-ng-view > *{
 
 div.event{		
 	
-	@include breakpoint($mediumSmall){
+	@media @mediumSmall{
 		width:98%;
 		float: left;
 		
@@ -219,7 +214,7 @@ div.event{
 	  	.eventMap{
 		  	display:none;
 
-		  	@include breakpoint($mediumSmall){
+		  	@media @mediumSmall{
 			  	display: block;
 				width:210px;
 				height: 120px;
