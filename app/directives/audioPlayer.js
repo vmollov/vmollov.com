@@ -1,4 +1,4 @@
-angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(audioManager){
+angular.module('vmMusic').directive('audioPlayer', ['audioManager', '$rootScope', function(audioManager, $rootScope){
     'use strict';
 
 	return {
@@ -6,8 +6,8 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
 		replace: true,
 		templateUrl: '/directives/audioPlayer.html',
 		scope:{ },
-		controller: function($scope, $rootScope, $element){
-			var playerContainer = angular.element($element),
+		link: function(scope, element){
+			var playerContainer = angular.element(element),
 			    playerElement = playerContainer.find("#audioPlayer"),
 			    playerVisible = false,
 			    hidePlayerTimeout,
@@ -39,8 +39,8 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
                     showPlayer(); //show the player if hidden
                     clearTimeout(hidePlayerTimeout); //clear the hide player timeout if set
 
-                    playerElement.find("#mpegSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".mp3");
-                    playerElement.find("#oggSource").attr("src", "/assets/audio/" + $scope.audioSrc + ".ogg");
+                    playerElement.find("#mpegSource").attr("src", "/assets/audio/" + scope.audioSrc + ".mp3");
+                    playerElement.find("#oggSource").attr("src", "/assets/audio/" + scope.audioSrc + ".ogg");
 
                     playerElement.load().get(0).play();
                 },
@@ -51,14 +51,14 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
                 };
 						
 			//player ui controls update
-			$scope.btnPlayStatus = function(){
+			scope.btnPlayStatus = function(){
 				if(playerElement.get(0).paused) {
                     return '/assets/img/site/btnPlay_audio.png';
                 } else {
                     return '/assets/img/site/btnPause_audio.png';
                 }
 			};
-			$scope.togglePlay = function(){
+			scope.togglePlay = function(){
 				if(playerElement.get(0).paused) {
                     play();
                 }
@@ -66,27 +66,27 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
                     stop();
                 }
 			};
-			$scope.volume = 0.75;
-			$scope.changeVolume = function(){
-				playerElement.get(0).volume = $scope.volume;
+			scope.volume = 0.75;
+			scope.changeVolume = function(){
+				playerElement.get(0).volume = scope.volume;
 			};
-			$scope.timeIndicator = "0:00";
+			scope.timeIndicator = "0:00";
 			playerElement.bind('timeupdate', function(){
 				var seconds = Math.round(((this.currentTime/60)%1)*60);
 				if(seconds < 10) seconds = '0' + seconds;
 				var minutes = Math.floor(((this.currentTime/3600)%1)*60);
 				if(minutes < 10) minutes = '0' + minutes;
-				$scope.timeIndicator = minutes +':'+ seconds;
-				$scope.$apply();
+				scope.timeIndicator = minutes +':'+ seconds;
+				scope.$apply();
 			});
 			
 			//handle a play/stop requests from the $rootScope
-			$scope.$on('playAudioStartRequestEvent', function(event, audioParams){
-				$scope.audioTitle = audioParams.title;	
-				$scope.audioSrc = audioParams.src;	
+			scope.$on('playAudioStartRequestEvent', function(event, audioParams){
+				scope.audioTitle = audioParams.title;
+				scope.audioSrc = audioParams.src;
 				play();
 			});
-			$scope.$on('playAudioStopRequestEvent', stop);
+			scope.$on('playAudioStopRequestEvent', stop);
 								
 			//events from the player controllers 
 			playerElement.bind('pause', function(){
@@ -95,12 +95,12 @@ angular.module('vmMusic').directive('audioPlayer', ['audioManager', function(aud
 				stop();
 			});
 			playerElement.bind('play', function(){
-				audioManager.setCurrentlyPlayingAudio($scope.audioSrc); //set this audio as the currently playing audio
-				$rootScope.$broadcast('playAudioGlobalStartRequestEvent', {src: $scope.audioSrc});
+				audioManager.setCurrentlyPlayingAudio(scope.audioSrc); //set this audio as the currently playing audio
+				$rootScope.$broadcast('playAudioGlobalStartRequestEvent', {src: scope.audioSrc});
 			});
 			playerElement.bind('ended', function(){
-				$scope.timeIndicator = '00:00';
-				$scope.$apply();
+				scope.timeIndicator = '00:00';
+				scope.$apply();
 			});
 		}
 		

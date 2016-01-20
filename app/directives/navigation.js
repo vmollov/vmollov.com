@@ -1,4 +1,4 @@
-angular.module('vmMusic').directive('navigation', function(){
+angular.module('vmMusic').directive('navigation', function($location){
     'use strict';
 
 	return {
@@ -6,16 +6,16 @@ angular.module('vmMusic').directive('navigation', function(){
 		replace: true,
 		templateUrl: '/directives/navigation.html',
 		scope:{ },
-		controller: function($scope, $element, $location){
-            var subMenuContainer = angular.element($element).find("li.hasSub"),
-                menuTitleItem = angular.element($element).find(".menuTitle"), //only used for phone size screens
-                nonMenuTitleItems = angular.element($element).find("ul li:not(.menuTitle)"),
+		link: function(scope, element){
+            var subMenuContainer = angular.element(element).find("li.hasSub"),
+                menuTitleItem = angular.element(element).find(".menuTitle"), //only used for phone size screens
+                nonMenuTitleItems = angular.element(element).find("ul li:not(.menuTitle)"),
                 getLeafMenuItemOn = function(){
-                    return angular.element($element).find(".menuItemOn:not(.hasSub)");
+                    return angular.element(element).find(".menuItemOn:not(.hasSub)");
 
                 };
 
-			$scope.currentPage = function(){
+			scope.currentPage = function(){
 				if($location.$$path === "/") {
                     return "";
                 }
