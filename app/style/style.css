@@ -772,6 +772,9 @@ br {
 strong {
   font-weight: bold;
 }
+ul {
+  padding: 0;
+}
 data-ng-view > * {
   padding: 0 10px;
 }
