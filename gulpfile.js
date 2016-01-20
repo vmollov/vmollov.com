@@ -17,15 +17,15 @@ var
     insert = require('gulp-insert'),
     packageConfig = require('./package.json'),
     unitTestGlob = [
-        'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/angular/angular.min.js',
-        'bower_components/angular-mocks/angular-mocks.js',
-        'bower_components/angular-*/*.js',
-        'app/app.js',
-        'app/**/*.js',
-        'app/directives/*.html',
-        'tests/mockData/*.js',
-        'tests/unit/**/*.js',
+		'bower_components/jquery/dist/jquery.min.js',
+		'bower_components/angular/angular.min.js',
+		'bower_components/angular-mocks/angular-mocks.js',
+		'bower_components/angular-*/angular-*.min.js',
+		'app/app.js',
+		'app/**/*.js',
+		'app/directives/*.html',
+		'tests/mockData/*.js',
+		'tests/unit/**/*.js',
         '!app/bower/**/*'
     ];
 
