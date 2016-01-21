@@ -1,10 +1,12 @@
-'use strict';
+angular.module('vmMusic').filter('timeZone', [
+	function(){
+		'use strict';
 
-angular.module('vmMusic').filter('timeZone', function(){
-	return function (val, offset) {
-		if (val != null && val.length > 16) {
-			return val.substring(0, 16)
-		}    
-		return val;
-	};
-});
+		return function (val) {
+			if (val != null && val.length > 16) {
+				return val.substring(0, 16)
+			}
+			return val;
+		};
+	}
+]);

@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
-	.config(['$routeProvider', '$locationProvider',
+	.config([
+		'$routeProvider',
+		'$locationProvider',
 		function($routeProvider, $locationProvider){
 			$routeProvider.when('/', {
 					templateUrl:'/components/home.html',

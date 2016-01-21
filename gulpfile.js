@@ -7,7 +7,6 @@ var
 	minifyCss = require('gulp-minify-css'),
 	concat = require('gulp-concat'),
     concatVendor = require('gulp-concat-vendor'),
-	ngMin = require('gulp-ngmin'),
 	htmlify = require('gulp-angular-htmlify'),
 	angularTemplates = require('gulp-angular-templates'),
 	processHtml = require('gulp-processhtml'),
@@ -107,7 +106,6 @@ gulp.task('js-app-build', function(){
 		'app/angular-js-templates/*.js'
 
 	])
-		.pipe(ngMin())
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest('dist/'));
 });

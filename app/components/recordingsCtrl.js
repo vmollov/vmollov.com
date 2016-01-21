@@ -1,8 +1,12 @@
-angular.module('vmMusic').controller('recordingsCtrl', ['$scope', 'recordingsData', function($scope, recordingsData){
-    'use strict';
+angular.module('vmMusic').controller('recordingsCtrl', [
+	'$scope',
+	'recordingsData',
+	function($scope, recordingsData){
+		'use strict';
 
-	recordingsData.getAllRecordings().then(function(data){
-		$scope.recordings = data;
-		$scope.recordingsOrderPredicate = 'order';
-	});
-}]);
+		recordingsData.getAllRecordings().then(function(data){
+			$scope.recordings = data;
+			$scope.recordingsOrderPredicate = 'order';
+		});
+	}
+]);
