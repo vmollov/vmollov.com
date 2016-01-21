@@ -16,6 +16,7 @@ var
     karma = require('gulp-karma'),
     insert = require('gulp-insert'),
     packageConfig = require('./package.json'),
+	open = require('gulp-open'),
     libGlob = [
         'bower_components/jquery/dist/jquery.js',
         'bower_components/angular/angular.js',
@@ -176,6 +177,11 @@ gulp.task('run-unit-tests', function(){
 });
 
 //end running tests
+gulp.task('open-browser-dev', function () {
+    'use strict';
+    return gulp.src('app/index.html')
+        .pipe(open({uri: 'http://localhost:9000'}));
+});
 
 gulp.task('build',[
     'run-unit-tests',
@@ -200,4 +206,4 @@ gulp.task('watch', function(){
 	gulp.watch('app/style/*.less', ['less']);
 });
 
-gulp.task('default', ['dev-server', 'unit-tests-watch', 'watch']);
+gulp.task('default', ['dev-server', 'unit-tests-watch', 'watch', 'open-browser-dev']);
