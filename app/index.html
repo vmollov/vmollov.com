@@ -8,10 +8,7 @@
 	<meta name="author" content="Vladimir Mollov">
 	<meta name="revisit-after" content="30 days">
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	
-	<!-- build:css style.css -->
-	<link href="style/style.css" rel="stylesheet" />
-	<!-- /build -->
+
 
     <base href="/">
 </head>
@@ -21,58 +18,64 @@
 			<img src="/assets/img/site/banner_home.png" alt="Vladimir Mollov - Accordion" class="homeBanner" />
 			<img src="/assets/img/site/banner.png" alt="Vladimir Mollov - Accordion" class="regularBanner" />
 			<feature-event display="displayFeatureEvent()"></feature-event>
-		</div>							
+		</div>
 		<navigation> </navigation>
 	</header>
-		
+
 	<data-ng-view></data-ng-view>
 
 	<footer ng-controller="footerCtrl">
 		<div class="copyright" ng-bind-html="about.copyright"></div>
 	    <div class="contact"><a href="mailto:{{ about.email }}" title="Email Vladimir" ng-bind="about.email"></a></div>
 	</footer>
-	
+
 	<audio-player></audio-player>
+
+	<!-- build:css style.css -->
+	<link href="style/style.css" rel="stylesheet" />
+	<!-- /build -->
+
+
+	<!-- build:js script.js -->
+	<script src="bower/jquery/dist/jquery.min.js"></script>
+	<script src="bower/angular/angular.min.js"></script>
+	<script src="bower/angular-route/angular-route.min.js"></script>
+	<script src="bower/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="bower/angular-touch/angular-touch.min.js"></script>
+
+	<script src="app.js"></script>
+	<script src="components/bioCtrl.js"></script>
+	<script src="components/calendarCtrl.js"></script>
+	<script src="components/contactCtrl.js"></script>
+	<script src="components/footerCtrl.js"></script>
+	<script src="components/headerCtrl.js"></script>
+	<script src="components/homeCtrl.js"></script>
+	<script src="components/photosCtrl.js"></script>
+	<script src="components/recordingsCtrl.js"></script>
+	<script src="components/videosCtrl.js"></script>
+	<script src="directives/audioPlayer.js"></script>
+	<script src="directives/audioSample.js"></script>
+	<script src="directives/calendarEvent.js"></script>
+	<script src="directives/featureEvent.js"></script>
+	<script src="directives/imageOnload.js"></script>
+	<script src="directives/navigation.js"></script>
+	<script src="directives/videoSample.js"></script>
+	<script src="directives/onEnter.js"></script>
+	<script src="directives/mapLocation.js"></script>
+	<script src="filters/timeZone.js"></script>
+	<script src="filters/toTrusted.js"></script>
+	<script src="services/audioManager.js"></script>
+	<script src="services/calendarData.js"></script>
+	<script src="services/contactData.js"></script>
+	<script src="services/featuresData.js"></script>
+	<script src="services/newsData.js"></script>
+	<script src="services/photosData.js"></script>
+	<script src="services/recordingsData.js"></script>
+	<script src="services/videosData.js"></script>
+	<script src="services/welcomeData.js"></script>
+	<script src="services/geolocationService.js"></script>
+	<!-- /build -->
 </body>
 </html>
 
-<!-- build:js script.js -->
-<script src="bower/jquery/dist/jquery.min.js"></script>
-<script src="bower/angular/angular.min.js"></script>
-<script src="bower/angular-route/angular-route.min.js"></script>
-<script src="bower/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="bower/angular-touch/angular-touch.min.js"></script>
-
-<script src="app.js"></script>
-<script src="components/bioCtrl.js"></script>
-<script src="components/calendarCtrl.js"></script>
-<script src="components/contactCtrl.js"></script>
-<script src="components/footerCtrl.js"></script>
-<script src="components/headerCtrl.js"></script>
-<script src="components/homeCtrl.js"></script>
-<script src="components/photosCtrl.js"></script>
-<script src="components/recordingsCtrl.js"></script>
-<script src="components/videosCtrl.js"></script>
-<script src="directives/audioPlayer.js"></script>
-<script src="directives/audioSample.js"></script>
-<script src="directives/calendarEvent.js"></script>
-<script src="directives/featureEvent.js"></script>
-<script src="directives/imageOnload.js"></script>
-<script src="directives/navigation.js"></script>
-<script src="directives/videoSample.js"></script>
-<script src="directives/onEnter.js"></script>
-<script src="directives/mapLocation.js"></script>
-<script src="filters/timeZone.js"></script>
-<script src="filters/toTrusted.js"></script>
-<script src="services/audioManager.js"></script>
-<script src="services/calendarData.js"></script>
-<script src="services/contactData.js"></script>
-<script src="services/featuresData.js"></script>
-<script src="services/newsData.js"></script>
-<script src="services/photosData.js"></script>
-<script src="services/recordingsData.js"></script>
-<script src="services/videosData.js"></script>
-<script src="services/welcomeData.js"></script>
-<script src="services/geolocationService.js"></script>
-<!-- /build -->
 
