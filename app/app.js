@@ -48,11 +48,11 @@ angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 	
 	.constant('gCalUrl', 'https://www.googleapis.com/calendar/v3/calendars/5s80mf8pl7rtkj9bpasndqqe58%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI')
 
-    .constant('youtubeApi', {
+	.constant('youtubeApi', {
 		apiKey: 'AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI',
         searchTerm: 'Vladimir Mollov',
         resultCount: 18,
-        excludeList: ["iUL7wOzp698", "FDFBDw97Epg", "tbQHOigF8WA", "WuZE2vidsIM", "U9Tb3HWkJRE", "xLWH0DOJ6Co", "_W4aOMpTtWA"],
+        excludeList: ["iUL7wOzp698", "FDFBDw97Epg", "tbQHOigF8WA", "WuZE2vidsIM", "U9Tb3HWkJRE", "xLWH0DOJ6Co", "_W4aOMpTtWA", "hqi8fIsM2oc"],
         getFeedUrl: function(){
             return 'https://www.googleapis.com/youtube/v3/search?order=date&part=id%2Csnippet&type=video&q=' + this.searchTerm.replace(/ +/, '+') + '&maxResults=' + (this.resultCount + this.excludeList.length) + '&key=' + this.apiKey;
         },
@@ -62,15 +62,15 @@ angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 		getEmbedVideoUrl: function(video){
 			return 'https://www.youtube.com/embed/' + video.id.videoId + '?autoplay=1';
 		}
-    })
+	})
 
-    .constant('flickrApi', {
-        apiKey: '48dad8a586fe5931b1db3c1026e0564b',
-        getAlbumUrl: function(){
-            return "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + this.apiKey + "&photoset_id=72157645114741942&extras=date_upload&format=json&nojsoncallback=1";
-        },
-        getImageSizesUrl: function(photoId){
-            return "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + this.apiKey + "&photo_id=" + photoId + "&format=json&nojsoncallback=1";
-        }
-    });
+	.constant('flickrApi', {
+			apiKey: '48dad8a586fe5931b1db3c1026e0564b',
+			getAlbumUrl: function(){
+					return "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + this.apiKey + "&photoset_id=72157645114741942&extras=date_upload&format=json&nojsoncallback=1";
+			},
+			getImageSizesUrl: function(photoId){
+					return "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + this.apiKey + "&photo_id=" + photoId + "&format=json&nojsoncallback=1";
+			}
+	});
 
