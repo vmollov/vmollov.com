@@ -25,7 +25,7 @@ describe('navigation directive', function(){
         expect(angular.element(element).find('.menuTitle > a').html()).toBe(('MENU - CALENDAR'));
     });
 
-    it('should toggle the hover class on sub menu container items', function () {
+    /*it('should toggle the hover class on sub menu container items', function () {
         var subMenuContainer = angular.element(element).find("li.hasSub");
 
         expect(subMenuContainer.attr('class')).not.toContain('hover');
@@ -34,7 +34,7 @@ describe('navigation directive', function(){
         subMenuContainer.mouseleave();
         expect(subMenuContainer.attr('class')).not.toContain('hover');
     });
-
+*/
     it('should expand the menu on menuTitle click (phone view)', function(){
         var getMenuItemsOn = function(){
             return angular.element(element).find(".menuItemOn:not(.hasSub)");
