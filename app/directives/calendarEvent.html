@@ -1,13 +1,7 @@
 <div class='eventDetails'>
-	<!--<div map-location="{{event.location}}" class="eventMap"></div>-->
-	<div class='itemTitle'>{{ event.title }}
-		<span class="distanceToEvent" ng-if="distance" ng-click="showDuration = !showDuration">
-			<span ng-hide="showDuration"> ({{distance}} away)</span>
-			<span ng-show="showDuration"> ({{duration}} away)</span>
-		</span>
-	</div>
-    <div class='eventTime'>{{ 
-    	event.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a' 
+	<div class='itemTitle'>{{ event.title }}</div>
+    <div class='eventTime'>{{
+    	event.startTime | timeZone | date: 'EEEE, MMMM dd, yyyy - h:mm a'
     }}</div>
 	<div class='eventLocation'>Location: <a href="http://maps.google.com/?q={{ event.location }}" target="_blank">{{ event.location }}</a></div>
 	<div class='info'><strong>More Info: </strong><span ng-bind-html="event.description | toTrusted"></span></div>

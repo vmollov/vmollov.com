@@ -10,7 +10,7 @@ angular.module('vmMusic').factory('geolocationService', [
                 var googleMapsScript = document.createElement('script'),
                     scriptHolder = document.getElementsByTagName('script')[0];
 
-                googleMapsScript.src = '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize';
+                googleMapsScript.src = '//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI';
                 googleMapsScript.type = 'text/javascript';
                 googleMapsScript.async = 'true';
 
