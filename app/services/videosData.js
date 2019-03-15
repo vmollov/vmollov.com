@@ -19,11 +19,7 @@ angular.module('vmMusic').factory('videosData', [
 				var i, resultList = [];
 
 				//remove excluded videos
-				for(i = 0; i < videos.length; i++){
-					if(youtubeApi.isExcluded(videos[i].id.videoId)) {
-						videos.splice(i, 1);
-					}
-				}
+				videos = videos.filter(function(v) {return !youtubeApi.isExcluded(v.id.videoId)});
 
 				for(i = 0; i < videos.length; i++){
 					resultList.push({

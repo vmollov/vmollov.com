@@ -186,8 +186,8 @@ gulp.task('build',[
     'css-build',
     'angular-templates',
     'js-deploy',
-    'process-html',
-    'process-config'
+    'process-html'/*,
+    'process-config'*/
 ]);
 
 gulp.task('watch', function(){
