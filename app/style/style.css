@@ -507,7 +507,7 @@ header #hEvent {
 }
 @media (min-width: 569px) {
   .audioFeature .audioSample {
-    width: 45%;
+    width: 33%;
   }
 }
 .audioFeature .audioSample div {
