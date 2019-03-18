@@ -3,17 +3,13 @@
     	<h2>Welcome</h2>
         <div ng-bind-html="welcomeMessage"></div>
     </div>
-    <div id="h_news">
-        <h2>News</h2>
-        <p ng-repeat="newsItem in news | orderBy: newsOrderPredicate" ng-bind-html="newsItem.description"></p>
-    </div>
 </div>
-<div class="home_right"> 
+<div class="home_right">
     <h2>Features</h2>
     <div class="h_videoFeature">
 	    <div class="video" ng-repeat="video in videoFeatures | orderBy: featuresOrderPredicate">
 	    	<video-sample video-src="video.src" video-title="video.title" video-thumbnail="video.img"></video-sample>
-	        <span ng-bind-html="video.title"></span>                    
+	        <span ng-bind-html="video.title"></span>
 	    </div>
 	</div>
     <div class="h_audioFeature">
