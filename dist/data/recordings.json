@@ -46,11 +46,6 @@
 		],
 		"storeLinks":[
 			{
-				"storeName": "CD Baby",
-				"storeCode": "cdbaby",
-				"href": "http://www.cdbaby.com/cuidado"
-			},
-			{
 				"storeName": "Amazon",
 				"storeCode": "amazon",
 				"href": "http://www.amazon.com/Cuidado/dp/B004VDDGGC/"
