@@ -7,10 +7,7 @@ describe('calendarEvent directory', function(){
             getDistance: function() { return undefined; }
         };
 
-    beforeEach(module('vmMusic', 'templates', function($provide){
-        $provide.value('geolocationService', geolocationServiceMock);
-        $provide.value('mapLocation', {});
-    }));
+    beforeEach(module('vmMusic', 'templates'));
 
     beforeEach(inject(function($injector){
         var
@@ -23,8 +20,6 @@ describe('calendarEvent directory', function(){
                 startTime: new Date(),
                 description: 'test description'
             };
-
-        spyOn(geolocationServiceMock, 'getDistance').and.returnValue(defer.promise);
 
         defer.resolve({
             distance: '2 mi',
@@ -43,11 +38,6 @@ describe('calendarEvent directory', function(){
         element.remove();
     });
 
-    it('should call getDistance on the geolocationService', function(){
-        expect(geolocationServiceMock.getDistance).toHaveBeenCalled();
-        expect(isoScope.distance).toBe('2 mi');
-        expect(isoScope.duration).toBe('9 min');
-    });
     it('should contain an event object', function(){
         expect(isoScope.event).toBeDefined();
         expect(isoScope.event.title).toContain('title');

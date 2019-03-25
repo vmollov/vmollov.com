@@ -76,34 +76,6 @@ angular.module('vmMusic').factory('geolocationService', [
                         }
                     });
                 });
-            },
-            getDistance: function(toLocation){
-                var deferred = $q.defer(),
-                    //depending on the detected location from the browser and the distance service which comes with google maps api
-                    dependencies = $q.all([detectLocation(), distanceServiceDeferred.promise]);
-
-                dependencies.then(function(values){
-                    var fromLocation = values[0], //detected location
-                        distanceService = values[1]; //google Maps distance service
-
-                    distanceService.getDistanceMatrix({
-                            origins: [fromLocation],
-                            destinations: [toLocation],
-                            travelMode: google.maps.TravelMode.DRIVING,
-                            unitSystem: google.maps.UnitSystem.IMPERIAL,
-                            durationInTraffic: true,
-                            avoidHighways: false,
-                            avoidTolls: false
-                        }, function(distanceObject){
-                            deferred.resolve({
-                                distance: distanceObject.rows[0].elements[0].distance.text,
-                                duration: distanceObject.rows[0].elements[0].duration.text
-                            });
-                        }
-                    );
-                });
-
-                return deferred.promise;
             }
         };
     }

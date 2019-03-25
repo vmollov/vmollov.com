@@ -1,6 +1,5 @@
 angular.module('vmMusic').directive('calendarEvent', [
-	'geolocationService',
-	function(geolocation){
+	function(){
 		'use strict';
 
 		return {
@@ -9,13 +8,6 @@ angular.module('vmMusic').directive('calendarEvent', [
 			templateUrl: '/directives/calendarEvent.html',
 			scope:{
 				event: '='
-			},
-			link: function(scope){
-				geolocation.getDistance(scope.event.location).then(function(directions){
-					scope.distance = directions.distance;
-					scope.duration = directions.duration;
-					scope.showDuration = false;
-				});
 			}
 		};
 	}
