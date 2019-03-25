@@ -15,6 +15,13 @@
 				"src": "Lifecycles_web",
 				"title": "Lifecycles"
 			}
+		],
+		"storeLinks":[
+			{
+				"storeName": "Amazon",
+				"storeCode": "amazon",
+				"href": "https://www.amazon.com/American-Gypsy-Babik/dp/B001JTCHO8/ref=ntt_mus_ep_dpi_1"
+			}
 		]
 	},
 	{
