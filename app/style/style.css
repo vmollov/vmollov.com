@@ -911,17 +911,19 @@ div.event .eventLocation {
 footer {
   margin-bottom: 15px;
   padding-top: 7px;
-  display: inline-block;
   width: 100%;
   font-size: .8em;
   text-align: center;
   border-top: #9b9b9b solid thin;
+  display: flex;
+  justify-content: space-between;
 }
-footer .copyright {
-  float: left;
-  margin-left: .7em;
+.privacyContainer {
+  display: flex;
+  justify-content: center;
+  margin: 45px 0;
 }
-footer .contact {
-  float: right;
-  margin-right: .7em;
+.privacyContainer p {
+  width: 500px;
+  text-align: center;
 }

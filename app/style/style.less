@@ -239,18 +239,21 @@ div.event{
 footer{
 	margin-bottom:15px;	
 	padding-top:7px;
-	display:inline-block;
 	width:100%;
 	font-size:.8em;
 	text-align:center;
 	border-top:#9b9b9b solid thin;
-	
-	.copyright{
-		float:left;	
-		margin-left:.7em;
-	}
-	.contact{
-		float:right;
-		margin-right: .7em;
-	}
+	display: flex;
+	justify-content: space-between;
+}
+
+.privacyContainer {
+	display: flex;
+	justify-content: center;
+	margin: 45px 0;
+
+	 p {
+		width: 500px;
+	 	text-align: center
+	 }
 }
