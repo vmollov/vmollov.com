@@ -93,11 +93,6 @@
 		],
 		"storeLinks":[
 			{
-				"storeName": "CD Baby",
-				"storeCode": "cdbaby",
-				"href": "http://www.cdbaby.com/cd/vmollov"
-			},
-			{
 				"storeName": "Amazon",
 				"storeCode": "amazon",
 				"href": "http://www.amazon.com/Dreams-Vladimir-Mollov/dp/B001TKK7CG/"
