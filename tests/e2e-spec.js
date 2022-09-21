@@ -25,7 +25,7 @@ describe('vmollov.com', function(){
             browser.get('/');
             browser.sleep(1000);
             expect(element(by.css('footer .copyright')).getInnerHtml()).toContain('Vladimir Mollov');
-            expect(element(by.css('footer .contact a')).getInnerHtml()).toBe('music@vmollov.com');
+            expect(element(by.css('footer .contact a')).getInnerHtml()).toBe('vmollovmusic@gmail.com');
         });
     });
 

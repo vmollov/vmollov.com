@@ -18,7 +18,7 @@ describe('contactCtrl', function(){
                 var defer = $q.defer();
                 defer.resolve({
                     "phone": "(412) 543-8522",
-                    "email": "music@vmollov.com",
+                    "email": "vmollovmusic@gmail.com",
                     "copyright": "&copy; Vladimir Mollov 2013-2014"
 
                 });
@@ -36,7 +36,7 @@ describe('contactCtrl', function(){
 
     it('should contain contact data', function(){
         expect(scope.contact).toBeDefined();
-        expect(scope.contact.email).toBe("music@vmollov.com");
+        expect(scope.contact.email).toBe("vmollovmusic@gmail.com");
         expect(scope.contact.phone).toBe('(412) 543-8522');
         expect(scope.contact.copyright).toContain('Vladimir Mollov');
     });

@@ -12,7 +12,7 @@ describe('contactData service', function(){
         httpBackend.whenGET('/data/about.json').respond(200,
             {
             "phone": "(412) 543-8522",
-            "email": "music@vmollov.com",
+            "email": "vmollovmusic@gmail.com",
             "copyright": "&copy; Vladimir Mollov 2013-2015"
 
             }
