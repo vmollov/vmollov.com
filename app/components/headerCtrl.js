@@ -6,14 +6,14 @@ angular.module('vmMusic').controller('headerCtrl', [
 
         var
             parentElement = angular.element(".banner"),
-            regularBanner = angular.element(".regularBanner"),
-            homeBanner = angular.element(".homeBanner"),
+            // regularBanner = angular.element(".regularBanner"),
+            homeBanner = angular.element(".homeBanner");
 
             //helper functions
-            isCurrentPageHome = function(){
+            /*isCurrentPageHome = function(){
                 return $location.$$path === "/";
-            },
-            swapBannerElements = function(removeElement, displayElement, parentElement){
+            },*/
+            /*swapBannerElements = function(removeElement, displayElement, parentElement){
                 removeElement.animate({
                     opacity: 0
                 }, 200, function(){
@@ -27,9 +27,9 @@ angular.module('vmMusic').controller('headerCtrl', [
                         removeElement.css("display", "none");
                     });
                 });
-            };
+            };*/
 
-        $scope.$watch(
+        /*$scope.$watch(
             function(){
                 return $location.$$path;
             },
@@ -39,15 +39,17 @@ angular.module('vmMusic').controller('headerCtrl', [
                 } else { //transition away from home
                     swapBannerElements(homeBanner, regularBanner, parentElement);
                 }
-            }
-        );
+            }*/
+        // );
 
         angular.element(window).resize(function(){ //event listener to resize the banner container
             parentElement.height(
-                isCurrentPageHome() ? homeBanner.height():regularBanner.height()
+                // isCurrentPageHome() ? homeBanner.height():regularBanner.height()
+              homeBanner.height()
             );
         });
 
-        $scope.displayFeatureEvent = isCurrentPageHome;
+        // $scope.displayFeatureEvent = isCurrentPageHome;
+        $scope.displayFeatureEvent = function () {return true;};
     }
 ]);

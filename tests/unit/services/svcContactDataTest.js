@@ -27,7 +27,7 @@ describe('contactData service', function(){
     it('should return contact data', function(){
         contactData.getContactData().then(function(response){
             expect(response.phone.length).toBeGreaterThan(9);
-            expect(response.email).toContain('vmollov.com');
+            expect(response.email).toContain('gmail.com');
         });
     });
 });
