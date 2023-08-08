@@ -1,4 +1,4 @@
 angular.module('vmMusic').run(['$templateCache', function($templateCache) {
     $templateCache.put('/components/privacy.html',
-        "<div class=\"privacyContainer\">\n    <p>\n        This website uses only publicly available data from the YouTube API which is governed by the YouTube <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\">Terms of Service</a>.\n    </p>\n</div>\n");
+        "<div class=\"privacyContainer\">\n    <p>\n        This website uses only publicly available data from the YouTube API which is governed by the <a href=\"https://www.youtube.com/t/terms\" target=\"_blank\">YouTube Terms of Service</a> and the <a href=\"http://www.google.com/policies/privacy\" target=\"_blank\">Google Terms of Service</a>.\n        <br>\n        <br>\n        <br>\n        This website does not collect, store, or use user data or data from any of the third party APIs used, including YouTube and Google. No data is shared with external or internal parties.\n    </p>\n</div>\n");
 }]);
