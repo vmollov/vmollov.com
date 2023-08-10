@@ -45,11 +45,11 @@ angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 				}
 			);
             $routeProvider.otherwise({ redirectTo: '/' });
-			
+
 			$locationProvider.html5Mode(true).hashPrefix('!');
 		}
 	])
-	
+
 	.constant('gCalUrl', 'https://www.googleapis.com/calendar/v3/calendars/5s80mf8pl7rtkj9bpasndqqe58%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&key=AIzaSyDRrUkiIxPAi_OtunVrHRhvikL7d83cQsI')
 
 	.constant('youtubeApi', {
@@ -66,15 +66,5 @@ angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 		getEmbedVideoUrl: function(video){
 			return 'https://www.youtube.com/embed/' + video.id.videoId + '?autoplay=1';
 		}
-	})
-
-	.constant('flickrApi', {
-			apiKey: '48dad8a586fe5931b1db3c1026e0564b',
-			getAlbumUrl: function(){
-					return "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=" + this.apiKey + "&photoset_id=72157645114741942&extras=date_upload&format=json&nojsoncallback=1";
-			},
-			getImageSizesUrl: function(photoId){
-					return "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + this.apiKey + "&photo_id=" + photoId + "&format=json&nojsoncallback=1";
-			}
 	});
 

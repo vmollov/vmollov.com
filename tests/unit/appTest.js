@@ -50,7 +50,7 @@ describe('application configuration', function(){
         });
     });
 
-    describe('flickrApi constant', function(){
+    /*describe('flickrApi constant', function(){
         var flickrApi;
         beforeEach(inject(function($injector){
             flickrApi = $injector.get('flickrApi');
@@ -64,5 +64,5 @@ describe('application configuration', function(){
             expect(flickrApi.getImageSizesUrl('12345')).toContain('api_key=' + flickrApi.apiKey);
             expect(flickrApi.getImageSizesUrl('12345')).toContain('photo_id=12345');
         });
-    });
+    });*/
 });
