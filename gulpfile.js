@@ -44,16 +44,19 @@ const paths = {
         directives: 'app/directives/*.html'
     },
     assets: 'assets/**/*',
+    data: 'data/**/*',
     html: ['app/index.html', 'app/compatibility.html'],
     dist: 'dist/'
 };
 
-// Clean dist folder (but preserve structure for assets)
+// Clean dist folder (but preserve structure for assets and data)
 function clean() {
     return deleteAsync([
         'dist/**/*',
         '!dist/assets',
-        '!dist/assets/**'
+        '!dist/assets/**',
+        '!dist/data',
+        '!dist/data/**'
     ]);
 }
 
@@ -66,6 +69,12 @@ function cleanAll() {
 function copyAssets() {
     return gulp.src(paths.assets, { encoding: false })
         .pipe(gulp.dest('dist/assets'));
+}
+
+// Copy data to dist
+function copyData() {
+    return gulp.src(paths.data, { encoding: false, allowEmpty: true })
+        .pipe(gulp.dest('dist/data'));
 }
 
 // Compile LESS to CSS
@@ -167,7 +176,8 @@ function serve(done) {
             baseDir: 'app',
             routes: {
                 '/bower_components': 'bower_components',
-                '/assets': 'assets'
+                '/assets': 'assets',
+                '/data': 'data'
             }
         },
         port: 9000,
@@ -234,7 +244,7 @@ const build = gulp.series(
     clean,
     compileLess,
     compileTemplates,
-    gulp.parallel(buildCss, buildJs, processHtml, copyAssets)
+    gulp.parallel(buildCss, buildJs, processHtml, copyAssets, copyData)
 );
 
 // Development task
@@ -249,6 +259,7 @@ exports.cleanAll = cleanAll;
 exports.less = compileLess;
 exports.templates = compileTemplates;
 exports.assets = copyAssets;
+exports.data = copyData;
 exports.build = build;
 exports.serve = serve;
 exports['serve:prod'] = serveProd;

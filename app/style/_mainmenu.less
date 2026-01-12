@@ -24,6 +24,8 @@ nav{
 	}
 
 	> ul {
+        display: flex;
+        justify-content: space-around;
 		list-style: inside none;
 		padding: 0;
 		margin: 0;
@@ -56,10 +58,6 @@ nav{
 			display: block;
 			position: relative;
 			width: 100%;
-
-			&:not(:last-child) {
-				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-			}
 
 			&:last-child{
 				border: none;
