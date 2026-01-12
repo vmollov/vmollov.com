@@ -14,11 +14,12 @@
     "test": "karma start karma.config.js --single-run",
     "test:watch": "karma start karma.config.js",
     "less": "gulp less",
-    "deploy": "aws s3 cp dist/ s3://www.vmollov.com/ --recursive"
+    "deploy": "dotenv -- bash -c 'aws s3 cp dist/ s3://www.vmollov.com/ --recursive && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths \"/*\"'"
   },
   "devDependencies": {
     "browser-sync": "^3.0.2",
     "del": "^7.1.0",
+    "dotenv-cli": "^11.0.0",
     "gulp": "^5.0.0",
     "gulp-angular-templatecache": "^3.0.0",
     "gulp-clean-css": "^4.3.0",
