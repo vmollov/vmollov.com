@@ -9,9 +9,13 @@
 @import "_gallery";
 
 
-/* general styles renewed*/
-html {
+/* Modern base styles */
+* {
+	box-sizing: border-box;
+}
 
+html {
+	scroll-behavior: smooth;
 }
 
 body{
@@ -20,65 +24,70 @@ body{
 	margin: 0 auto;
 	position: relative;
 	height: 100%;
-	font-size:.9em;
+	font-size: 1em;
+	line-height: 1.6;
+	letter-spacing: 0.01em;
 
-	color: #ccc;
-	background:#000; 
-	background:-moz-linear-gradient(300deg, @background_light 0%, @background_dark 40%) fixed;
-	background:-webkit-gradient(linear, 300deg, color-stop(0%,@background_light), color-stop(40%,@background_dark)) fixed;
-	background:-webkit-linear-gradient(300deg, @background_light 0%,@background_dark 40%) fixed;
-	background:-o-linear-gradient(300deg, @background_light 0%, @background_dark 40%) fixed;
-	background:-ms-linear-gradient(300deg, @background_light 0%, @background_dark 40%) fixed;
-	background: linear-gradient(140deg, @background_light 0%,@background_dark 40%) fixed;
+	color: @text-color;
+	background: @background_dark;
+	background: linear-gradient(145deg, @background_light 0%, @background_dark 35%) fixed;
 	background-repeat: no-repeat;
-}//body
+}
 
 body, p, div, span{
 	font-family: @generalFonts;
+	font-weight: 300;
 }
 
 a{
     cursor: pointer;
+	transition: color @transition-fast, opacity @transition-fast;
 
 	&, &:visited{
-	    color:@linkcolor;
-		text-decoration:underline;
+	    color: @linkcolor;
+		text-decoration: none;
+	}
+	&:hover {
+		color: @linkcolor-hover;
 	}
 	&:focus{
-		outline:dotted thin;	
+		outline: none;
+		color: @linkcolor-hover;
 	}
 }
 
 h1, h2, h3{
 	font-family: @titleFonts;
-	font-weight:normal;
-	font-style:italic;
-	text-align:left;
-    color:#ccccaa;
-    margin-top:10px;
-    margin-bottom: .5em;
+	font-weight: 400;
+	font-style: italic;
+	text-align: left;
+    color: @heading-color;
+    margin-top: @spacing-sm;
+    margin-bottom: @spacing-md;
+	letter-spacing: 0.02em;
+	line-height: 1.3;
 }
 
 h1{
-	font-size: 1.8em;
+	font-size: 2.2em;
 }
 h1:not(:nth-of-type(1)){
-	margin-top:2em;
+	margin-top: @spacing-xl;
 }
 h2{
-	font-size: 1.5em;
+	font-size: 1.7em;
 }
 h3{
-	font-size: 1.3em;
+	font-size: 1.4em;
 }
 
 p, br{
 	font-size: 1em;
-	line-height: normal;
-	margin: 10px 0;
+	line-height: 1.7;
+	margin: @spacing-sm 0;
 }
 strong{
-	font-weight: bold;
+	font-weight: 500;
 }
 
 ul {
@@ -86,55 +95,76 @@ ul {
 }
 
 data-ng-view > *{
-	padding: 0 10px;
+	padding: 0 @spacing-md;
+	animation: fadeInContent 0.5s ease-out;
+}
+
+@keyframes fadeInContent {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .pageHeader{
-	display:none;
-	
+	display: none;
+
 	@media @mediumSmall{
-		display:inline;
+		display: inline;
 		float: left;
-		margin:10px 0 14px 0;
+		margin: @spacing-sm 0 @spacing-md 0;
 	}
 }
 
 .itemBackground{
-	border-radius:5px;
-	background: #3f3f3f;	
-	padding:1em 0;
-	margin:.7em 1%;
+	border-radius: @radius-md;
+	background: @card-bg;
+	border: 1px solid @card-border;
+	box-shadow: @shadow-md;
+	padding: @spacing-md 0;
+	margin: @spacing-sm 1%;
 	width: 98%;
 	display: inline-block;
-	
+	transition: transform @transition-normal, box-shadow @transition-normal;
+
+	&:hover {
+		box-shadow: @shadow-lg;
+	}
+
 	>*{
-		 margin: 0 1.5em;
-	 }
+		margin: 0 @spacing-md;
+	}
 }
 
 .itemTitle{
-	margin-bottom:1em;
-    font-weight: bold;
-    font-size:1.25em;
+	margin-bottom: @spacing-sm;
+    font-weight: 600;
+    font-size: 1.3em;
 	font-family: @titleFonts;
-    color: #ccccaa;
+	font-style: italic;
+    color: @heading-color;
+	letter-spacing: 0.02em;
 }
 
 .info{
-	text-align:left;
+	text-align: left;
 }
 
 
 .hideOnSmall{
-	display:none;
+	display: none;
 	@media @medium{
 		display: block;
 	}
 }
 
 .home_left{
-	display:inline-block;
-	
+	display: inline-block;
+
 	@media @mediumSmall{
 		float: left;
 		clear: left;
@@ -144,113 +174,126 @@ data-ng-view > *{
 	@media @medium{
 		width: 34%;
 	}
-	
+
 	#h_news {
 		@media @mediumSmall{
-			margin-top: 3em;
+			margin-top: @spacing-xl;
 		}
-		
+
 		@media @mediumSmall{
 			p{
-				padding-bottom: 1em;
+				padding-bottom: @spacing-sm;
 			}
 			p:not(:last-child){
-				border-bottom: white solid 1px;
-				margin-bottom: 1em;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				margin-bottom: @spacing-sm;
 			}
 		}
 	}
 }
 .home_right{
-	
+
 	.h_videoFeature{
-		margin-top:-14px;
+		margin-top: -14px;
 	}
 	.h_audioFeature{
-		margin-top: 2em;
+		margin-top: @spacing-lg;
 	}
-	
+
 	@media @mediumSmall{
-		float:right;
+		float: right;
 		clear: right;
 		position: relative;
 		width: 45%;
-		
-		
 	}
-	
+
 	@media @medium{
-		width:61%;
-		
+		width: 61%;
+
 		.h_videoFeature, .h_audioFeature{
-			width:50%;
+			width: 50%;
 			display: inline-block;
-			
 		}
 		.h_videoFeature{
 			float: left;
 		}
 		.h_audioFeature{
-			margin-top: -.5em;
+			margin-top: -0.5em;
 		}
 	}
 }
 
-div.event{		
-	
+div.event{
+
 	@media @mediumSmall{
-		width:98%;
+		width: 98%;
 		float: left;
-		
 	}
 
 	.eventDetails{
 	   	&>div:not(.itemTitle){
-	    	margin: 7px 9px 5px 14px;
+	    	margin: 8px 12px 6px 16px;
 		}
 
 	  	.distanceToEvent{
 		  	font-weight: normal;
 		  	font-size: small;
 		  	cursor: pointer;
+			color: @text-muted;
+			transition: color @transition-fast;
+
+			&:hover {
+				color: @linkcolor;
+			}
 		}
 
 	  	.eventMap{
-		  	display:none;
+		  	display: none;
 
 		  	@media @mediumSmall{
 			  	display: block;
-				width:210px;
+				width: 210px;
 				height: 120px;
 				float: right;
+				border-radius: @radius-sm;
+				overflow: hidden;
 			}
 		}
 	}
 	div{
-	    margin-bottom:5px;
+	    margin-bottom: 6px;
 	}
 	.eventTime, .eventLocation{
-	    font-weight: bold;
+	    font-weight: 500;
 	}
 
 }
 
 
 footer{
-	margin-bottom:15px;	
-	padding-top:7px;
-	width:100%;
-	font-size:.8em;
-	text-align:center;
-	border-top:#9b9b9b solid thin;
+	margin: @spacing-xl 0 @spacing-md 0;
+	padding-top: @spacing-md;
+	width: 100%;
+	font-size: 0.85em;
+	text-align: center;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
 	display: flex;
 	justify-content: space-between;
+	color: @text-muted;
+
+	a {
+		color: @text-muted;
+
+		&:hover {
+			color: @linkcolor;
+		}
+	}
 }
 
 .privacyContainer {
 	display: flex;
 	justify-content: center;
-	margin: 45px 0;
+	margin: @spacing-xl 0;
 
 	 p {
 		width: 500px;

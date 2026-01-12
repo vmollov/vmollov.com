@@ -1,62 +1,67 @@
 @import "_mainmenu";
+@import "_variables";
 
-header{	
+header{
 	.banner{
 		text-align: center;
 		position: relative;
 		display: inline-block;
 		width: 100%;
-		
+
 		img{
 			width: 100%;
 			max-width: 864px;
 		}
-				
+
 		.homeBanner{ }
 		.regularBanner{
-			display:none;
-		}	
+			display: none;
+		}
 	}
-	
+
 	#hEvent{
 		text-align: left;
-		vertical-align:middle;
+		vertical-align: middle;
 		opacity: 0;
-		background-color: rgba(255, 255, 255, 0.15);
-		filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#ffffff', EndColorStr='#ffffff');
-		
+		background: rgba(10, 10, 10, 0.85);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+
 		display: none;
-		
+
 		&.displayControl{
 			@media @mediumSmall{
 				display: block;
 			}
 		}
-		
-			
+
+
 		@media @mediumSmall{
-			position:absolute;
-			bottom:5%;
-			left:7%;
-			height:auto;
-			padding:0 21px 12px 21px;
-			border-radius: 12px;
-			
+			position: absolute;
+			bottom: 5%;
+			left: 7%;
+			height: auto;
+			padding: 0 24px 16px 24px;
+			border-radius: @radius-md;
+			box-shadow: @shadow-lg;
+
 			p{
 				margin: 0 0 0 30px;
-				font-size: .8em;
-				line-height: normal;
-				
+				font-size: 0.85em;
+				line-height: 1.5;
+
 				&.hevent_title{
-					font: 1.13em Verdana, Geneva, sans-serif;
-			
+					font: 500 1.1em @generalFonts;
+					color: @heading-color;
+					letter-spacing: 0.02em;
 				}
 			}
-	
+
 		}
-		
+
 		@media @medium{
-			padding:9px 21px 21px 21px;
+			padding: 12px 24px 20px 24px;
 		}
-	}//feature event
-}//header
+	}// feature event
+}// header

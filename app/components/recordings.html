@@ -4,13 +4,17 @@
 		<div class="albumDesc">
 			<p class="title">{{ album.title }}</p>
 			<p>{{ album.description }}</p>
+
+            <div class="storeLinks">
+                <div class="buynow" ng-show="album.storeLinks.length > 0">BUY NOW!</div>
+                <div class="storeLinksCell">
+                    <a ng-repeat="store in album.storeLinks | orderBy: 'storeName'" href="{{ store.href }}" rel="{{ store.storeCode }}" target='_blank'>{{ store.storeName }}</a>
+                </div>
+            </div>
 		</div>
 		<div class="albumSamples" ng-show="album.samples.length > 0">
 			<audio-sample ng-repeat="sample in album.samples | orderBy: recordingsOrderPredicate" src="sample.src" song-title="sample.title">{{ sample.title }}</audio-sample>
 		</div>
-		<div class="storeLinks">
-			<div class='buynow' ng-show="album.storeLinks.length > 0">BUY NOW!</div>
-			<a ng-repeat="store in album.storeLinks | orderBy: 'storeName'" href="{{ store.href }}" rel="{{ store.storeCode }}" target='_blank'>{{ store.storeName }}</a>
-		</div>
-	</div>	
+
+	</div>
 </div>

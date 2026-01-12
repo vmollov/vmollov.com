@@ -1,13 +1,22 @@
+@import "_variables";
+
 .video{
-	margin: 14px 5px;
-	display:inline-block;
-	position:relative;
-	
+	margin: @spacing-md @spacing-xs;
+	display: inline-block;
+	position: relative;
+
 	img{
-	    float:left;
+	    float: left;
 	    margin: 0 3% 1% 0;
+		border-radius: @radius-sm;
+		transition: transform @transition-normal, box-shadow @transition-normal;
 	}
-	
+
+	&:hover img {
+		transform: scale(1.02);
+		box-shadow: @shadow-md;
+	}
+
 	>a{
 		position: relative;
 		display: inline-block;
@@ -21,175 +30,227 @@
 		top: 31px;
 		margin: 0px;
 		display: inline-block;
-		
+		opacity: 0.85;
+		transition: opacity @transition-fast, transform @transition-fast;
+
 		img{
-			width: 27px;	
-		
+			width: 27px;
+			border-radius: 50%;
 		}
 	}
-}//.video
+
+	&:hover .btnPlay {
+		opacity: 1;
+		transform: scale(1.1);
+	}
+}// .video
+
 .audioSample{
-	display:inline-block;
-	margin-bottom:14px;
-	padding:5px;
-	width:95%;
-	vertical-align:middle;
-	border-radius:5px;
-	background-color:#000000;
-	background:-moz-linear-gradient(top, #505050 0%, #101010 100%); 
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#505050), color-stop(100%,#101010)); 
-	background:-webkit-linear-gradient(top, #505050 0%,#101010 100%); 
-	background:-o-linear-gradient(top, #505050 0%,#101010 100%); 
-	background:-ms-linear-gradient(top, #505050 0%,#101010 100%); 
-	background:linear-gradient(top, #505050 0%,#101010 100%); 
-	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#505050', endColorstr='#101010',GradientType=0 );
-	cursor:default;
-	
-	img{ 
-		height:1.25em; 
-		vertical-align:middle;
-		float:left;
-		margin-right:5%;
-	}
-	
-	> div{
-		display:inline;
-		
-	}
-	
-	@media @mediumSmall{
-		min-width: 7.5em;
+	display: inline-flex;
+	align-items: center;
+	gap: @spacing-xs;
+	padding: 10px 14px;
+	width: auto;
+	min-width: 120px;
+	vertical-align: middle;
+	border-radius: @radius-md;
+	background: linear-gradient(145deg, #252525 0%, #1a1a1a 100%);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: @shadow-sm;
+	cursor: pointer;
+	transition: transform @transition-fast, box-shadow @transition-fast, border-color @transition-fast;
+
+    &:not(:last-child) {
+      margin-bottom: @spacing-md;
+    }
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: @shadow-md;
+		border-color: rgba(201, 169, 98, 0.3);
 	}
 
-}//.audioSample
+	&:active {
+		transform: translateY(0);
+	}
+
+	img{
+		height: 1.25em;
+		vertical-align: middle;
+		opacity: 0.8;
+		transition: opacity @transition-fast;
+	}
+
+	&:hover img {
+		opacity: 1;
+	}
+
+	> div{
+		display: inline;
+		font-size: 0.9em;
+		color: @text-color;
+	}
+
+	@media @mediumSmall{
+		min-width: 8em;
+	}
+
+}// .audioSample
 
 .audioFeature{
-	margin-bottom:1.8em;
+    display: flex;
+    flex-direction: column;
+	margin-bottom: @spacing-lg;
 	clear: both;
-	
-	
+
 	.audioSample{
-		margin-top: .3em;
-		margin-bottom: 1em;
-		margin-right: 1em;
-		width:36%;
-		float:left;
-		
-		@media @mediumSmall{
-			width: 33%;
-		}
-		
+		margin-top: @spacing-xs;
+		margin-right: @spacing-sm;
+        margin-bottom: @spacing-xs;
+		float: left;
+
 		div{
 			width: 100%;
-			
 		}
 	}
-	
+
 	p{
-		margin:0;
+		margin: 0;
+		font-size: 0.95em;
+		line-height: 1.6;
 	}
-}//.audioFeature
+}// .audioFeature
 
 .itemBackground > .album{
-	margin-left: 1em;
+	margin-left: @spacing-sm;
 }
 
 .album{
-	
-	>div{
-		display:block;
-		float: left;
-		vertical-align:top;
-		margin-top:1em;
-		
+    display: flex;
+    flex-wrap: wrap;
+
+	> div{
+		vertical-align: top;
+		margin-top: @spacing-sm;
+        margin-right: 2px;
+
 		&:not(:last-child):not(:first-child){
-			width:100%;
+			width: 100%;
 		}
-		
+
 		@media @mediumSmall{
-			margin-bottom:.5em;
-			
 			&:not(:last-child):not(:first-child){
-				width:50%;
+				width: 50%;
 				float: right;
 			}
-			margin-top:0;
-			padding:0 10px 0 0;
+			margin-top: 0;
+			padding: 0 10px 0 0;
 		}
 		@media @medium800{
 			&:not(:last-child):not(:first-child){
-				width:27%;
+				width: 27%;
 				float: left;
 			}
 		}
 		@media @medium{
 			&:not(:last-child):not(:first-child){
-				width:30%;
+				width: 30%;
 			}
 		}
 	}
 	>div:first-child{
 		padding-left: 0;
 	}
-	
+
 	.albumImage{
-		float:left;
+        width: 215px;
+
+		img {
+			border-radius: @radius-sm;
+			box-shadow: @shadow-md;
+			transition: transform @transition-normal, box-shadow @transition-normal;
+
+			&:hover {
+				transform: scale(1.02);
+				box-shadow: @shadow-lg;
+			}
+		}
 	}
-	
+
 	& > div.albumDesc{
-		
+        flex-grow: 1;
+
 		@media @mediumSmall{
 			width: 53%;
 		}
 		@media @medium{
 			width: 33%;
 		}
-		
+
 		p{
 			&.title{
-				font-size: 21pt;
-				font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
-				font-style:italic;
-			    color:#ccccaa;
-				margin-top:-7px;	
+				font-size: 1.6em;
+				font-family: @titleFonts;
+				font-style: italic;
+			    color: @heading-color;
+				margin-top: -5px;
+				letter-spacing: 0.02em;
 			}
 		}
 	}
-	
+
 	.albumSamples{
-		clear:left;
-		
+		clear: left;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        margin-top: @spacing-md;
+
 		@media @medium800{
-			clear:none;
+            margin-top: 0;
+            flex-grow: 0.2;
+			clear: none;
 		}
 	}
-	
+
 	.storeLinks{
-			
+
 		@media @medium{
-			width:15%;
-			margin-top:0;
-			float:right;
+			margin-top: 0;
 		}
-		
-		> a{
-			float:left;
-			clear:both;
-			vertical-align:middle;
-			margin-bottom:7px;
-			
+
+      .storeLinksCell {
+        display: flex;
+        flex-wrap: wrap;
+
+        a {
+          margin-right: 4px;
+        }
+      }
+
+		 a{
+			float: left;
+			clear: both;
+			vertical-align: middle;
+			margin-bottom: 8px;
+			padding: 6px 10px;
+			border-radius: @radius-sm;
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			transition: background @transition-fast, border-color @transition-fast;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.06);
+				border-color: rgba(201, 169, 98, 0.3);
+			}
+
 			> img{
-				margin-right:7px;
-				vertical-align:middle;
+				margin-right: 8px;
+				vertical-align: middle;
 			}
 		}
 	}
 	.buynow{
-		margin-bottom:14px;
+		margin-bottom: @spacing-xs;
 	}
 }
-
-
-
-
-

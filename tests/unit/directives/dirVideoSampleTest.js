@@ -3,7 +3,7 @@ describe('videoSample directive', function(){
 
     var isoScope, element, rootScope;
 
-    beforeEach(module('vmMusic'));
+    beforeEach(module('vmMusic', 'templates'));
 
     beforeEach(inject(function($injector){
         var scope,

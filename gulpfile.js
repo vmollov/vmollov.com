@@ -1,207 +1,256 @@
-var
-	gulp = require('gulp'),
-	connect = require('gulp-connect'),
-	less = require('gulp-less'),
-	uglify = require('gulp-uglify'),
-    clean = require('gulp-clean'),
-	minifyCss = require('gulp-minify-css'),
-	concat = require('gulp-concat'),
-    concatVendor = require('gulp-concat-vendor'),
-	htmlify = require('gulp-angular-htmlify'),
-	angularTemplates = require('gulp-angular-templates'),
-	processHtml = require('gulp-processhtml'),
-	minifyHtml = require('gulp-minify-html'),
-    rename = require('gulp-rename'),
-    karma = require('gulp-karma'),
-    insert = require('gulp-insert'),
-    packageConfig = require('./package.json'),
-	open = require('gulp-open'),
-    libGlob = [
-        'bower_components/jquery/dist/jquery.js',
-        'bower_components/angular/angular.js',
-        'bower_components/angular-*/angular-*.js',
-        '!bower_components/angular-mocks/angular-mocks.js'
-    ],
-    unitTestGlob = [
-		'bower_components/jquery/dist/jquery.min.js',
-		'bower_components/angular/angular.min.js',
-		'bower_components/angular-mocks/angular-mocks.js',
-		'bower_components/angular-*/angular-*.min.js',
-		'app/app.js',
-		'app/**/*.js',
-		'app/directives/*.html',
-		'tests/mockData/*.js',
-		'tests/unit/**/*.js',
-        '!app/bower/**/*'
-    ];
+const gulp = require('gulp');
+const less = require('gulp-less');
+const cleanCss = require('gulp-clean-css');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const htmlmin = require('gulp-htmlmin');
+const templateCache = require('gulp-angular-templatecache');
+const rename = require('gulp-rename');
+const insert = require('gulp-insert');
+const replace = require('gulp-replace');
+const gulpIf = require('gulp-if');
+const browserSync = require('browser-sync').create();
+const { deleteAsync } = require('del');
+const packageConfig = require('./package.json');
 
-// server setup -------------------------------
-gulp.task('dev-server', function(){
-	'use strict';
-	connect.server({
-		port: 9000,
-		host: 'localhost',
-		root: 'app',
-		fallback: 'app/index.html',
-		livereload: true
-	});
-	console.log(connect);
-});
+// File paths
+const paths = {
+    styles: {
+        src: 'app/style/style.less',
+        watch: 'app/style/*.less',
+        dest: 'app/style/'
+    },
+    scripts: {
+        app: [
+            'app/app.js',
+            'app/analytics.js',
+            'app/compatibility.js',
+            'app/services/*.js',
+            'app/components/*.js',
+            'app/directives/*.js',
+            'app/filters/*.js',
+            'app/angular-js-templates/*.js'
+        ],
+        lib: [
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-route/angular-route.js',
+            'bower_components/angular-sanitize/angular-sanitize.js',
+            'bower_components/angular-touch/angular-touch.js'
+        ]
+    },
+    templates: {
+        components: 'app/components/*.html',
+        directives: 'app/directives/*.html'
+    },
+    assets: 'assets/**/*',
+    html: ['app/index.html', 'app/compatibility.html'],
+    dist: 'dist/'
+};
 
-gulp.task('prod-server', function(){
-	'use strict';
-	connect.server({
-		port:9009,
-		host: 'localhost',
-		root: 'dist',
-		fallback: 'dist/index.html',
-		livereload: true
-	});
-});
+// Clean dist folder (but preserve structure for assets)
+function clean() {
+    return deleteAsync([
+        'dist/**/*',
+        '!dist/assets',
+        '!dist/assets/**'
+    ]);
+}
 
-gulp.task('refresh', function(){
-	'use strict';
-	return gulp.src('app/index.html')
-		.pipe(connect.reload());
-});
-// end server setup --------------------
+// Clean everything including assets
+function cleanAll() {
+    return deleteAsync([paths.dist]);
+}
 
-// file processing ---------------------
-gulp.task('less', function(){
-	'use strict';
-	return gulp.src('app/style/style.less')
+// Copy assets to dist
+function copyAssets() {
+    return gulp.src(paths.assets, { encoding: false })
+        .pipe(gulp.dest('dist/assets'));
+}
+
+// Compile LESS to CSS
+function compileLess() {
+    return gulp.src(paths.styles.src)
         .pipe(less({
-            paths: [ 'app/style' ]
+            paths: ['app/style']
         }))
-		.pipe(gulp.dest('app/style/'));
-});
+        .pipe(gulp.dest(paths.styles.dest))
+        .pipe(browserSync.stream());
+}
 
-gulp.task('css-build', ['less'], function(){
-	'use strict';
-	return gulp.src('app/style/style.css')
-		.pipe(minifyCss())
-		.pipe(gulp.dest('dist'));
-});
+// Build CSS for production
+function buildCss() {
+    return gulp.src('app/style/style.css')
+        .pipe(cleanCss())
+        .pipe(gulp.dest(paths.dist));
+}
 
-gulp.task('angular-templates', function(){
-	'use strict';
-    gulp.src('app/components/*.html')
-		.pipe(htmlify())
-		.pipe(angularTemplates({module: 'vmMusic', basePath: '/components/'}))
-		.pipe(gulp.dest('app/angular-js-templates'));
-	gulp.src('app/directives/*.html')
-		.pipe(htmlify())
-		.pipe(angularTemplates({module: 'vmMusic', basePath: '/directives/'}))
-		.pipe(gulp.dest('app/angular-js-templates'));
-});
+// Compile Angular templates to JS cache
+function compileComponentTemplates() {
+    return gulp.src(paths.templates.components)
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(templateCache('components-templates.js', {
+            module: 'vmMusic',
+            root: '/components/'
+        }))
+        .pipe(gulp.dest('app/angular-js-templates'));
+}
 
-gulp.task('js-app-build', function(){
-	'use strict';
-	return gulp.src([
-		'app/*.js',
-		'app/services/*.js',
-		'app/components/*.js',
-		'app/directives/*.js',
-		'app/filters/*.js',
-		'app/angular-js-templates/*.js'
+function compileDirectiveTemplates() {
+    return gulp.src(paths.templates.directives)
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(templateCache('directives-templates.js', {
+            module: 'vmMusic',
+            root: '/directives/'
+        }))
+        .pipe(gulp.dest('app/angular-js-templates'));
+}
 
-	])
-		.pipe(concat('app.js'))
-		.pipe(gulp.dest('dist/'));
-});
+const compileTemplates = gulp.parallel(compileComponentTemplates, compileDirectiveTemplates);
 
-gulp.task('js-lib-build', function(){
-	'use strict';
-    return gulp.src(libGlob)
-        .pipe(concatVendor('lib.js'))
-        .pipe(gulp.dest('dist/'));
-});
+// Build library JS
+function buildLibJs() {
+    return gulp.src(paths.scripts.lib)
+        .pipe(concat('lib.js'))
+        .pipe(gulp.dest(paths.dist));
+}
 
-gulp.task('js-build', ['js-lib-build', 'js-app-build'], function(){
-    'use strict';
+// Build app JS
+function buildAppJs() {
+    return gulp.src(paths.scripts.app)
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(paths.dist));
+}
+
+// Combine and minify JS
+function combineJs() {
     return gulp.src([
         'dist/lib.js',
         'dist/app.js'
     ])
         .pipe(concat('script.js'))
         .pipe(uglify())
-        .pipe(insert.prepend('/*\n name: ' + packageConfig.name +
-            '\n description: ' + packageConfig.description +
-            '\n version: ' + packageConfig.version +
-            '\n copyright: ' + packageConfig.author +
-            '\n*/\n')
-        )
-        .pipe(gulp.dest('dist/'));
-});
+        .pipe(insert.prepend(`/*
+ name: ${packageConfig.name}
+ description: ${packageConfig.description}
+ version: ${packageConfig.version}
+ copyright: ${packageConfig.author}
+*/
+`))
+        .pipe(gulp.dest(paths.dist));
+}
 
-gulp.task('js-deploy', ['js-build'], function(){
-    'use strict';
-    return gulp.src([
+// Clean up intermediate JS files
+function cleanIntermediateJs() {
+    return deleteAsync([
         'dist/lib.js',
         'dist/app.js'
-    ], {read:false})
-        .pipe(clean());
-});
+    ]);
+}
 
-gulp.task('process-html', function(){
-	'use strict';
-	return gulp.src('app/*.html')
-		.pipe(htmlify())
-		.pipe(processHtml())
-		.pipe(minifyHtml())
-		.pipe(gulp.dest('dist/'));
-});
+// Process HTML for production
+function processHtml() {
+    return gulp.src(['app/index.html', 'app/compatibility.html'], { allowEmpty: true })
+        .pipe(replace(/<!-- build:css style.css -->[\s\S]*?<!-- \/build -->/g, '<link href="style.css" rel="stylesheet" />'))
+        .pipe(replace(/<!-- build:js script.js -->[\s\S]*?<!-- \/build -->/g, '<script src="script.js"></script>'))
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true
+        }))
+        .pipe(gulp.dest(paths.dist));
+}
 
-gulp.task('process-config', function(){
-    'use strict';
-    return gulp.src('app/config/htaccess.txt')
-        .pipe(rename('.htaccess'))
-        .pipe(gulp.dest('dist/'));
-});
-// end file processing ----------------
+// Development server - serves from app/ with assets from root assets/
+function serve(done) {
+    browserSync.init({
+        server: {
+            baseDir: 'app',
+            routes: {
+                '/bower_components': 'bower_components',
+                '/assets': 'assets'
+            }
+        },
+        port: 9000,
+        open: true,
+        middleware: [
+            // SPA fallback
+            function(req, res, next) {
+                if (req.url.indexOf('.') === -1) {
+                    req.url = '/index.html';
+                }
+                next();
+            }
+        ]
+    });
+    done();
+}
 
-//running tests
-gulp.task('unit-tests-watch', function(){
-    'use strict';
-    return gulp.src(unitTestGlob).pipe(karma({
-        configFile: 'karma.config.js',
-        action: 'watch'
-    }));
-});
+// Production server - serves from dist/ (assets already copied there)
+function serveProd(done) {
+    browserSync.init({
+        server: {
+            baseDir: 'dist'
+        },
+        port: 9009,
+        open: true,
+        middleware: [
+            function(req, res, next) {
+                if (req.url.indexOf('.') === -1) {
+                    req.url = '/index.html';
+                }
+                next();
+            }
+        ]
+    });
+    done();
+}
 
-gulp.task('run-unit-tests', function(){
-    'use strict';
-    return gulp.src(unitTestGlob).pipe(karma({ configFile: 'karma.config.js' }));
-});
+// Reload browser
+function reload(done) {
+    browserSync.reload();
+    done();
+}
 
-//end running tests
-gulp.task('open-browser-dev', function () {
-    'use strict';
-    return gulp.src('app/index.html')
-        .pipe(open({uri: 'http://localhost:9000'}));
-});
+// Watch files for changes
+function watchFiles() {
+    gulp.watch(paths.styles.watch, compileLess);
+    gulp.watch([
+        'app/*.js',
+        'app/*/*.js',
+        'app/*.html',
+        'app/*/*.html'
+    ], reload);
+}
 
-gulp.task('build',[
-    'run-unit-tests',
-    'css-build',
-    'angular-templates',
-    'js-deploy',
-    'process-html'/*,
-    'process-config'*/
-]);
+// Build JS pipeline
+const buildJs = gulp.series(
+    gulp.parallel(buildLibJs, buildAppJs),
+    combineJs,
+    cleanIntermediateJs
+);
 
-gulp.task('watch', function(){
-	'use strict';
-	gulp.watch([
-		'app/*.js',
-		'app/*/*.js',
-		'app/*.html',
-		'app/*/*.html',
-		'app/*.css',
-		'app/*/*.css'
-	], ['refresh']);
+// Full build pipeline
+const build = gulp.series(
+    clean,
+    compileLess,
+    compileTemplates,
+    gulp.parallel(buildCss, buildJs, processHtml, copyAssets)
+);
 
-	gulp.watch('app/style/*.less', ['less']);
-});
+// Development task
+const dev = gulp.series(
+    compileLess,
+    gulp.parallel(serve, watchFiles)
+);
 
-gulp.task('default', ['dev-server', 'unit-tests-watch', 'watch', 'open-browser-dev']);
+// Export tasks
+exports.clean = clean;
+exports.cleanAll = cleanAll;
+exports.less = compileLess;
+exports.templates = compileTemplates;
+exports.assets = copyAssets;
+exports.build = build;
+exports.serve = serve;
+exports['serve:prod'] = serveProd;
+exports.watch = watchFiles;
+exports.default = dev;

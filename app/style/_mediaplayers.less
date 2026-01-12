@@ -1,87 +1,107 @@
+@import "_variables";
+@import "_mixins";
+
 /* Styles for the audio and video players */
 #videoPlayerContainer{
 	display: block;
 	position: fixed;
-	top:100%; //initial top is hidden
-	left:10%;
-	
+	top: 100%; // initial top is hidden
+	left: 10%;
+	z-index: 2000;
+
 	.closeOverlay{
-		width:100%;
-		text-align:right;
-		filter:alpha(opacity=79);
-		-moz-opacity:0.79;
-		-khtml-opacity: 0.79;
-		opacity: 0.95;
-		.linearGradient(#505050,#1e1e1e);
-		
+		width: 100%;
+		text-align: right;
+		background: @nav-bg;
+		border-radius: @radius-sm @radius-sm 0 0;
+		border: 1px solid @card-border;
+		border-bottom: none;
+
 		a{
-			margin: .3em;
+			margin: @spacing-xs;
 			display: inline-block;
 			vertical-align: middle;
-			
+			opacity: 0.7;
+			transition: opacity @transition-fast;
+
+			&:hover {
+				opacity: 1;
+			}
+
 			img{
-				width:1.2em;
-				margin: .1em .5em .1em .5em;
+				width: 1.2em;
+				margin: 0.15em 0.5em;
 				float: right;
 			}
 		}
 
-	}//.closeOverlay
-}//#videoPlayerContainer
+	}// .closeOverlay
+}// #videoPlayerContainer
 
 #audioPlayerContainer{
-	position:fixed;
-	left:50%;
+	position: fixed;
+	left: 50%;
 	margin-left: -50%;
-	bottom:-100%;
+	bottom: -100%;
 	width: 100%;
 	text-align: center;
-	display:none;
-		
+	display: none;
+	z-index: 1500;
+
 	.playerDetails{
 		display: inline-block;
-		border:thin solid lightgray;
-		border-radius: 10px;
-		padding:.5em;
-		opacity: .9;
-		
+		border: 1px solid @card-border;
+		border-radius: @radius-md;
+		padding: @spacing-sm @spacing-md;
+		background: @nav-bg;
+		box-shadow: @shadow-lg;
+
 		@media @mediumSmall{
 			width: 27%;
 		}
-		
+
 		@media @medium{
 			min-width: 339px;
 			max-width: 430px;
 		}
-		
-		.linearGradient(#505050,#1e1e1e);
-		
+
 		.btnplay{
 			float: left;
 			height: 2.4em;
-			margin-right: 1em;
-			
+			margin-right: @spacing-sm;
+			opacity: 0.9;
+			transition: opacity @transition-fast, transform @transition-fast;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 1;
+				transform: scale(1.05);
+			}
 		}
+
 		.songInfo{
-			float:left;
+			float: left;
 			text-align: left;
+			font-size: 0.9em;
+			color: @text-color;
 		}
-		
+
 		div{
 			display: inline-block;
-		}	
-		
+		}
+
 		.volumecontroll{
-			display:none;
-		
+			display: none;
+
 			@media @medium{
 				display: inline-block;
-				margin-right:1.5em;
+				margin-right: @spacing-md;
 				vertical-align: middle;
-				float:right;
-				
+				float: right;
+
 				input{
 					width: 7em;
+					accent-color: @linkcolor;
 				}
 			}
 		}
