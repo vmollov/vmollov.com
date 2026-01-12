@@ -1,5 +1,6 @@
 .DS_Store
 .sass-cache
 .idea
+.claude
 node_modules
 bower_components

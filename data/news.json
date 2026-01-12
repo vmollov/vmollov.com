@@ -1,0 +1,14 @@
+[
+	{
+		"id": 4,
+		"description": "Here is <a href='http://www.pcoblog.org/tango-music-coming-to-a-theater-near-you/' target='_blank'>a blog post</a> about <a href='http://www.pittsburghcivicorchestra.net' target='_blank'>Pittsburgh Civic Orchestra's</a> performance of my piece Walking with Astor.  The cello soloist, Yulia Zhukoff, did a fantastic job!"
+	},
+	{
+		"id": 2,
+		"description": "Horizons on WQED recently had <a target='_blank' href='http://www.wqed.org/tv/watch/?id=636'>a feature of me</a>."
+	},
+	{
+		"id": 1,
+		"description": "I was recently featured in an article published in the Pittsburgh Post Gazette.  <a target='_blanl' href='http://www.post-gazette.com/stories/ae/music/person-of-interest-vladimir-mollov-accordion-virtuoso-640687/'>Check it out!</a>"
+	}
+]
