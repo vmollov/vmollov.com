@@ -56,6 +56,7 @@ nav {
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 nav a {
   font: 500 0.9em 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Verdana, Geneva, sans-serif;
@@ -102,7 +103,6 @@ nav .menuTitle.menuOpen > a:before {
   top: 10px;
 }
 nav .menuItems {
-  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -114,9 +114,16 @@ nav .menuItems {
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: max-height 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 nav .menuItems.menuOpen {
-  display: block;
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
 }
 @media (min-width: 569px) {
   nav .menuItems {
@@ -125,6 +132,11 @@ nav .menuItems.menuOpen {
     position: static;
     box-shadow: none;
     border-radius: 6px;
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+    transform: none;
+    transition: none;
   }
 }
 nav .menuItems > li {
