@@ -3,12 +3,12 @@
 
 nav{
 	width: 100%;
-	display: inline-block;
 	padding: 0;
 	margin: 0 0 @spacing-xs 0;
 	background: @nav-bg;
 	border-radius: @radius-sm;
 	box-shadow: @shadow-sm;
+	position: relative;
 
 	a{
 		font: 500 0.9em @generalFonts;
@@ -18,73 +18,88 @@ nav{
 		text-transform: uppercase;
 		transition: color @transition-fast, background-color @transition-fast;
 
-		@media @small{
+		@media @mediumSmall{
 			font-size: 0.75em;
 		}
 	}
 
-	> ul {
-        display: flex;
-        justify-content: space-around;
-		list-style: inside none;
+	// Mobile menu title - only visible on small screens
+	.menuTitle{
+		display: block;
+		position: relative;
+
+		@media @mediumSmall{
+			display: none;
+		}
+
+		> a{
+			display: block;
+			text-align: center;
+			padding: 12px 0;
+			color: @text-muted;
+
+			&:before{
+				content: '';
+				position: absolute;
+				top: 14px;
+				right: 14px;
+				border: 5px solid transparent;
+				border-top: 5px solid @text-muted;
+				transition: transform @transition-fast;
+			}
+
+			&:hover{
+				color: @linkcolor;
+			}
+		}
+
+		&.menuOpen > a:before{
+			transform: rotate(180deg);
+			top: 10px;
+		}
+	}
+
+	// Menu items container
+	.menuItems{
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background: @nav-bg;
+		border-radius: 0 0 @radius-sm @radius-sm;
+		box-shadow: @shadow-md;
+		z-index: 1000;
+		list-style: none;
 		padding: 0;
 		margin: 0;
 
-		.menuTitle{ // displays only on small screens
+		&.menuOpen{
 			display: block;
-
-			> a{
-				display: block;
-				&:before{
-					content: '';
-					position: absolute;
-					top: 14px;
-					right: 10px;
-					border: 5px solid transparent;
-					border-top: 5px solid @text-muted;
-					transition: transform @transition-fast;
-				}
-			}
-
-			@media @small{
-				display: none;
-			}
-
 		}
+
+		@media @mediumSmall{
+			display: flex;
+			justify-content: space-around;
+			position: static;
+			box-shadow: none;
+			border-radius: @radius-sm;
+		}
+
 		> li {
-			list-style: inside none;
+			list-style: none;
 			padding: 0;
 			margin: 0;
-			display: block;
 			position: relative;
-			width: 100%;
+			border-top: 1px solid rgba(255, 255, 255, 0.05);
 
-			&:last-child{
-				border: none;
+			&:first-child{
+				border-top: none;
 			}
 
-			&:not(.menuTitle){ // the rest of the menu items do not display on small screens
-				display: none;
-
-				&.menuItemOn{
-					display: block;
-				}
-				&:not(.menuItemOn){
-					display: none;
-				}
-
-				@media @small{
-					display: block;
-					&:not(.menuItemOn){
-						display: block;
-					}
-				}
-			}
-
-			@media @small{
-				float: left;
-				width: 16.6%;
-				border: none;
+			@media @mediumSmall{
+				border-top: none;
+				flex: 1;
 			}
 
 			> a{
@@ -92,37 +107,43 @@ nav{
 				display: block;
 				position: relative;
 				padding: 12px 0;
+				color: @text-muted;
 
-				&, &:visited{
+				&:visited{
 					color: @text-muted;
-
-					@media @mediumSmall{
-						border-right: 1px solid rgba(255, 255, 255, 0.05);
-					}
 				}
 
 				&:hover{
 					color: @linkcolor;
 					background: rgba(255, 255, 255, 0.03);
 				}
-			}// >a
 
-			&:first-child > a{
-				border-radius: @radius-sm 0 0 @radius-sm;
+				@media @mediumSmall{
+					border-right: 1px solid rgba(255, 255, 255, 0.05);
+				}
 			}
 
-			@media @mediumSmall{
-				&:last-child > a{
+			&:first-child > a{
+				@media @mediumSmall{
+					border-radius: @radius-sm 0 0 @radius-sm;
+				}
+			}
+
+			&:last-child > a{
+				border-radius: 0 0 @radius-sm @radius-sm;
+
+				@media @mediumSmall{
 					border-right: none;
 					border-radius: 0 @radius-sm @radius-sm 0;
 				}
 			}
 
+			// Submenu support
 			&.hasSub{
 				> a{
 					display: none;
 
-					@media @small{
+					@media @mediumSmall{
 						display: block;
 						&:before{
 							content: '';
@@ -151,10 +172,10 @@ nav{
 						display: block;
 					}
 				}
-			}// .hasSub
+			}
 
-			// sub menus
-			>ul{
+			// Nested submenus
+			> ul{
 				animation: fadeIn_slide 0.25s ease-out;
 				display: block;
 				width: 100%;
@@ -162,8 +183,11 @@ nav{
 				border-radius: 0 0 @radius-sm @radius-sm;
 				z-index: 999;
 				background: @nav-bg;
+				list-style: none;
+				padding: 0;
+				margin: 0;
 
-				@media @small{
+				@media @mediumSmall{
 					display: none;
 					position: absolute;
 					padding: @spacing-xs 0;
@@ -172,7 +196,7 @@ nav{
 
 				li{
 					display: block;
-					list-style: inside none;
+					list-style: none;
 					padding: 0;
 					margin: 0;
 					position: relative;
@@ -180,7 +204,8 @@ nav{
 					&:not(:first-child){
 						border-top: 1px solid rgba(255, 255, 255, 0.05);
 					}
-					@media @small{
+
+					@media @mediumSmall{
 						border-top: 1px solid rgba(255, 255, 255, 0.05);
 					}
 
@@ -197,8 +222,8 @@ nav{
 						color: @linkcolor;
 						background: rgba(255, 255, 255, 0.03);
 					}
-				}// li
-			}// >ul
-		}// >li
-	}// >ul
-}// nav
+				}
+			}
+		}
+	}
+}

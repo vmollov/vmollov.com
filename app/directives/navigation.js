@@ -10,12 +10,9 @@ angular.module('vmMusic').directive('navigation', [
             scope:{ },
             link: function(scope, element){
                 var subMenuContainer = angular.element(element).find("li.hasSub"),
-                    menuTitleItem = angular.element(element).find(".menuTitle"), //only used for phone size screens
-                    nonMenuTitleItems = angular.element(element).find("ul li:not(.menuTitle)"),
-                    getLeafMenuItemOn = function(){
-                        return angular.element(element).find(".menuItemOn:not(.hasSub)");
-
-                    };
+                    menuTitleItem = angular.element(element).find(".menuTitle"),
+                    menuItemsContainer = angular.element(element).find(".menuItems"),
+                    menuItems = angular.element(element).find(".menuItems li");
 
                 scope.currentPage = function(){
                     if($location.$$path === "/") {
@@ -33,12 +30,13 @@ angular.module('vmMusic').directive('navigation', [
                     });
 
                 menuTitleItem.on('click', function(){
-                    nonMenuTitleItems.toggleClass("menuItemOn");
-                    getLeafMenuItemOn()
-                        .off('click')
-                        .on('click', function(){
-                            nonMenuTitleItems.toggleClass("menuItemOn", false);
-                        });
+                    menuTitleItem.toggleClass("menuOpen");
+                    menuItemsContainer.toggleClass("menuOpen");
+                });
+
+                menuItems.on('click', function(){
+                    menuTitleItem.toggleClass("menuOpen", false);
+                    menuItemsContainer.toggleClass("menuOpen", false);
                 });
             }
         };

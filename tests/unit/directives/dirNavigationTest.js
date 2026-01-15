@@ -36,14 +36,16 @@ describe('navigation directive', function(){
     });
 */
     it('should expand the menu on menuTitle click (phone view)', function(){
-        var getMenuItemsOn = function(){
-            return angular.element(element).find(".menuItemOn:not(.hasSub)");
-        };
+        var menuItems = angular.element(element).find(".menuItems");
+        var menuTitle = angular.element(element).find(".menuTitle");
 
-        expect(getMenuItemsOn().length).toBe(0);
-        angular.element(element).find(".menuTitle").click();
-        expect(getMenuItemsOn().length).toBeGreaterThan(0);
-        angular.element(element).find(".menuTitle").click();
-        expect(getMenuItemsOn().length).toBe(0);
+        expect(menuItems.hasClass('menuOpen')).toBe(false);
+        expect(menuTitle.hasClass('menuOpen')).toBe(false);
+        menuTitle.click();
+        expect(menuItems.hasClass('menuOpen')).toBe(true);
+        expect(menuTitle.hasClass('menuOpen')).toBe(true);
+        menuTitle.click();
+        expect(menuItems.hasClass('menuOpen')).toBe(false);
+        expect(menuTitle.hasClass('menuOpen')).toBe(false);
     });
 });
