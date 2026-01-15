@@ -14,6 +14,7 @@
     "test": "karma start karma.config.js --single-run",
     "test:watch": "karma start karma.config.js",
     "less": "gulp less",
+    "serveProd": "gulp serve:prod",
     "deploy": "dotenv -- bash -c 'aws s3 cp dist/ s3://www.vmollov.com/ --recursive && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths \"/*\"'"
   },
   "devDependencies": {

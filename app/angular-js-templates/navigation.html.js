@@ -1,4 +1,0 @@
-angular.module('vmMusic').run(['$templateCache', function($templateCache) {
-    $templateCache.put('/directives/navigation.html',
-        "<nav>\n\t<ul>\n\t\t<li class=\"menuTitle\"><a href=\"#\" title=\"Menu\">MENU{{currentPage()}}</a></li>\n\t\t<li><a href=\"/\" title=\"Home Page\">HOME</a></li>\n\t    <li><a href=\"/biography\" title=\"Biography\">BIOGRAPHY</a></li>\n\t\t<li><a href=\"/calendar\" title=\"Upcoming Events\">CALENDAR</a></li>\n\t\t<li><a href=\"/recordings\" title=\"Recordings\">RECORDINGS</a></li>\n\t\t<li><a href=\"/videos\" title=\"Video Gallery\">YOUTUBE FEED</a></>\n\t\t<li><a href=\"/contact\" title=\"Contact Information\">CONTACT</a></li>\n\t</ul>\n</nav>");
-}]);
