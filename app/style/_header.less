@@ -10,7 +10,18 @@ header{
 
 		img{
 			width: 100%;
-			max-width: 864px;
+		}
+
+		// Gradient overlay for text readability
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 40%;
+			background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, transparent 100%);
+			pointer-events: none;
 		}
 
 		.homeBanner{ }
@@ -39,29 +50,48 @@ header{
 
 		@media @mediumSmall{
 			position: absolute;
-			bottom: 5%;
-			left: 7%;
+			bottom: 8%;
+			left: 5%;
 			height: auto;
-			padding: 0 24px 16px 24px;
+			padding: @spacing-sm @spacing-lg @spacing-md @spacing-lg;
+			max-width: 420px;
 			border-radius: @radius-md;
 			box-shadow: @shadow-lg;
 
+			// "UPCOMING" label
+			&::before {
+				content: 'UPCOMING';
+				display: block;
+				font-size: 0.7em;
+				font-weight: 600;
+				letter-spacing: @letter-spacing-wide;
+				color: @linkcolor;
+				margin-bottom: @spacing-xs;
+				text-transform: uppercase;
+			}
+
 			p{
 				margin: 0 0 0 30px;
-				font-size: 0.85em;
-				line-height: 1.5;
+				font-size: 0.9em;
+				line-height: 1.6;
 
 				&.hevent_title{
-					font: 500 1.1em @generalFonts;
+					font: 600 1.25em @generalFonts;
 					color: @heading-color;
 					letter-spacing: 0.02em;
+					margin-bottom: @spacing-xs;
 				}
 			}
 
 		}
 
 		@media @medium{
-			padding: 12px 24px 20px 24px;
+			padding: @spacing-md @spacing-lg @spacing-lg @spacing-lg;
+			max-width: 500px;
+
+			p.hevent_title {
+				font-size: 1.4em;
+			}
 		}
 	}// feature event
 }// header

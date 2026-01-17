@@ -1,3 +1,7 @@
-<div class="pageHeader"><img ng-src="{{ bio.img }}" alt="{{ bio.title }}" /></div>
 <h1>Biography</h1>
-<div ng-bind-html="bio.biography"></div>
+<div class="bio-container">
+	<div class="bio-portrait">
+		<img ng-src="{{ bio.img }}" alt="{{ bio.title }}" />
+	</div>
+	<div class="bio-content" ng-bind-html="bio.biography"></div>
+</div>

@@ -163,7 +163,7 @@
 	}
 
 	.albumImage{
-        width: 215px;
+        width: 250px;
 
 		img {
 			border-radius: @radius-sm;
@@ -189,7 +189,7 @@
 
 		p{
 			&.title{
-				font-size: 1.6em;
+				font-size: @font-size-3xl;
 				font-family: @titleFonts;
 				font-style: italic;
 			    color: @heading-color;
@@ -233,15 +233,17 @@
 			clear: both;
 			vertical-align: middle;
 			margin-bottom: 8px;
-			padding: 6px 10px;
+			padding: 10px 14px;
 			border-radius: @radius-sm;
-			background: rgba(255, 255, 255, 0.03);
-			border: 1px solid rgba(255, 255, 255, 0.08);
-			transition: background @transition-fast, border-color @transition-fast;
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			font-weight: 500;
+			transition: background @transition-fast, border-color @transition-fast, transform @transition-fast;
 
 			&:hover {
-				background: rgba(255, 255, 255, 0.06);
-				border-color: rgba(201, 169, 98, 0.3);
+				background: rgba(201, 169, 98, 0.15);
+				border-color: rgba(201, 169, 98, 0.4);
+				transform: translateY(-1px);
 			}
 
 			> img{

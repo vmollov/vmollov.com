@@ -5,10 +5,14 @@ nav{
 	width: 100%;
 	padding: 0;
 	margin: 0 0 @spacing-xs 0;
-	background: @nav-bg;
+	background: rgba(21, 21, 21, 0.95);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 	border-radius: @radius-sm;
 	box-shadow: @shadow-sm;
-	position: relative;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 	-webkit-tap-highlight-color: transparent;
 
 	a{
@@ -34,29 +38,48 @@ nav{
 		}
 
 		> a{
-			display: block;
-			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: @touch-target-min;
 			padding: 12px 0;
 			color: @text-muted;
 
-			&:before{
+			// Hamburger icon
+			&:after{
 				content: '';
 				position: absolute;
-				top: 14px;
-				right: 14px;
-				border: 5px solid transparent;
-				border-top: 5px solid @text-muted;
-				transition: transform @transition-fast;
+				right: 16px;
+				top: 50%;
+				margin-top: -7px; // Center the 14px tall hamburger (2px + 6px + 2px + 6px - 2px)
+				width: 20px;
+				height: 2px;
+				background: @text-muted;
+				box-shadow:
+					0 6px 0 @text-muted,
+					0 12px 0 @text-muted;
+				transition: all @transition-fast;
 			}
 
 			&:hover{
 				color: @linkcolor;
+
+				&:after {
+					background: @linkcolor;
+					box-shadow:
+						0 6px 0 @linkcolor,
+						0 12px 0 @linkcolor;
+				}
 			}
 		}
 
-		&.menuOpen > a:before{
-			transform: rotate(180deg);
-			top: 10px;
+		// Transform hamburger to X when open
+		&.menuOpen > a:after{
+			transform: rotate(45deg);
+			box-shadow:
+				0 0 0 @linkcolor,
+				0 0 0 @linkcolor;
+			background: @linkcolor;
 		}
 	}
 
@@ -121,7 +144,8 @@ nav{
 				outline: none;
 				display: block;
 				position: relative;
-				padding: 12px 0;
+				min-height: @touch-target-min;
+				padding: 14px 0;
 				color: @text-muted;
 
 				&:visited{
@@ -135,6 +159,26 @@ nav{
 
 				@media @mediumSmall{
 					border-right: 1px solid rgba(255, 255, 255, 0.05);
+					min-height: auto;
+					padding: 12px 0;
+				}
+			}
+
+			// Active state indicator
+			&.active > a {
+				color: @linkcolor;
+
+				@media @mediumSmall {
+					&::after {
+						content: '';
+						position: absolute;
+						bottom: 0;
+						left: 20%;
+						right: 20%;
+						height: 2px;
+						background: @linkcolor;
+						border-radius: 1px;
+					}
 				}
 			}
 
