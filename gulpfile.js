@@ -45,6 +45,7 @@ const paths = {
     },
     assets: 'assets/**/*',
     data: 'data/**/*',
+    static: 'static/**/*',
     html: ['app/index.html', 'app/compatibility.html'],
     dist: 'dist/'
 };
@@ -75,6 +76,12 @@ function copyAssets() {
 function copyData() {
     return gulp.src(paths.data, { encoding: false, allowEmpty: true })
         .pipe(gulp.dest('dist/data'));
+}
+
+// Copy static files to dist (preserving folder structure from static/)
+function copyStatic() {
+    return gulp.src(paths.static, { encoding: false, allowEmpty: true, base: 'static' })
+        .pipe(gulp.dest('dist/'));
 }
 
 // Compile LESS to CSS
@@ -173,7 +180,7 @@ function processHtml() {
 function serve(done) {
     browserSync.init({
         server: {
-            baseDir: 'app',
+            baseDir: ['app', 'static'],
             routes: {
                 '/bower_components': 'bower_components',
                 '/assets': 'assets',
@@ -244,7 +251,7 @@ const build = gulp.series(
     clean,
     compileLess,
     compileTemplates,
-    gulp.parallel(buildCss, buildJs, processHtml, copyAssets, copyData)
+    gulp.parallel(buildCss, buildJs, processHtml, copyAssets, copyData, copyStatic)
 );
 
 // Development task
@@ -260,6 +267,7 @@ exports.less = compileLess;
 exports.templates = compileTemplates;
 exports.assets = copyAssets;
 exports.data = copyData;
+exports.static = copyStatic;
 exports.build = build;
 exports.serve = serve;
 exports['serve:prod'] = serveProd;

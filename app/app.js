@@ -40,8 +40,8 @@ angular.module('vmMusic', ['ngRoute', 'ngSanitize', 'ngTouch'])
 					controller: 'contactCtrl'
 				}
 			);
-			$routeProvider.when('/privacy', {
-					templateUrl: '/components/privacy.html'
+			$routeProvider.when('/privacy-policy', {
+					templateUrl: '/components/privacy-policy.html'
 				}
 			);
             $routeProvider.otherwise({ redirectTo: '/' });
